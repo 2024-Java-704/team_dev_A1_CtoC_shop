@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Item;
+import com.example.demo.model.Account;
 import com.example.demo.repository.ItemRepository;
 
 public class ItemController {
@@ -23,7 +24,7 @@ public class ItemController {
 							@RequestParam(name="keyword",defaultValue="") String keyword,
 							Model model) {
 		List<Item>ItemList=null;
-		Integer buyerId=account.getid();
-		
+		Integer buyerId=account.getId();
+		return"";
 }
 }
