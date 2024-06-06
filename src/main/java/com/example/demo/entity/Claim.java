@@ -1,0 +1,41 @@
+package com.example.demo.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "claims")
+public class Claim {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String message;
+	private Integer claimStatus;
+	
+	public Claim() {
+	}
+	
+	public Claim(String message) {
+		this.message = message;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public Integer getClaimStatus() {
+		return claimStatus;
+	}
+
+	public void setClaimStatus(Integer claimStatus) {
+		this.claimStatus = claimStatus;
+	}
+}
