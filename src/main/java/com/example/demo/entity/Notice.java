@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,8 +14,10 @@ public class Notice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "user_id")
 	private Integer userId;
 	private String message;
+	@Column(name = "notice_status")
 	private Integer noticeStatus;
 	
 	public Notice() {
