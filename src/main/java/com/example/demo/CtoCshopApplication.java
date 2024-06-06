@@ -8,6 +8,7 @@ public class CtoCshopApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CtoCshopApplication.class, args);
+		
 	}
 
 }
