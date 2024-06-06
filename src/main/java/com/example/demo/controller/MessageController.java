@@ -9,6 +9,7 @@ public class MessageController {
 	// お問い合わせ画面の表示
 	@GetMapping("/claim")
 	public String addClaim() {
+		
 		return "contactForm";
 	}
 
