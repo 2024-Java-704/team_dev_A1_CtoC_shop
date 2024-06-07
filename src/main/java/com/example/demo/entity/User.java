@@ -15,7 +15,7 @@ public class User {
 	private Integer id;
 
 	@Column(name = "student_number")
-	private Integer studentNumber;
+	private String studentNumber;
 
 	private String password;
 
@@ -32,7 +32,7 @@ public class User {
 		return id;
 	}
 
-	public Integer getStudentNumber() {
+	public String getStudentNumber() {
 		return studentNumber;
 	}
 

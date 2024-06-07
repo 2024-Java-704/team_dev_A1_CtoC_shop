@@ -10,6 +10,6 @@ public interface ClaimRepository extends JpaRepository<Claim, Integer> {
 
 	List<Claim> findByOrderById();
 
-	List<Claim> findByORderByIdAsc();
+	List<Claim> findByOrderByIdAsc();
 
 }
