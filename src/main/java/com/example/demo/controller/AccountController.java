@@ -61,8 +61,8 @@ public class AccountController {
 			model.addAttribute("errorList", errorList);
 			return "login";
 		}
-		account.setId(account.getId());
-		account.setUserStatus(account.getUserStatus());
+		account.setId(user.getId());
+		account.setUserStatus(user.getUserStatus());
 		return "";
 	}
 
@@ -80,19 +80,68 @@ public class AccountController {
 	public String setPassword(
 			@RequestParam(name = "oldPassword", defaultValue = "") String oldPassword,
 			@RequestParam(name = "newPassword", defaultValue = "") String newPassword,
-			@RequestParam(name = "reNewPassword", defaultValue = "") String reNewPassword) {
+			@RequestParam(name = "reNewPassword", defaultValue = "") String reNewPassword,
+			Model model) {
+		//idでuserを検索
 		User user = userRepository.findById(account.getId()).get();
+		//errorListでエラーを格納
+		List <String> errorList=new ArrayList<>();
+		//古いパスワードの入力検査
+		//未入力をはじく処理とパスワードが違っていた場合の処理
+		if(oldPassword.length() ==0) {
+			errorList.add("パスワードは必須です");
+		}else if(!(oldPassword.equals(user.getPassword()))) {
+			errorList.add("パスワードが間違っています");
+		}
+		//新しいパスワードの入力検査
+		//未入力をはじく処理と文字数不足を検査する処理
+		if(newPassword.length() ==0) {
+			errorList.add("新しいパスワードは必須です");
+		}else if(newPassword.length()<8) {
+			errorList.add("パスワードは８文字以上必要です");
+		}
+		//確認用パスワードの入力検査
+		//未入力をはじく処理と新しいパスワードとの一致を検査する処理
+		if(reNewPassword.length() ==0) {
+			errorList.add("確認用パスワードは必須です");
+		}else if(newPassword.equals(reNewPassword)) {
+			errorList.add("新しいパスワードと確認用パスワードが一致しません");
+		}
+		//エラーリストの中身があるか判定
+		if(errorList.size()==0) {
+			//あった場合、errorListを渡してsetpasswordに飛ぶ
+			model.addAttribute("errorList",errorList);
+			return "setPassword";
+		}else{
+			//なかった場合、userに新しいパスワードをセットし
+			user.setPassword(newPassword);
+		}
+		//userをDBに保存する。
+		userRepository.save(user);
+		
 		return "mypage";
 	}
 
 	@GetMapping("/account/setIntroduce")
+	//自己紹介更新ページの表示
 	public String resetIntroduce(Model model) {
+		//idでuserを検索
+		User user=userRepository.findById(account.getId()).get();
+		//検索したユーザーの自己紹介をoldIntroduceとして送信
+		model.addAttribute("oldIntroduce",user.getIntroduce());
+		//自己紹介更新ページを開く
 		return "resetIntroduce";
 	}
 
 	@PostMapping("/account/setIntroduce")
 	public String setIntroduce(
 			@RequestParam(name = "introduce", defaultValue = "") String introduce) {
+		//自己紹介は無記入可能であるため、エラー処理不要
+		User user = userRepository.findById(account.getId()).get();
+		//idで検索をかけたuserに新しい自己紹介を入れる
+		user.setIntroduce(introduce);
+		//自己紹介を更新したuserをほぞん
+		userRepository.save(user);
 		return "mypage";
 	}
 
