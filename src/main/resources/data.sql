@@ -10,15 +10,16 @@
  	-- users テーブルにデータを挿入するクエリ
  	INSERT INTO users (student_number, password, user_status, introduce)
  	VALUES
- 	('11620111', 'himitudesuyo', 2, 'はじめまして、よろしくお願いします。'),
- 	('84937592', 'himitudesuyo', 2, 'こんにちは、いいのがたくさんあります！'),
- 	('20948499', 'himitudesuyo', 2, '数学、理科の教科書が多いです。'),
- 	('00739387', 'himitudesuyo', 1, '');
+ 	(11620111, 'himitudesuyo', 2, 'はじめまして、よろしくお願いします。'),
+ 	(84937592, 'himitudesuyo', 2, 'こんにちは、いいのがたくさんあります！'),
+ 	(20948499, 'himitudesuyo', 2, '数学、理科の教科書が多いです。'),
+ 	(00739387, 'himitudesuyo', 1, '');
  	 
  	-- items テーブルにデータを挿入するクエリ
  	INSERT INTO items (textbook_id, item_status, deal_status, seller_id, buyer_id)
  	VALUES
- 	(1, 1, 2, 1, 2);
+ 	(1, 1, 2, 1, 2),
+ 	(3, 4, 1, 2, 3);
  	
  	-- claims テーブルにデータを挿入するクエリ
  	INSERT INTO claims (message, claim_status)
@@ -50,6 +51,6 @@
  	-- students テーブルにデータを挿入するクエリ
  	INSERT INTO students (name, student_number, birthday, address, number, faculty, department)
  	VALUES
- 	('三井悠太郎', 11620111, '2000-9-3', '神奈川県横浜市青葉区', '08012345678', '文学部', '史学科');
+ 	('三井悠太郎', 11620111, '2000-9-3', '神奈川県横浜市青葉区', 08012345678, '文学部', '史学科');
  	
  	
