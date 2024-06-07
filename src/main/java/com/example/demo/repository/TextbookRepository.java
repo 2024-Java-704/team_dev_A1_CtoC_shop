@@ -11,6 +11,5 @@ public interface TextbookRepository extends JpaRepository<Textbook, Integer>{
 	List<Textbook> findByNameLike(String keyword);
 
 	Textbook findOneById(Integer textbookId);
-	
 
 }

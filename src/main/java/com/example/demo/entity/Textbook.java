@@ -21,10 +21,10 @@ public class Textbook {
 	
 	private String publisher;
 	
-	Textbook(){
+	public Textbook(){
 	}
 	
-	Textbook(String title, String author, Integer price, String publisher){
+	public Textbook(String title, String author, Integer price, String publisher){
 		this.title = title;
 		this.author = author;
 		this.price = price;

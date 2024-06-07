@@ -77,6 +77,7 @@
  	-- students テーブルを作成するクエリ
  	CREATE TABLE students (
  	name TEXT,
+ 	studen_number INTEGER,
  	birthday DATE,
  	address TEXT,
  	number INTEGER,
