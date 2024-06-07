@@ -13,13 +13,13 @@ public class BBSController {
 	//募集一覧画面を表示
 	@GetMapping("/bbs")
 	public String index(Model model) {
-		return "";
+		return "bbsTable";
 	}
 
 	//募集追加の画面を表示
 	@GetMapping("/bbs/addRequest")
 	public String addRequest() {
-		return "";
+		return "addRequest";
 	}
 
 	//募集追加の処理
@@ -27,13 +27,13 @@ public class BBSController {
 	public String sendRequest(
 			@RequestParam(name = "id") Integer id,
 			@RequestParam(name = "itemStatus") Integer itemStatus) {
-		return "";
+		return "bbsTable";
 	}
 
 	//募集の削除処理
 	@PostMapping("/bbs/delete/{id}")
 	public String deleteRequest(@PathVariable("id") Integer id) {
-		return "";
+		return "bbsTable";
 	}
 
 }

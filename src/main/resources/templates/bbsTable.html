@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>掲示板</title>
+<!--画面ID:301 掲示板画面-->
+</head>
+<body>
+	<h1>掲示板</h1>
+	
+	<table border = "1">
+		<tr>
+			<th>商品状態</th>
+			<th>タイトル</th>
+			<th>完了</th>
+		</tr>
+<!--		タイムリーフ名の確認-->
+		<tr th:each = "requests:${requests}">
+			<td th:text = "${requests.item_status}"></td>
+			<td th:text = "${requests.item_id}"></td>
+			<td>
+				<button>削除</button>
+			</td>
+		</tr>
+	</table>
+<form action ="/bbs/addRequest" method = "get">
+	<button>新規登録</button>
+</form>
+
+</body>
+</html>
