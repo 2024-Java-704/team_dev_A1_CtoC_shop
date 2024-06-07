@@ -60,5 +60,11 @@ public Integer getSellerId() {
 public Integer getBuyerId() {
 	return buyerId;
 }
+public void setDealStatus(Integer dealStatus) {
+	this.dealStatus = dealStatus;
+}
+public void setBuyerId(Integer buyerId) {
+	this.buyerId = buyerId;
+}
 
 }
