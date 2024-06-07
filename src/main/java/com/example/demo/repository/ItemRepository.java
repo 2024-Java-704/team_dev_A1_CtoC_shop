@@ -12,5 +12,13 @@ public interface ItemRepository extends JpaRepository<Item,Integer>{
 
 	List<Item> findDistinctByTextbookIdOrderByAsc();
 
+	List<Item> findDistinctByTextbookIdOrderByAsc(Integer id);
+
+	List<Item> findByTextbookIdOrderByDesc(Integer textBookid);
+
+	List<Item> findByTextbookIdOrderByitemStatusDesc(Integer id);
+
+	List<Item> findByTextbookIdOrderByitemStatusAsc(Integer id);
+
 
 }
