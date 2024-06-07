@@ -32,13 +32,11 @@ private Integer buyerId; //購入者ID
 //コンストラクタ
 Item(){ //デフォルトコンストラクタ	
 }
-Item(Integer id,Integer textbookId,Integer itemStatus,Integer dealStatus,Integer sellerId,Integer buyerId){
-	this.id=id;
+Item(Integer textbookId,Integer itemStatus,Integer sellerId){
 	this.textbookId=textbookId;
 	this.itemStatus=itemStatus;
-	this.dealStatus=dealStatus;
 	this.sellerId=sellerId;
-	this.buyerId=buyerId;
+	this.dealStatus=1;
 }
 
 //メソッド
@@ -59,6 +57,13 @@ public Integer getSellerId() {
 }
 public Integer getBuyerId() {
 	return buyerId;
+}
+
+public void setDealStatus(Integer dealStatus) {
+	this.dealStatus = dealStatus;
+}
+public void setBuyerId(Integer buyerId) {
+	this.buyerId = buyerId;
 }
 
 }
