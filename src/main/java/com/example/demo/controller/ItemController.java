@@ -7,24 +7,35 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.entity.Item;
+import com.example.demo.entity.Textbook;
 import com.example.demo.model.Account;
 import com.example.demo.repository.ItemRepository;
+import com.example.demo.repository.TextbookRepository;
 
 public class ItemController {
-	
+
 	@Autowired
 	ItemRepository itemRepository;
 	
 	@Autowired
+	TextbookRepository textbookRepository;
+
+	@Autowired
 	Account account;
-	
+
 	@GetMapping("/home")
 	public String textList(
-							@RequestParam(name="keyword",defaultValue="") String keyword,
-							Model model) {
-		List<Item>ItemList=null;
-		Integer buyerId=account.getId();
-		return"";
-}
+
+			@RequestParam(name = "keyword", defaultValue = "") String keyword,
+			Model model) {
+		List<Textbook> itemList = null;
+		
+		if(keyword.length()==0 ||keyword.equals(null)) {
+			itemList=textbookRepository.findAll();
+		}else {
+			itemList=textbookRepository.findByNameLike(keyword);
+		}
+		model.addAttribute("itemList", itemList);
+		return "home";
+	}
 }
