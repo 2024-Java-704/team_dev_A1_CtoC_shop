@@ -8,26 +8,28 @@
 <body>
 	<h1>新規募集</h1>
 	
-	<form action = "/bbs" method ="post">
+	<form action = "/bbs/addRequest" method ="post">
 	<table border = "1">
 		<tr>
 			<th>商品状態</th>
 			<td>
-				<input type ="radio" name ="itemStatus" value ="0">新品
-				<input type ="radio" name ="itemStatus" value ="1">中古
-				<input type ="radio" name ="itemStatus" value ="2">書き込みあり
-				<input type ="radio" name ="itemStatus" value ="3">破損あり
-				<input type ="radio" name ="itemStatus" value ="4">どちらでもよい
+				<input type ="radio" name ="item_status" value ="1">新品
+				<input type ="radio" name ="item_status" value ="2">中古
+				<input type ="radio" name ="item_status" value ="3">書き込みあり
+				<input type ="radio" name ="item_status" value ="4">破損あり
+				<input type ="radio" name ="item_status" value ="5">どちらでもよい
 			</td>
 		</tr>
 		<tr>
 			<th>教科書</th>
 			<td>
-				<select name = "requests">
-					<option value="" disabled selected>タイトル名</option>	
-						<th:block th:each = "requests:${item_id}">
-					<option th:value = "" th:text = "">
-						</th:block>
+				<select name = "id">
+					<option value="" disabled selected>タイトル名</option>
+					<option th:each = "requests:${item_id}" th:value="" th:text= [[${@textbooks.title}]]></option>
+				
+<!--						<th:block th:each = "requests:${item_id}">-->
+<!--					<option th:value = "" th:text = "${textbooks.title}"></option>-->
+<!--						</th:block>-->
 			</td>
 		</tr>
 	</table>

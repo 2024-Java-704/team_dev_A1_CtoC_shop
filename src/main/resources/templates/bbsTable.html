@@ -16,10 +16,16 @@
 		</tr>
 <!--		タイムリーフ名の確認-->
 		<tr th:each = "requests:${requests}">
-			<td th:text = "${requests.item_status}"></td>
+			<td th:if = "${requests.item_status}==1">新品</td>
+			<td th:if = "${requests.item_status}==2">中古</td>
+			<td th:if = "${requests.item_status}==3">書き込みあり</td>
+			<td th:if = "${requests.item_status}==4">破損あり</td>
+			<td th:if = "${requests.item_status}==5">どちらでもよい</td>
 			<td th:text = "${requests.item_id}"></td>
 			<td>
-				<button>削除</button>
+				<form>
+					<button>削除</button>
+				</form>
 			</td>
 		</tr>
 	</table>
