@@ -37,7 +37,7 @@ public class ItemController {
 		if(keyword.length()==0 ||keyword.equals(null)) {
 			itemList=textbookRepository.findAll();
 		}else {
-			itemList=textbookRepository.findByNameLike(keyword);
+			itemList=textbookRepository.findByTitleLike(keyword);
 		}
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("itemList", itemList);
