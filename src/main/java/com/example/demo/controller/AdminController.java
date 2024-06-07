@@ -109,7 +109,7 @@ public class AdminController {
 			claimRepository.save(claim);
 		}
 
-		claims = claimRepository.findByORderByIdAsc();
+		claims = claimRepository.findByOrderByIdAsc();
 		model.addAttribute("claims", claims);
 
 		return "admin/claim";
