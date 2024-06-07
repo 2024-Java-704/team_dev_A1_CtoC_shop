@@ -57,6 +57,7 @@ public class AccountController {
 			Model model) {
 
 		//エラーチェック
+
 		List<String> errorList = new ArrayList<>();
 		if (studentNumber == null) {
 			errorList.add("学籍番号は必須です");
@@ -67,7 +68,7 @@ public class AccountController {
 		} else if (password.length() < 8) {
 			errorList.add("パスワードは8文字以上です");
 		}
-		User user = userRepository.findByStudentNumberAndPassword(studentNumber, password);
+		List<User> userList = userRepository.findByStudentNumberAndPassword(studentNumber, password);
 		if (account == null) {
 			errorList.add("学籍番号もしくはパスワードが間違っています");
 
@@ -76,6 +77,8 @@ public class AccountController {
 			model.addAttribute("errorList", errorList);
 			return "login";
 		}
+
+		User user = userList.get(0);
 		account.setId(user.getId());
 		account.setUserStatus(user.getUserStatus());
 		return "";
@@ -138,50 +141,52 @@ public class AccountController {
 		//idでuserを検索
 		User user = userRepository.findById(account.getId()).get();
 		//errorListでエラーを格納
-		List <String> errorList=new ArrayList<>();
+		List<String> errorList = new ArrayList<>();
 		//古いパスワードの入力検査
 		//未入力をはじく処理とパスワードが違っていた場合の処理
-		if(oldPassword.length() ==0) {
+		if (oldPassword.length() == 0) {
 			errorList.add("パスワードは必須です");
-		}else if(!(oldPassword.equals(user.getPassword()))) {
+		} else if (!(oldPassword.equals(user.getPassword()))) {
 			errorList.add("パスワードが間違っています");
 		}
 		//新しいパスワードの入力検査
 		//未入力をはじく処理と文字数不足を検査する処理
-		if(newPassword.length() ==0) {
+		if (newPassword.length() == 0) {
 			errorList.add("新しいパスワードは必須です");
-		}else if(newPassword.length()<8) {
+		} else if (newPassword.length() < 8) {
 			errorList.add("パスワードは８文字以上必要です");
 		}
 		//確認用パスワードの入力検査
 		//未入力をはじく処理と新しいパスワードとの一致を検査する処理
-		if(reNewPassword.length() ==0) {
+		if (reNewPassword.length() == 0) {
 			errorList.add("確認用パスワードは必須です");
-		}else if(newPassword.equals(reNewPassword)) {
+		} else if (newPassword.equals(reNewPassword)) {
 			errorList.add("新しいパスワードと確認用パスワードが一致しません");
 		}
 		//エラーリストの中身があるか判定
-		if(errorList.size()==0) {
+		if (errorList.size() == 0) {
 			//あった場合、errorListを渡してsetpasswordに飛ぶ
-			model.addAttribute("errorList",errorList);
+			model.addAttribute("errorList", errorList);
 			return "setPassword";
-		}else{
+		} else {
 			//なかった場合、userに新しいパスワードをセットし
 			user.setPassword(newPassword);
 		}
 		//userをDBに保存する。
 		userRepository.save(user);
+
 		
 		return "redirect:/account";
+
 	}
 
 	@GetMapping("/account/setIntroduce")
 	//自己紹介更新ページの表示
 	public String resetIntroduce(Model model) {
 		//idでuserを検索
-		User user=userRepository.findById(account.getId()).get();
+		User user = userRepository.findById(account.getId()).get();
 		//検索したユーザーの自己紹介をoldIntroduceとして送信
-		model.addAttribute("oldIntroduce",user.getIntroduce());
+		model.addAttribute("oldIntroduce", user.getIntroduce());
 		//自己紹介更新ページを開く
 		return "resetIntroduce";
 	}
