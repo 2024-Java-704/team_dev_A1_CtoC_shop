@@ -84,3 +84,4 @@
  	faculty TEXT,
  	department TEXT
  	);
+

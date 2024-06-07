@@ -49,4 +49,3 @@
  	INSERT INTO students (name, student_number, birthday, address, number, faculty, department)
  	VALUES('三井悠太郎', '11620111', '2000-9-3', '神奈川県横浜市青葉区', '08012345678', '文学部', '史学科');
  	
- 	
