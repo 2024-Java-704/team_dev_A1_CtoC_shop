@@ -77,10 +77,11 @@
  	-- students テーブルを作成するクエリ
  	CREATE TABLE students (
  	name TEXT,
- 	student_number INTEGER,
+ 	student_number TEXT,
  	birthday DATE,
  	address TEXT,
  	number INTEGER,
  	faculty TEXT,
  	department TEXT
  	);
+

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>通知</title>
 </head>
 <body>
 	<h1>通知</h1>
@@ -11,11 +11,8 @@
 		<tr>
 			<th>内容</th>
 		</tr>
-		<tr>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
+		<tr th:each="notice:${notices}">
+			<td th:text="${notice.message}"></td>
 		</tr>
 	</table>
 </body>
