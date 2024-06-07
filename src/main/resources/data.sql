@@ -14,7 +14,7 @@
  	-- itemss テーブルにデータを挿入するクエリ
  	INSERT INTO items (textbook_id, item_status, deal_status, seller_id, buyer_id)
  	VALUES
- 	(1, 1, 2, 1, 1, 2);
+ 	(1, 1, 2, 1, 1);
  	
  	-- claims テーブルにデータを挿入するクエリ
  	INSERT INTO claims (message, claim_status)
@@ -25,25 +25,21 @@
  	-- item_images テーブルにデータを挿入するクエリ
  	INSERT INTO item_images (item_id, image_path)
  	VALUES
- 	(1, );
+ 	(1, 0);
  	
  	-- reviews テーブルにデータを挿入するクエリ
  	INSERT INTO reviews (item_id, message)
  	VALUES
  	(1, '中古ですが気になるようなキズなどは特にありませんでした。良かったです');
- 	
- 	-- notices テーブルにデータを挿入するクエリ
- 	INSERT INTO notices (user_id, message, notice_status)
- 	VALUES
  		
  	
  	-- requests テーブルにデータを挿入するクエリ
- 	INSERT INTO requests (item_id, user_id, item_status)
+ 	INSERT INTO requests (items_id, user_id, item_status)
  	VALUES
- 	(2, 1, 2)
+ 	(2, 1, 2);
  	
  	-- students テーブルにデータを挿入するクエリ
  	INSERT INTO students (name, student_number, birthday, address, number, faculty, department)
- 	('三井悠太郎', '11620111', '2000-9-3', '神奈川県横浜市青葉区', '08012345678', '文学部', '史学科');
+ 	VALUES('三井悠太郎', '11620111', '2000-9-3', '神奈川県横浜市青葉区', '08012345678', '文学部', '史学科');
  	
  	
