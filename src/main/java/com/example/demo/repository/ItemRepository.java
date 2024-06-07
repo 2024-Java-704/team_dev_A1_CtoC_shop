@@ -6,4 +6,6 @@ import com.example.demo.entity.Item;
 
 public interface ItemRepository extends JpaRepository<Item,Integer>{
 
+	Item findOneById(Integer id);
+
 }

@@ -7,4 +7,6 @@ import com.example.demo.entity.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	User findByStudentNumberAndPassword(Integer studentNumber, String password);
 
+	User findOneById(Integer buyerId);
+
 }
