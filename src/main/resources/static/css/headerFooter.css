@@ -14,6 +14,14 @@ footer {
 	/* 文字色 */
 }
 
+header.admin,
+footer.admin {
+	background-color: rgb(255, 128, 0);
+	/* 背景色 */
+	color: #000000;
+	/* 文字色 */
+}
+
 a:link {
 	color: #000000;
 	/* リンク色 */
