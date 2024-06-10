@@ -15,17 +15,17 @@
 			<th>完了</th>
 		</tr>
 <!--		タイムリーフ名の確認-->
-		<tr th:each = "requests:${requests}">
-			<td th:if = "${requests.item_status}==1">新品</td>
-			<td th:if = "${requests.item_status}==2">中古</td>
-			<td th:if = "${requests.item_status}==3">書き込みあり</td>
-			<td th:if = "${requests.item_status}==4">破損あり</td>
-			<td th:if = "${requests.item_status}==5">どちらでもよい</td>
-			<td th:text = "${requests.textbook_id}"></td>
+		<tr th:each = "request:${requests}">
+			<td th:if = "${request.itemStatus}==1">新品</td>
+			<td th:if = "${request.itemStatus}==2">中古</td>
+			<td th:if = "${request.itemStatus}==3">書き込みあり</td>
+			<td th:if = "${request.itemStatus}==4">破損あり</td>
+			<td th:if = "${request.itemStatus}==5">どちらでもよい</td>
+			<td th:each="title:${titles}" th:if="${title.id == request.textbookId}" th:text = "${title.title}"></td>
 			<td>
-				<form th:action = "@{/bbs/{textbooksId}}/delete(textbooksId=${textbook.id})}" method = "post">
+				<!-- <form th:action = "@{/bbs/{textbooksId}}/delete(textbooksId=${textbook.id})}" method = "post">
 					<button>削除</button>
-				</form>
+				</form> -->
 			</td>
 		</tr>
 	</table>
