@@ -44,7 +44,7 @@
  	(2, '募集していた商品が出品されました！' , 2);
  	
  	-- requests テーブルにデータを挿入するクエリ
- 	INSERT INTO requests (textbook_id, user_id, item_status)
+ 	INSERT INTO requests (items_id, user_id, item_status)
  	VALUES
  	(2, 2, 2);
  	
