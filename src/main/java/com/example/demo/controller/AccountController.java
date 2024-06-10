@@ -26,13 +26,13 @@ import jakarta.servlet.http.HttpSession;
 public class AccountController {
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	ItemRepository itemRepository;
-	
+
 	@Autowired
 	ItemImageRepository itemImageRepository;
-	
+
 	@Autowired
 	TextbookRepository textbookRepository;
 
@@ -59,7 +59,7 @@ public class AccountController {
 		//エラーチェック
 
 		List<String> errorList = new ArrayList<>();
-		if (studentNumber == null) {
+		if (studentNumber.length() == 0) {
 			errorList.add("学籍番号は必須です");
 		}
 
@@ -68,62 +68,69 @@ public class AccountController {
 		} else if (password.length() < 8) {
 			errorList.add("パスワードは8文字以上です");
 		}
+
 		List<User> userList = userRepository.findByStudentNumberAndPassword(studentNumber, password);
-		if (account == null) {
-			errorList.add("学籍番号もしくはパスワードが間違っています");
+		if (userList != null || userList.size() > 0) {
+			errorList.add("学籍番号もしくはパスワードが正しくありません");
 
 		}
-		if (errorList.size() == 0) {
+		//		if (errorList.size() == 0) {
+		//			model.addAttribute("errorList", errorList);
+		//		}
+
+		if (errorList.size() > 0) {
 			model.addAttribute("errorList", errorList);
+			model.addAttribute("studentNumber", studentNumber);
+			model.addAttribute("password", password);
 			return "login";
 		}
 
 		User user = userList.get(0);
 		account.setId(user.getId());
 		account.setUserStatus(user.getUserStatus());
-		//入力されてないです↓
-		return "";
+
+		return "redirect:/home";
 	}
 
 	@GetMapping("/account")
 	public String view(Model model) {
 		//ユーザーを検索して情報を送信
 		User user = userRepository.findById(account.getId()).get();
-		model.addAttribute("user",user);
+		model.addAttribute("user", user);
 		//注文を降順にリスト化する
-		List <Item> buyList =itemRepository.findByBuyerIdOrderByIdDesc(account.getId());
+		List<Item> buyList = itemRepository.findByBuyerIdOrderByIdDesc(account.getId());
 		//imgpathを格納するStringの箱を作る
-		List<Textbook>textbookList=new ArrayList<>();
-		List<ItemImage>imgList=new ArrayList<>();
-		
+		List<Textbook> textbookList = new ArrayList<>();
+		List<ItemImage> imgList = new ArrayList<>();
+
 		//上記二つに全部の要素をぶち込む
-		textbookList=textbookRepository.findAll();
-		imgList=itemImageRepository.findAll();
-		
-//		//要素を引っ張り出してリスト化するだけですむようにします
-//		List<String>textname=new ArrayList<>();
-//		List<String>imgpath=new ArrayList<>();
-//		//buyListの数だけ繰り返す拡張for文
-//		for(Item buy:buyList) {
-//			//すべてのtextbookからIdが一致するものを検索し、結果のタイトルをストリングのリストに入れる
-//			for(Textbook text:textbookList) {
-//				if(text.getId()==buy.getTextbookId()) {
-//					textname.add(text.getTitle());
-//				}
-//			}
-//			//すべてのItemImageからIdが一致するものを検索し、結果のimgpathをストリングのリストに入れる
-//			for(ItemImage img:imgList) {
-//				if(img.getItemId()==buy.getId()) {
-//					imgpath.add(img.getImagePath());
-//				}
-//			}
-//		}
-//		model.addAttribute("textnameList",textname);
-//		model.addAttribute("imgpathList",imgpath);
-		
-		model.addAttribute("textbookList",textbookList);
-		model.addAttribute("imgList",imgList);
-		model.addAttribute("buyList",buyList);
+		textbookList = textbookRepository.findAll();
+		imgList = itemImageRepository.findAll();
+
+		//		//要素を引っ張り出してリスト化するだけですむようにします
+		//		List<String>textname=new ArrayList<>();
+		//		List<String>imgpath=new ArrayList<>();
+		//		//buyListの数だけ繰り返す拡張for文
+		//		for(Item buy:buyList) {
+		//			//すべてのtextbookからIdが一致するものを検索し、結果のタイトルをストリングのリストに入れる
+		//			for(Textbook text:textbookList) {
+		//				if(text.getId()==buy.getTextbookId()) {
+		//					textname.add(text.getTitle());
+		//				}
+		//			}
+		//			//すべてのItemImageからIdが一致するものを検索し、結果のimgpathをストリングのリストに入れる
+		//			for(ItemImage img:imgList) {
+		//				if(img.getItemId()==buy.getId()) {
+		//					imgpath.add(img.getImagePath());
+		//				}
+		//			}
+		//		}
+		//		model.addAttribute("textnameList",textname);
+		//		model.addAttribute("imgpathList",imgpath);
+
+		model.addAttribute("textbookList", textbookList);
+		model.addAttribute("imgList", imgList);
+		model.addAttribute("buyList", buyList);
 		//mypage表示
 		return "mypage";
 	}
@@ -176,7 +183,6 @@ public class AccountController {
 		//userをDBに保存する。
 		userRepository.save(user);
 
-		
 		return "redirect:/account";
 
 	}
