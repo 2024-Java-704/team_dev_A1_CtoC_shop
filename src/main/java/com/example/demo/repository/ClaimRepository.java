@@ -8,8 +8,8 @@ import com.example.demo.entity.Claim;
 
 public interface ClaimRepository extends JpaRepository<Claim, Integer> {
 
-	List<Claim> findByOrderById();
+	List<Claim> findByOrderById();	//問い合わせメッセージをID順に取得
 
-	List<Claim> findByOrderByIdAsc();
+	List<Claim> findByOrderByIdDesc();	//問い合わせメッセージをIDの逆順に取得
 
 }

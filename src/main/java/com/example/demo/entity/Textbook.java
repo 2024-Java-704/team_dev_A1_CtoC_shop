@@ -14,17 +14,17 @@ public class Textbook {
 	private Integer id;
 
 	private String title;
-	
+
 	private String author;
-	
+
 	private Integer price;
-	
+
 	private String publisher;
-	
-	public Textbook(){
+
+	public Textbook() {
 	}
-	
-	public Textbook(String title, String author, Integer price, String publisher){
+
+	public Textbook(String title, String author, Integer price, String publisher) {
 		this.title = title;
 		this.author = author;
 		this.price = price;
@@ -50,5 +50,5 @@ public class Textbook {
 	public String getPublisher() {
 		return publisher;
 	}
-	
+
 }

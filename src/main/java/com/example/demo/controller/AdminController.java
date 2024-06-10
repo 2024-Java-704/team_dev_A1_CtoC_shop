@@ -83,6 +83,7 @@ public class AdminController {
 		return "redirect:/admin/request";
 	}
 
+	//ユーザー管理画面を表示
 	@GetMapping("/admin/user")
 	public String userList(
 			@RequestParam(name = "number", defaultValue = "") String number,
@@ -102,6 +103,7 @@ public class AdminController {
 		return "admin/user";
 	}
 
+	//会員IDをもとに該当の会員の削除処理
 	@PostMapping("/admin/user/delete/{id}")
 	public String deleteUser(@PathVariable("id") Integer id) {
 		userRepository.deleteById(id);
@@ -109,19 +111,20 @@ public class AdminController {
 		return "redirect:/admin/user";
 	}
 
+	//問い合わせメッセージの一覧を表示
 	@GetMapping("/admin/claim")
 	public String claimList(Model model) {
 
 		List<Claim> claims = new ArrayList<Claim>();
-		List<Claim> claimList = claimRepository.findByOrderByIdAsc();
-		
-		for(Claim claim : claimList) {
+		List<Claim> claimList = claimRepository.findByOrderByIdDesc();
+
+		for (Claim claim : claimList) {
 			Claim c = new Claim(claim.getId(), claim.getMessage(), claim.getClaimStatus());
 			claims.add(c);
 		}
-		
+
 		model.addAttribute("claims", claims);
-		
+
 		claimList = claimRepository.findByOrderById();
 
 		for (Claim claim : claimList) {
@@ -132,11 +135,13 @@ public class AdminController {
 		return "admin/claim";
 	}
 
+	//新規教科書追加画面を表示
 	@GetMapping("/admin/addTextbook")
 	public String addTextbook() {
 		return "admin/addTextbook";
 	}
 
+	//教科書の追加処理
 	@PostMapping("/admin/addTextbook")
 	public String sendTextbook(
 			@RequestParam(name = "title", defaultValue = "") String title,
@@ -158,6 +163,10 @@ public class AdminController {
 				msg += "<p>出版社が入力されていません</p>";
 
 			model.addAttribute("msg", msg);
+			model.addAttribute("title", title);
+			model.addAttribute("author", author);
+			model.addAttribute("price", price);
+			model.addAttribute("publisher", publisher);
 			return "admin/addTextbook";
 		}
 
