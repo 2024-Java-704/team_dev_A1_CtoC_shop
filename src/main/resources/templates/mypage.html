@@ -5,12 +5,13 @@
 	<meta charset="UTF-8">
 	<title>マイページ</title>
 	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">
+	<link rel="stylesheet" type="text/css" href="/css/mypage.css">
 </head>
 
 <body>
 	<header th:replace="header"></header>
 	<h2>マイページ</h2>
-	<table border="1">
+	<table id="table" border="1">
 		<!--		ユーザーの情報を書くテーブル-->
 		<tr>
 			<th>学籍番号</th>
@@ -27,8 +28,13 @@
 			<td><form action="/account/setIntroduce" method="get"><button>更新</button></form></td>
 		</tr>
 	</table>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<!--	注文履歴を書くテーブル-->
-	<table border="1">
+	<table class="" border="1">
 		<tr>
 			<th colspan="2">注文履歴</th>
 		</tr>
@@ -49,6 +55,9 @@
 		</tr>
 		</buylistloop>
 	</table>
+	<br>
+	<br>
+	<br>
 	<footer th:replace="footer"></footer>
 </body>
 

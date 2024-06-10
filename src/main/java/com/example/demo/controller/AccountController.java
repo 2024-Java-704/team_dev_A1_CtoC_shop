@@ -205,7 +205,7 @@ public class AccountController {
 		user.setIntroduce(introduce);
 		//自己紹介を更新したuserをほぞん
 		userRepository.save(user);
-		return "redirect/account";
+		return "redirect:/account";
 	}
 
 }

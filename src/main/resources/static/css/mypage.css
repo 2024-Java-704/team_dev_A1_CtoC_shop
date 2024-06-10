@@ -1,0 +1,9 @@
+@charset "UTF-8";
+body{
+	text-align: center;
+}
+table{
+	margin-right:auto;
+	margin-left: auto;
+	white-space: pre-line;
+}
