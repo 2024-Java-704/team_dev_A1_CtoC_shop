@@ -15,5 +15,4 @@ public interface TextbookRepository extends JpaRepository<Textbook, Integer> {
 	Textbook findOneById(Integer textbookId); //該当のIDの教科書の情報を取得
 
 	List<Textbook> findByTitle(String title);
-
 }
