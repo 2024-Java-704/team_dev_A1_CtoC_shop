@@ -2,19 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">
 </head>
 <body>
 	<header>
 		<h1>A大学教科書売買</h1>
 		
-		<a href="/" id="logoutButton" class="logout"><span>ログアウト</span></a>
+		<a href="/" id="logout" class="logout"><span>ログアウト</span></a><br>
 		
+		
+		<div id="header">
 		<a href="/home">商品一覧</a>
 		<a href="/item/add">出品申請</a>
 		<a href="/account">マイページ</a>
 		<a href="/bbs">掲示板</a>
 		<a href="/Notice">通知</a>
+		</div>
 	</header>
 	
 	<!-- モーダルウィンドウ -->
@@ -34,7 +38,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		document.getElementById('logoutButton').onclick = function() {
+		document.getElementById('logout').onclick = function() {
 			document.getElementById('logoutModal').style.display = "block";
 		};
 
