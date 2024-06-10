@@ -15,7 +15,7 @@ public class User {
 	private Integer id;
 
 	@Column(name = "student_number")
-	private Integer studentNumber;
+	private String studentNumber;
 
 	private String password;
 
@@ -28,7 +28,7 @@ public class User {
 
 	}
 
-	public User(Integer studentNumber, String password, Integer userStatus, String introduce) {
+	public User(String studentNumber, String password, Integer userStatus, String introduce) {
 		this.studentNumber = studentNumber;
 		this.password = password;
 		this.userStatus = userStatus;
@@ -39,7 +39,7 @@ public class User {
 		return id;
 	}
 
-	public Integer getStudentNumber() {
+	public String getStudentNumber() {
 		return studentNumber;
 	}
 

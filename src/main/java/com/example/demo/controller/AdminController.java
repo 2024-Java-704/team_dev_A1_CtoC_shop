@@ -93,7 +93,8 @@ public class AdminController {
 		else
 			users = userRepository.findByStudentNumberLike(number);
 
-		model.addAttribute("users", users);
+		if (users.size() > 0)
+			model.addAttribute("users", users);
 
 		return "admin/user";
 	}
