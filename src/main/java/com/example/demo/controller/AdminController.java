@@ -173,7 +173,7 @@ public class AdminController {
 		Textbook textbook = new Textbook(title, author, price, publisher);
 		textbookRepository.save(textbook);
 
-		return "redirect:/admin/claim";
+		return "redirect:/admin/addTextbook";
 	}
 
 }
