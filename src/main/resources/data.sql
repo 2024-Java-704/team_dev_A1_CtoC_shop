@@ -17,7 +17,7 @@
  	-- itemss テーブルにデータを挿入するクエリ
  	INSERT INTO items (textbook_id, item_status, deal_status, seller_id, buyer_id)
  	VALUES
- 	(1, 1, 1, 1, 1);
+ 	(1, 1, 2, 1, 1);
  	
  	-- claims テーブルにデータを挿入するクエリ
  	INSERT INTO claims (message, claim_status)
