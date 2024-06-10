@@ -81,6 +81,7 @@ public class AccountController {
 		User user = userList.get(0);
 		account.setId(user.getId());
 		account.setUserStatus(user.getUserStatus());
+		//入力されてないです↓
 		return "";
 	}
 
