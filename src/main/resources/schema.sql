@@ -21,7 +21,7 @@
  	-- users テーブルを作成するクエリ
  	CREATE TABLE users (
  	id SERIAL PRIMARY KEY,
- 	student_number INTEGER,
+ 	student_number TEXT,
  	password TEXT,
  	user_status INTEGER,
  	introduce TEXT
@@ -69,7 +69,7 @@
  	-- requests テーブルを作成するクエリ
  	CREATE TABLE requests (
  	id SERIAL PRIMARY KEY,
- 	items_id INTEGER,
+ 	textbook_id INTEGER,
  	user_id INTEGER,
  	item_status INTEGER
  	);
@@ -80,7 +80,7 @@
  	student_number TEXT,
  	birthday DATE,
  	address TEXT,
- 	number INTEGER,
+ 	number TEXT,
  	faculty TEXT,
  	department TEXT
  	);

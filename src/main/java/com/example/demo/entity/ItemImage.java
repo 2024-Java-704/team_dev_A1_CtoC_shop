@@ -24,8 +24,7 @@ public class ItemImage {
 	public ItemImage(){
 	}
 	
-	public ItemImage(Integer id,Integer itemId,String imagePath) {
-		this.id=id;
+	public ItemImage(Integer itemId,String imagePath) {
 		this.itemId=itemId;
 		this.imagePath=imagePath;
 	}

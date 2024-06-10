@@ -10,6 +10,9 @@ public class Account {
 	private Integer id;
 	private Integer userStatus;
 
+	public Account() {	
+	}
+	
 	public Account(Integer id, Integer userStatus) {
 		this.id = id;
 		this.userStatus = userStatus;

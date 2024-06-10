@@ -40,14 +40,18 @@ public class AdminController {
 
 	//管理者画面を表示
 	@GetMapping("/admin")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("requestCount", itemRepository.findByDealStatus(1).size());
 		return "admin/admin";
 	}
 
 	//出品申請一覧管理画面を表示
 	@GetMapping("/admin/request")
 	public String requestList(Model model) {
-		model.addAttribute("items", itemRepository.findAll());
+		List<Item> items = itemRepository.findByDealStatus(1);
+		if (items.size() > 0) {
+			model.addAttribute("items", items);
+		}
 		model.addAttribute("textbooks", textbookRepository.findAll());
 		model.addAttribute("users", userRepository.findAll());
 		return "admin/request";
@@ -73,6 +77,7 @@ public class AdminController {
 			@RequestParam("status") Integer status) {
 		Item item = itemRepository.findOneById(id);
 		item.setDealStatus(status);
+		itemRepository.save(item);
 
 		return "redirect:/admin/request";
 	}
@@ -85,10 +90,13 @@ public class AdminController {
 
 		if (number.equals(""))
 			users = userRepository.findAll();
-		else
-			users = userRepository.findByStudentNumberLike(number);
+		else {
+			users = userRepository.findByStudentNumberContaining(number);
+			model.addAttribute("number", number);
+		}
 
-		model.addAttribute("users", users);
+		if (users.size() > 0)
+			model.addAttribute("users", users);
 
 		return "admin/user";
 	}

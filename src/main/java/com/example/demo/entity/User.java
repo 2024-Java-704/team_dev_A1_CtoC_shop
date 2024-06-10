@@ -28,6 +28,13 @@ public class User {
 
 	}
 
+	public User(String studentNumber, String password, Integer userStatus, String introduce) {
+		this.studentNumber = studentNumber;
+		this.password = password;
+		this.userStatus = userStatus;
+		this.introduce = introduce;
+	}
+
 	public Integer getId() {
 		return id;
 	}

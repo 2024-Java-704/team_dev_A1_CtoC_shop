@@ -11,13 +11,24 @@
 	<table border="1">
 		<!--		ユーザーの情報を書くテーブル-->
 		<tr>
-			<th></th>
+			<th>学籍番号</th>
+			<td th:text="${user.studentNumber}"></td>
+		</tr>
+		<tr>
+			<th>パスワード</th>
+			<td th:text"${user.password}"></td>
+			<td><form action="/account/setPassword" method="get"><button>変更</button></form></td>
+		</tr>
+		<tr>
+			<th>自己紹介<br>メッセージ</th>
+			<td th:text="${user.introduce}"></td>
+			<td><form action="/account/setIntroduce" method="get"><button>更新</button></form></td>
 		</tr>
 	</table>
 	<!--	注文履歴を書くテーブル-->
 	<table border="1">
 		<tr>
-			<th>注文履歴</th>
+			<th colspan="2">注文履歴</th>
 		</tr>
 		<!--		buyListで繰り返し-->
 		<tr th:each="buyItem:${buyList}">

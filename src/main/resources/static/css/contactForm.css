@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+/* 全体 */
+#contact {
+	text-align: center;
+}
+
+/* 送信ボタン*/
+button {
+	margin: 2px;
+	padding: 5px 20px;
+	border: none;
+	width: 150px;
+	cursor: pointer;
+	background-color: #C0C0C0;
+}
+
+/* 送信ボタン（マウスオーバー時）*/
+button:hover {
+	background-color: #999999;
+}
+
+#textArea {
+	width: 500px;
+	height: 250px;
+}
+	
