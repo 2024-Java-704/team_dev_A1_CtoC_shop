@@ -65,11 +65,13 @@
 	</script>
 
 	<script type="text/javascript"> //admin化
-		var mode = document.getElementById('userStatus');
-		let p1_element = document.getElementById("Header");
+		function modeCheck() {
+			var mode = document.getElementById('userStatus');
+			let p1_element = document.getElementById("Header");
 
-		if (mode == 1) {
-			p1_element.classList.add("admin");
+			if (mode == 1) {
+				p1_element.classList.add("admin");
+			}
 		}
 	</script>
 </body>

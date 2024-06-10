@@ -150,14 +150,14 @@ public class AdminController {
 			@RequestParam(name = "publisher", defaultValue = "") String publisher,
 			Model model) {
 
-		if (title.equals("") || author.equals("") || price.equals(0) || publisher.equals("")) {
+		if (title.equals("") || author.equals("") || price < 1 || publisher.equals("")) {
 			String msg = "";
 
 			if (title.equals(""))
 				msg += "<p>タイトルが入力されていません</p>";
 			if (author.equals(""))
 				msg += "<p>著者が入力されていません</p>";
-			if (price.equals(0))
+			if (price < 1)
 				msg += "<p>価格が設定されていません</p>";
 			if (publisher.equals(""))
 				msg += "<p>出版社が入力されていません</p>";
