@@ -69,8 +69,6 @@ public class AccountController {
 			//パスワード入力時のエラー	
 		} else if (password.length() == 0) {
 			errorList.add("パスワードは必須です");
-		} else if (password.length() < 8) {
-			errorList.add("パスワードは8文字以上です");
 
 			//	正しくない学籍番号またはパスワード入力時のエラー
 		} else if (userList.size() == 0 || userList == null) {
