@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>掲示板</title>
+<!--画面ID:301 掲示板画面-->
+</head>
+<body>
+	<h1>掲示板</h1>
+	
+	<table border = "1">
+		<tr>
+			<th>商品状態</th>
+			<th>タイトル</th>
+			<th>完了</th>
+		</tr>
+<!--		タイムリーフ名の確認-->
+		<tr th:each = "requests:${requests}">
+			<td th:if = "${requests.item_status}==1">新品</td>
+			<td th:if = "${requests.item_status}==2">中古</td>
+			<td th:if = "${requests.item_status}==3">書き込みあり</td>
+			<td th:if = "${requests.item_status}==4">破損あり</td>
+			<td th:if = "${requests.item_status}==5">どちらでもよい</td>
+			<td th:text = "${requests.item_id}"></td>
+			<td>
+				<form>
+					<button>削除</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+<form action ="/bbs/addRequest" method = "get">
+	<button>新規登録</button>
+</form>
+
+</body>
+</html>
