@@ -9,13 +9,16 @@ import com.example.demo.entity.Item;
 public interface ItemRepository extends JpaRepository<Item,Integer>{
 
 
-	List<Item> findBySellerIdOrderByIdDesc(Integer sellerId);
-	
-	List<Item> findByBuyerIdOrderByIdDesc(Integer buyerId);
+	List<Item> findBySellerIdOrderByIdDesc(Integer id);
+	List<Item> findByBuyerIdOrderByIdDesc(Integer id);
 
+	
+	
 	Item findOneById(Integer id);
 
-	List<Item> findDistinctByTextbookIdOrderByIdAsc(Integer textbookId);
+	
+	
+	List<Item> findDistinctByTextbookIdOrderByIdAsc(Integer id);
 	
 	List<Item> findByTextbookIdOrderByIdDesc(Integer textbookId);
 
@@ -23,6 +26,12 @@ public interface ItemRepository extends JpaRepository<Item,Integer>{
 
 	List<Item> findByTextbookIdOrderByItemStatusAsc(Integer textbookId);
 
+	
+	List<Item> findAllByOrderByTextbookIdDesc();
+	
+	
+	
+	
 	List<Item> findByDealStatus(Integer dealStatus);
 
 }
