@@ -11,16 +11,10 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	List<Item> findBySellerIdOrderByIdDesc(Integer id);
 
 	List<Item> findByBuyerIdOrderByIdDesc(Integer id);
-
-
-	List<Item> findBySellerIdOrderByIdDesc(Integer id);
-	List<Item> findByBuyerIdOrderByIdDesc(Integer id);
-
 	
 	
 	Item findOneById(Integer id);
 
-	
 	
 	List<Item> findDistinctByTextbookIdOrderByIdAsc(Integer id);
 	
@@ -29,18 +23,6 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	List<Item> findByTextbookIdOrderByItemStatusDesc(Integer textbookId);
 
 	List<Item> findByTextbookIdOrderByItemStatusAsc(Integer textbookId);
-
-	List<Item> findDistinctByTextbookIdOrderByIdAsc();
-
-	List<Item> findDistinctByTextbookIdOrderByIdAsc(Integer id);
-
-	List<Item> findByTextbookIdOrderByIdDesc(Integer textBookid);
-
-	List<Item> findByTextbookIdOrderByitemStatusDesc(Integer id);
-
-	List<Item> findByTextbookIdOrderByitemStatusAsc(Integer id);
-
-	List<Item> findByDealStatus(int dealStatus);
 	
 	List<Item> findAllByOrderByTextbookIdDesc();
 	
