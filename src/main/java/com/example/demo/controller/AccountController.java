@@ -70,7 +70,7 @@ public class AccountController {
 		}
 
 		List<User> userList = userRepository.findByStudentNumberAndPassword(studentNumber, password);
-		if (userList != null || userList.size() > 0) {
+		if (userList.size() == 0 || userList == null) {
 			errorList.add("学籍番号もしくはパスワードが正しくありません");
 
 		}
