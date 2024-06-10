@@ -90,10 +90,13 @@ public class AdminController {
 
 		if (number.equals(""))
 			users = userRepository.findAll();
-		else
-			users = userRepository.findByStudentNumberLike(number);
+		else {
+			users = userRepository.findByStudentNumberContaining(number);
+			model.addAttribute("number", number);
+		}
 
-		model.addAttribute("users", users);
+		if (users.size() > 0)
+			model.addAttribute("users", users);
 
 		return "admin/user";
 	}

@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+/* 全体 */
+#noticeTable {
+	text-align: center;
+}
+
+/* 表線 */
+table, th, td {
+	border-collapse: collapse;
+	border: 1px solid #7d8bae;
+}
+
+/* 表 */
+table {
+	margin: 5px auto;
+	min-width: 800px;
+}

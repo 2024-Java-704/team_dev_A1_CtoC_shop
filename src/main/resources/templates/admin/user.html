@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>会員管理画面</title>
-</head>
-<body>
 
+<head>
+	<meta charset="UTF-8">
+	<title>会員管理画面</title>
+</head>
+
+<body>
+	<h1>会員管理画面</h1>
+	<form action="/admin/user" method="get">
+		<table border="1">
+			<tr>
+				<th>学籍番号</th>
+				<td><input type="text" name="number" th:value="${number}"></td>
+			</tr>
+		</table>
+		<button>検索</button>
+	</form>
+
+	<table th:if="${users}" border="1">
+		<tr>
+			<th>学籍番号</th>
+			<th>名前</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="user:${users}">
+			<td th:text="${user.studentNumber}"></td>
+			<td th:text="${user.studentNumber}"></td>
+			<td>
+				<form th:action="'/admin/user/delete/' + ${user.id}" method="post"><button>削除</button></form>
+			</td>
+		</tr>
+	</table>
+
+	<p th:if="!${users}">該当の会員はいません</p>
 </body>
+
 </html>

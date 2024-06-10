@@ -52,7 +52,7 @@ public class AccountController {
 	//ログイン処理
 	@PostMapping("/")
 	public String login(
-			@RequestParam(name = "studentNumber", defaultValue = "") Integer studentNumber,
+			@RequestParam(name = "studentNumber", defaultValue = "") String studentNumber,
 			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
 
@@ -186,8 +186,8 @@ public class AccountController {
 	public String resetIntroduce(Model model) {
 		//idでuserを検索
 		User user = userRepository.findById(account.getId()).get();
-		//検索したユーザーの自己紹介をoldIntroduceとして送信
-		model.addAttribute("oldIntroduce", user.getIntroduce());
+		//検索したユーザーの学籍番号を送信
+		model.addAttribute("studentNumber", user.getStudentNumber());
 		//自己紹介更新ページを開く
 		return "resetIntroduce";
 	}

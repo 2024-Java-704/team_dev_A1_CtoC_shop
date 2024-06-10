@@ -8,13 +8,13 @@ import com.example.demo.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	List<User> findByStudentNumberAndPassword(Integer studentNumber, String password);
+	List<User> findByStudentNumberAndPassword(String studentNumber, String password);
 
 	User findOneByStudentNumberAndPassword(String studentNumber, String password);
 
 	User findOneById(Integer buyerId);
 
-	List<User> findByStudentNumberLike(String number);
+	List<User> findByStudentNumberContaining(String number);
 
 
 }

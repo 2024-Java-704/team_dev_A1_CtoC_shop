@@ -4,18 +4,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>お問い合わせフォーム</title>
+	<link rel="stylesheet" type="text/css" href="/css/contactForm.css">
 </head>
 
 <body>
 	<header th:replace="header"></header>
-	<h1>お問い合わせフォーム</h1>
-	<p th:if="${errorList}">
+	<div id="contact">
+		<h1>お問い合わせフォーム</h1>
+		<p th:if="${errorList}">
 		<div th:each="error:${errorList}" th:text="${error}" style="color:red;"></div>
-	</p>
-	<form action="/claim" method="post">
-		<textarea name="message" cols="30" rows="4"></textarea> <br>
-		<button>送信</button>
-	</form>
+		</p>
+		<form action="/claim" method="post">
+			<textarea name="message" cols="30" rows="4" id="textArea"></textarea> <br>
+			<button>送信</button>
+		</form>
+	</div>
 	<footer th:replace="footer"></footer>
 </body>
 
