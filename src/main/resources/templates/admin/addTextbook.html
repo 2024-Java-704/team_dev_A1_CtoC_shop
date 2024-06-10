@@ -17,7 +17,7 @@
 			</tr>
 			<tr>
 				<td>価格</td>
-				<td><input type="number" name="price" th:value="${price}"></td>
+				<td><input type="number" name="price" th:value="${price}" aria-valuemin="0" th:if="${price}"><input type="number" name="price" value="0" aria-valuemin="0" th:if="!${price}"></td>
 			</tr>
 			<tr>
 				<td>著者</td>
