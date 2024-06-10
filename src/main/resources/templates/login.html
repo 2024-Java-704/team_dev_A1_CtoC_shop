@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/css/login.css">
 <title>ログイン</title>
 </head>
 <body>
@@ -9,15 +10,17 @@
 		<h1>A大学</h1>
 	</header>
 	
+	<div class="container">
 	<form action="/" method="post">
 		
 		<span th:text="${errorList}" style="color:red;"></span><br>
 		
-		<input type="text" name="studentNumber" placeholder="学籍番号">
-		<input type="text" name="password" placeholder="パスワード">
+		<input type="text" name="studentNumber" placeholder="学籍番号"><br>
+		<input type="password" name="password" placeholder="パスワード"><br>
 		
 		<button type="submit">ログイン</button>
 	</form>
+	</div>
 
 </body>
 </html>
