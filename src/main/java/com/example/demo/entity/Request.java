@@ -25,17 +25,17 @@ public class Request {
 
 	}
 
-	public Request(Integer userId, Integer itemId) {
+	public Request(Integer userId, Integer itemId, Integer itemStatus) {
 		this.userId = userId;
 		this.textbookId = itemId;
-
+		this.itemStatus = itemStatus;
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public Integer getItemId() {
+	public Integer getTextbookId() {
 		return textbookId;
 	}
 
