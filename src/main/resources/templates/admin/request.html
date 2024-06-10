@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>出品申請一覧</title>
+</head>
+
+<body>
+	<h1>出品申請一覧</h1>
+	<table th:if="${items}" border="1">
+		<tr>
+			<th>教科書</th>
+			<th>出品者</th>
+			<th>確認</th>
+		</tr>
+		<tr th:each="item:${items}">
+			<td th:each="textbook:${textbooks}" th:if="${item.textbookId == textbook.id}" th:text="${textbook.title}"></td>
+			<td th:each="user:${users}" th:if="${item.sellerId == user.id}" th:text="${user.studentNumber}"></td>
+			<td>
+				<form th:action="'/admin/request/' + ${item.id}" method="get">
+					<button>確認</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+	<p th:if="!${items}">出品申請はありません</p>
+</body>
+
+</html>
