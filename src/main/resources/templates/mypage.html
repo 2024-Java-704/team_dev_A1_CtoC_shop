@@ -4,9 +4,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>マイページ</title>
+	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">
 </head>
 
 <body>
+	<header th:replace="header"></header>
 	<h2>マイページ</h2>
 	<table border="1">
 		<!--		ユーザーの情報を書くテーブル-->
@@ -45,6 +47,7 @@
 
 		</tr>
 	</table>
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>
