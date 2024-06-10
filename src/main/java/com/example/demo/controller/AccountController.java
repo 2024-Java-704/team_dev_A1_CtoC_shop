@@ -59,25 +59,25 @@ public class AccountController {
 		//エラーチェック
 
 		List<String> errorList = new ArrayList<>();
+
+		List<User> userList = userRepository.findByStudentNumberAndPassword(studentNumber, password);
+
+		//学籍番号入力時のエラー
 		if (studentNumber.length() == 0) {
 			errorList.add("学籍番号は必須です");
-		}
 
-		if (password.length() == 0) {
+			//パスワード入力時のエラー	
+		} else if (password.length() == 0) {
 			errorList.add("パスワードは必須です");
 		} else if (password.length() < 8) {
 			errorList.add("パスワードは8文字以上です");
-		}
 
-		List<User> userList = userRepository.findByStudentNumberAndPassword(studentNumber, password);
-		if (userList != null || userList.size() > 0) {
+			//	正しくない学籍番号またはパスワード入力時のエラー
+		} else if (userList.size() == 0 || userList == null) {
 			errorList.add("学籍番号もしくはパスワードが正しくありません");
-
 		}
-		//		if (errorList.size() == 0) {
-		//			model.addAttribute("errorList", errorList);
-		//		}
 
+		//エラーメッセージの出力
 		if (errorList.size() > 0) {
 			model.addAttribute("errorList", errorList);
 			model.addAttribute("studentNumber", studentNumber);
