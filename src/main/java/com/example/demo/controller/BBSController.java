@@ -78,9 +78,9 @@ public class BBSController {
 	//		}
 
 	//募集の削除処理
-	@PostMapping("/bbs/delete/{id}")
+	@PostMapping("/bbs/{id}/delete")
 	public String deleteRequest(@PathVariable("id") Integer id) {
-		textbookRepository.deleteById(id);
+		requestRepository.deleteById(id); //Repository内のIDを検索する
 		return "redirect:/bbs";
 	}
 

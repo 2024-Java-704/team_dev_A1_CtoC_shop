@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>新規募集</title>
+<link rel="stylesheet" type="text/css" href="/css/contactForm.css">
 <!--画面ID:302 新規募集作成画面-->
 </head>
 <body>
+	<header th:replace="header"></header>
 	<h1>新規募集</h1>
 	
 	<form action = "/bbs/addRequest" method ="post">
@@ -13,17 +15,17 @@
 		<tr>
 			<th>商品状態</th>
 			<td>
-				<input type ="radio" name ="item_status" value ="1">新品
-				<input type ="radio" name ="item_status" value ="2">中古
-				<input type ="radio" name ="item_status" value ="3">書き込みあり
-				<input type ="radio" name ="item_status" value ="4">破損あり
-				<input type ="radio" name ="item_status" value ="5">どちらでもよい
+				<input type ="radio" name ="item_status" value ="1" required>新品
+				<input type ="radio" name ="item_status" value ="2" required>中古
+				<input type ="radio" name ="item_status" value ="3" required>書き込みあり
+				<input type ="radio" name ="item_status" value ="4" required>破損あり
+				<input type ="radio" name ="item_status" value ="5" required>どちらでもよい
 			</td>
 		</tr>
 		<tr>
 			<th>教科書</th>
 			<td>
-				<select name = "title">
+				<select name = "title" required>
 					<option value="" disabled selected>タイトル名</option>
 					<option th:each = "textbook:${title}" th:value="${textbook.id}" th:text= "${textbook.title}"></option>
 				</select>
@@ -36,5 +38,6 @@
 	</table>
 	<button>投稿</button>
 	</form>
+<footer th:replace="footer"></footer>
 </body>
 </html>

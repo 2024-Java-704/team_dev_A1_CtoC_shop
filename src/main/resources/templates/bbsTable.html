@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>掲示板</title>
+<link rel="stylesheet" type="text/css" href="/css/contactForm.css">
 <!--画面ID:301 掲示板画面-->
 </head>
 <body>
+	<header th:replace="header"></header>
 	<h1>掲示板</h1>
 	
 	<table border = "1">
@@ -22,16 +24,16 @@
 			<td th:if = "${request.itemStatus}==4">破損あり</td>
 			<td th:if = "${request.itemStatus}==5">どちらでもよい</td>
 			<td th:each="title:${titles}" th:if="${title.id == request.textbookId}" th:text = "${title.title}"></td>
-			<td>
-				<!-- <form th:action = "@{/bbs/{textbooksId}}/delete(textbooksId=${textbook.id})}" method = "post">
+			<td >
+			<form th:action = "@{/bbs/{id}/delete(id=${request.id})}" method = "post">
 					<button>削除</button>
-				</form> -->
+				</form> 
 			</td>
 		</tr>
 	</table>
 <form action ="/bbs/addRequest" method = "get">
 	<button>新規登録</button>
 </form>
-
+<footer th:replace="footer"></footer>
 </body>
 </html>
