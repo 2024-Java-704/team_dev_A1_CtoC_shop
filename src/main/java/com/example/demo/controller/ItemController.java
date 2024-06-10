@@ -210,6 +210,7 @@ public class ItemController {
 			@RequestParam(name = "itemStatus") Integer itemStatus) {
 		Item item = new Item(textbookId, itemStatus, account.getId());
 		itemRepository.save(item);
+		
 		for (String imgPass : image) {
 			ItemImage itemImage = new ItemImage(item.getId(), imgPass);
 			itemImageRepository.save(itemImage);
