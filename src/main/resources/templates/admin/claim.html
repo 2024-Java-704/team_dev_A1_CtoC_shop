@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>お問い合わせ確認</title>
+</head>
+
+<body>
+	<h1>お問い合わせ確認</h1>
+	<table border="1">
+		<tr>
+			<th>No</th>
+			<th>問い合わせ内容</th>
+		</tr>
+		<tr th:each="claim:${claims}">
+			<th:block th:if="${claim.claimStatus == 1}">
+				<td th:text="${claim.id}" style="color: red;"></td>
+				<td th:text="${claim.message}" style="color: red;"></td>
+				<td th:text="${claim.claimStatus}"></td>
+			</th:block>
+			<th:block th:if="${claim.claimStatus == 2}">
+				<td th:text="${claim.id}"></td>
+				<td th:text="${claim.message}"></td>
+				<td th:text="${claim.claimStatus}"></td>
+			</th:block>
+		</tr>
+	</table>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,15 +111,23 @@ public class AdminController {
 
 	@GetMapping("/admin/claim")
 	public String claimList(Model model) {
-		List<Claim> claims = claimRepository.findByOrderById();
 
-		for (Claim claim : claims) {
+		List<Claim> claims = new ArrayList<Claim>();
+		List<Claim> claimList = claimRepository.findByOrderByIdAsc();
+		
+		for(Claim claim : claimList) {
+			Claim c = new Claim(claim.getId(), claim.getMessage(), claim.getClaimStatus());
+			claims.add(c);
+		}
+		
+		model.addAttribute("claims", claims);
+		
+		claimList = claimRepository.findByOrderById();
+
+		for (Claim claim : claimList) {
 			claim.setClaimStatus(2);
 			claimRepository.save(claim);
 		}
-
-		claims = claimRepository.findByOrderByIdAsc();
-		model.addAttribute("claims", claims);
 
 		return "admin/claim";
 	}

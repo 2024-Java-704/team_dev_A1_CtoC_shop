@@ -25,6 +25,12 @@ public class Claim {
 		this.message = message;
 		this.claimStatus = 1;
 	}
+	
+	public Claim(Integer id, String message, Integer claimStatus) {
+		this.id = id;
+		this.message = message;
+		this.claimStatus = claimStatus;
+	}
 
 	public Integer getId() {
 		return id;
