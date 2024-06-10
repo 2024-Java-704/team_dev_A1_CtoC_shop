@@ -16,3 +16,10 @@ table {
 	margin: 5px auto;
 	min-width: 800px;
 }
+
+th {
+	background-color: black;
+	color: white;
+	height: 50px;
+	font-size: 25px;
+}
