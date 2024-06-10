@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>マイページ</title>
+</head>
+
+<body>
+	<h2>マイページ</h2>
+	<table border="1">
+		<!--		ユーザーの情報を書くテーブル-->
+		<tr>
+			<th></th>
+		</tr>
+	</table>
+	<!--	注文履歴を書くテーブル-->
+	<table border="1">
+		<tr>
+			<th>注文履歴</th>
+		</tr>
+		<!--		buyListで繰り返し-->
+		<tr th:each="buyItem:${buyList}">
+			<th:block th:each="text:${textbookList}">
+				<td th:if"${buyItem.textbookId} eq ${text.id}">
+					<div th:text="${text.title}"></div>
+				</td>
+			</th:block>
+			<span th:each="img:${imgList}">
+				<td th:if="${img.itemId} eq ${buyItem.id}">
+					<img src="[[${img.imagePath}]]">
+				</td>
+			</span>
+
+		</tr>
+	</table>
+</body>
+
+</html>
