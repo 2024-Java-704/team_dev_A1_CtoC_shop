@@ -166,11 +166,11 @@ public class AccountController {
 		//未入力をはじく処理と新しいパスワードとの一致を検査する処理
 		if (reNewPassword.length() == 0) {
 			errorList.add("確認用パスワードは必須です");
-		} else if (newPassword.equals(reNewPassword)) {
+		} else if (!(newPassword.equals(reNewPassword))) {
 			errorList.add("新しいパスワードと確認用パスワードが一致しません");
 		}
 		//エラーリストの中身があるか判定
-		if (errorList.size() == 0) {
+		if (errorList.size() != 0) {
 			//あった場合、errorListを渡してsetpasswordに飛ぶ
 			model.addAttribute("errorList", errorList);
 			return "setPassword";
