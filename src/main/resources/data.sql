@@ -10,13 +10,13 @@
  	-- users テーブルにデータを挿入するクエリ
  	INSERT INTO users (student_number, password, user_status, introduce)
  	VALUES
- 	(11620111, 'himitudesuyo', 2, 'はじめまして、よろしくお願いします。'),
- 	(84937592, 'himitudesuyo', 2, 'こんにちは、いいのがたくさんあります！'),
- 	(20948499, 'himitudesuyo', 2, '文系教科はお任せください！'),
- 	(21838119, 'himitudesuyo', 2, '数学、理科の教科書が多いです。'),
- 	(82383211, 'himitudesuyo', 2, ''),
- 	(99198373, 'himitudesuyo', 1, ''),
- 	(99739387, 'himitudesuyo', 1, '');
+ 	('11620111', 'himitudesuyo', 2, 'はじめまして、よろしくお願いします。'),
+ 	('84937592', 'himitudesuyo', 2, 'こんにちは、いいのがたくさんあります！'),
+ 	('20948499', 'himitudesuyo', 2, '数学、理科の教科書が多いです。'),
+ 	('21838119', 'himitudesuyo', 2, '文系教科はお任せください！'),
+ 	('82383211', 'himitudesuyo', 2, ''),
+ 	('99198373', 'himitudesuyo', 1, ''),
+ 	('99739387', 'himitudesuyo', 1, '');
  	 
  	-- items テーブルにデータを挿入するクエリ
  	INSERT INTO items (textbook_id, item_status, deal_status, seller_id, buyer_id)
@@ -36,11 +36,11 @@
  	-- item_images テーブルにデータを挿入するクエリ
  	INSERT INTO item_images (item_id, image_path)
  	VALUES
- 	(1, 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwYVB5YDxhUxTNGjsEvlr_e8CorNpwRspvFORMwx90XWPnZzGWpeJC5JyaA-yjqFsV-9S8IATG3L2H9zoLagmsbgflLMBIxzM3zlbDWHtvAT0rXtIX9gNMHrU-iyrzgZRccc0yukxnRjk/s1600/textbook_kokugo.png'),
- 	(2, 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEif30sHqsDfKQ1RiP68KBT4wX4ToyAgEjFvT4ZxXc_LnGXBhSNEY9pCExcnnH2V7cn-HT8b0ymBb-Swe6dFDGXQbCes1rmXDGHTqZpJuPs0D2i7LJPWsIW2G8kU_fvz4lxvut7QqgOPFLs/s1600/textbook_syakai.png'),
- 	(3, 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDBRbLotVrskPxXlqe4UlsJ6sw8f2Icd-1DwOt8x9FRNX7ZiUYrTH2Aj65umcIqX44qE42kJfZs_TxOdctfun9ttL61SWAoKhcPHLj-HiYajHCyEXkNfk5D_izepqiA7Qg8A2gDTbJMEI/s1600/textbook_rika.png'),
- 	(4, 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizjxeB8jBITuKJ7kUPwJtjj4cryqPbzmkAkZhRvSTLX2DjqHiJEDbvQGkrOnoT-KmyaiCFDCnw0iTepI3tpVFlIBi4b2IwxqnlLbkdTwoVYPN39xrnnoypAvtosHbqI3umB9a11hmNGks/s1600/textbook_sugaku.png'),
- 	(5, 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8GyoY2jToEdKFC9oo7viuWetbC-NA2VfGxHBraVuqyGPPlAmLh54hhOikSJZQQ-PvaRZOndDysmDfE_Xi3OjX0u-9hZ6PE42j8gENjd3P_8HDRqHJIVKGB19PYg4SmB_yMgG4CgZJsV8/s1600/textbook_eigo.png');
+ 	(1, ''),
+ 	(2, ''),
+ 	(3, ''),
+ 	(4, ''),
+ 	(5, '');
  	
  	-- reviews テーブルにデータを挿入するクエリ
  	INSERT INTO reviews (item_id, message)
@@ -73,11 +73,11 @@
  	-- students テーブルにデータを挿入するクエリ
  	INSERT INTO students (name, student_number, birthday, address, number, faculty, department)
  	VALUES
- 	('三井悠太郎', 11620111, '2000-9-3', '神奈川県横浜市', '08012345678', '文学部', '史学科'),
- 	('渡邊徹也', 84937592, '2001-10-29', '東京都練馬区', '08089348403', '経済学部', '経済学科'),
- 	('須谷裕斗', 20948499, '2002-1-22', '埼玉県大宮市', '08011920241', '教育学部', '教育学科'),
- 	('江嵜遊太', 21838119, '2001-7-12', '東京都八王子市', '08064730112', '理工学部', '理工学科'),
- 	('石川星河', 82383211, '2002-3-9', '千葉県柏市', '08019282018', '工学部', '機械工学科'),
- 	('田村昂暉', 99198373, '2001-12-23', '神奈川県横浜市', '07055292014', '', ''),
- 	('鈴木一郎', 99739387, '1985-8-17', '岩手県盛岡市', '09092812081', '', '');
+ 	('三井悠太郎', '11620111', '2000-9-3', '神奈川県横浜市', '08012345678', '文学部', '史学科'),
+ 	('渡邊徹也', '84937592', '2001-10-29', '東京都練馬区', '08089348403', '経済学部', '経済学科'),
+ 	('須谷裕斗', '20948499', '2002-1-22', '埼玉県大宮市', '08011920241', '教育学部', '教育学科'),
+ 	('江嵜遊太', '21838119', '2001-7-12', '東京都八王子市', '08064730112', '理工学部', '理工学科'),
+ 	('石川星河', '82383211', '2002-3-9', '千葉県柏市', '08019282018', '工学部', '機械工学科'),
+ 	('田村昂暉', '99198373', '2001-12-23', '神奈川県横浜市', '07055292014', '', ''),
+ 	('鈴木一郎', '99739387', '1985-8-17', '岩手県盛岡市', '09092812081', '', '');
  	
