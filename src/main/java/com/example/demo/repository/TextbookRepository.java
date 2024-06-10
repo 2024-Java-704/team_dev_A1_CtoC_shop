@@ -10,7 +10,7 @@ public interface TextbookRepository extends JpaRepository<Textbook, Integer>{
 
 	List<Textbook> findByTitleLike(String keyword);
 
-	List<Textbook> findByTitleLikeOrderByAsc(String keyword);
+	List<Textbook> findByTitleLikeOrderByIdAsc(String keyword);
 
 	Object findOneById(Integer textbookId);
 
