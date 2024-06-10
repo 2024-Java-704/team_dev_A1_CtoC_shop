@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>通知</title>
+	<meta charset="UTF-8">
+	<title>通知</title>
+	<link rel="stylesheet" type="text/css" href="/css/notice.css">
 </head>
+
 <body>
 	<header th:replace="header"></header>
-	<h1>通知</h1>
-	
-	<table border="1">
-		<tr>
-			<th>内容</th>
-		</tr>
-		<tr th:each="notice:${notices}">
-			<td th:text="${notice.message}"></td>
-		</tr>
-	</table>
+	<div id="noticeTable">
+		<h1>通知</h1>
+
+		<table border="1">
+			<tr>
+				<th>内容</th>
+			</tr>
+			<tr th:each="notice:${notices}">
+				<td th:text="${notice.message}"></td>
+			</tr>
+		</table>
+	</div>
 	<footer th:replace="footer"></footer>
 </body>
+
 </html>
