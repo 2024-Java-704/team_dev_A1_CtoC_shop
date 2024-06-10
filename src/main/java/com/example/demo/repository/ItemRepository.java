@@ -11,27 +11,19 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	List<Item> findBySellerIdOrderByIdDesc(Integer id);
 
 	List<Item> findByBuyerIdOrderByIdDesc(Integer id);
-	
-	
-	Item findOneById(Integer id);
 
+	Item findOneById(Integer id);	//該当のIDの商品の情報を取得
 
+	List<Item> findDistinctByTextbookIdAndDealStatusOrderByIdAsc(Integer textbookId, Integer dealStatus);
 
+	List<Item> findByTextbookIdAndDealStatusOrderByIdDesc(Integer textbookId, Integer dealStatus);
 
-	List<Item> findDistinctByTextbookIdAndDealStatusOrderByIdAsc(Integer textbookId,Integer dealStatus);
+	List<Item> findByTextbookIdAndDealStatusOrderByItemStatusDesc(Integer textbookId, Integer dealStatus);
 
-	List<Item> findByTextbookIdAndDealStatusOrderByIdDesc(Integer textbookId,Integer dealStatus);
-
-
-	List<Item> findByTextbookIdAndDealStatusOrderByItemStatusDesc(Integer textbookId,Integer dealStatus);
-
-
-	List<Item> findByTextbookIdAndDealStatusOrderByItemStatusAsc(Integer textbookId,Integer dealStatus);
-
-
+	List<Item> findByTextbookIdAndDealStatusOrderByItemStatusAsc(Integer textbookId, Integer dealStatus);
 
 	List<Item> findAllByOrderByTextbookIdDesc();
-	
-	List<Item> findByDealStatus(Integer dealStatus);
+
+	List<Item> findByDealStatus(Integer dealStatus); //特定の取引状態の商品をすべて取得
 
 }

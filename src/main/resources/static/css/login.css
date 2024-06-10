@@ -17,7 +17,7 @@ header {
 
 /*入力フォーム*/
 input {
-  width: 100px;/*横幅*/
+  width: 40%;/*横幅*/
   padding: 10px;/*内側余白*/
   margin-bottom: 30px;/*外側余白（下）*/
   border: 1px solid #ccc;/*線の太さ、色*/
@@ -26,7 +26,7 @@ input {
 
 /*登録ボタン*/
 button[type="submit"] {
-	width: 50px;/*横幅*/
+	width: 30%;/*横幅*/
 	padding: 10px;/*内側余白*/
 	background-color: aqua;/*背景色*/
 	color: black;/*文字の色*/

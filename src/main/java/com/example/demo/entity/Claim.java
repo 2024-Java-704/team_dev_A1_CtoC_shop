@@ -17,13 +17,19 @@ public class Claim {
 	private String message;
 	@Column(name = "claim_status")
 	private Integer claimStatus;
-	
+
 	public Claim() {
 	}
-	
+
 	public Claim(String message) {
 		this.message = message;
 		this.claimStatus = 1;
+	}
+
+	public Claim(Integer id, String message, Integer claimStatus) {
+		this.id = id;
+		this.message = message;
+		this.claimStatus = claimStatus;
 	}
 
 	public Integer getId() {
