@@ -52,7 +52,7 @@ public class AccountController {
 	//ログイン処理
 	@PostMapping("/")
 	public String login(
-			@RequestParam(name = "studentNumber", defaultValue = "") Integer studentNumber,
+			@RequestParam(name = "studentNumber", defaultValue = "") String studentNumber,
 			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
 
