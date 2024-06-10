@@ -30,14 +30,15 @@ private Integer sellerId; //出品者ID
 private Integer buyerId; //購入者ID
 
 //コンストラクタ
-Item(){ //デフォルトコンストラクタ	
+public Item(){ //デフォルトコンストラクタ	
 }
-Item(Integer textbookId,Integer itemStatus,Integer sellerId){
+public Item(Integer textbookId,Integer itemStatus,Integer sellerId){
 	this.textbookId=textbookId;
 	this.itemStatus=itemStatus;
 	this.sellerId=sellerId;
 	this.dealStatus=1;
 }
+
 
 //メソッド
 public Integer getId() {

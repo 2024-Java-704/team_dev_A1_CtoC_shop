@@ -5,6 +5,7 @@
 <title>通知</title>
 </head>
 <body>
+	<header th:replace="header"></header>
 	<h1>通知</h1>
 	
 	<table border="1">
@@ -15,5 +16,6 @@
 			<td th:text="${notice.message}"></td>
 		</tr>
 	</table>
+	<footer th:replace="footer"></footer>
 </body>
 </html>
