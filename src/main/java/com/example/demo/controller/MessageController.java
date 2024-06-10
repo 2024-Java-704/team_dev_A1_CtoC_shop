@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Claim;
 import com.example.demo.entity.Notice;
+import com.example.demo.model.Account;
+import com.example.demo.repository.ClaimRepository;
 import com.example.demo.repository.NoticeRepository;
 
 @Controller
@@ -18,6 +21,12 @@ public class MessageController {
 
 	@Autowired
 	NoticeRepository noticeRepository;
+	
+	@Autowired
+	ClaimRepository claimRepository;
+	
+	@Autowired
+	Account account;
 
 	// お問い合わせ画面の表示
 	@GetMapping("/claim")
@@ -43,6 +52,9 @@ public class MessageController {
 			model.addAttribute("message", message);
 			return "contactForm";
 		}
+		
+		Claim claim = new Claim(message);
+		claimRepository.save(claim);
 
 		return "home";
 	}
@@ -50,8 +62,12 @@ public class MessageController {
 	// 通知画面の表示
 	@GetMapping("/Notice")
 	public String Notice(Model model) {
-
-		List<Notice> noticeList = noticeRepository.findAll();
+		List<Notice> noticeList = noticeRepository.findByUserId(account.getId());
+		for (Notice notice : noticeList) {
+			notice.setNoticeStatus(2);
+			noticeRepository.save(notice);
+		}
+		
 		model.addAttribute("notices", noticeList);
 
 		return "notification";

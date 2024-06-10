@@ -23,6 +23,7 @@ public class Claim {
 	
 	public Claim(String message) {
 		this.message = message;
+		this.claimStatus = 1;
 	}
 
 	public Integer getId() {
