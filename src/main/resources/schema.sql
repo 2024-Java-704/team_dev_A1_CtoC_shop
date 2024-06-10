@@ -76,6 +76,7 @@
  	
  	-- students テーブルを作成するクエリ
  	CREATE TABLE students (
+ 	id SERIAL PRIMARY KEY,
  	name TEXT,
  	student_number TEXT,
  	birthday DATE,
