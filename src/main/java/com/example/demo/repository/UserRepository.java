@@ -12,9 +12,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	User findOneByStudentNumberAndPassword(String studentNumber, String password);
 
-	User findOneById(Integer buyerId);
+	User findOneById(Integer buyerId);	//特定のIDのユーザー情報を取得
 
-	List<User> findByStudentNumberContaining(String number);
-
+	List<User> findByStudentNumberContaining(String number);	//指定の文字を含む学籍番号を持つユーザー情報をすべて取得
 
 }

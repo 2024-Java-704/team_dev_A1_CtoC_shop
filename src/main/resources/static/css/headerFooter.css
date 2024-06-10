@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+/* 全体 */
+body {
+	margin: 0;
+}
+
+/* ヘッダーフッター */
+header,
+footer {
+	background-color: #6699FF;
+	/* 背景色 */
+	color: #000000;
+	/* 文字色 */
+}
+
+header.admin,
+footer.admin {
+	background-color: rgb(255, 128, 0);
+	/* 背景色 */
+	color: #000000;
+	/* 文字色 */
+}
+
+a:link {
+	color: #000000;
+	/* リンク色 */
+}
+
+a:visited {
+	color: #000000;
+	/* 訪問したことのあるリンク色 */
+}
+
+/* ヘッダー */
+header {
+	margin-top: 0;
+}
+
+
+header h1 {
+	font-size: 40px;
+	margin-top: 0;
+}
+
+#header {
+	text-align: center;
+	font-size:15pt;
+	font-weight:bold;
+}
+
+/* ログアウトボタン */
+#logout {
+	position: relative;
+	top: -50px;
+	left: 1200px;
+	font-size:15pt;
+	font-weight:bold;
+}
+
+/* フッター */
+footer {
+	text-align: center;
+	padding-top: 5px;
+	/* 内側余白(上) */
+	padding-bottom: 0;
+	/* 内側余白(下) */
+	bottom: 0;
+	position: fixed;
+	width: 100%;
+	font-size:15pt;
+	font-weight:bold;
+}
