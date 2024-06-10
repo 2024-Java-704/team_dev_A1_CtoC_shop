@@ -8,7 +8,7 @@ import com.example.demo.entity.Textbook;
 
 public interface TextbookRepository extends JpaRepository<Textbook, Integer>{
 
-	List<Textbook> findByTitleLikeOrderByAsc(String keyword);
+	List<Textbook> findByTitleLikeOrderByIdAsc(String keyword);
 
 	Object findOneById(Integer textbookId);
 
