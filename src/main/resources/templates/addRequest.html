@@ -23,9 +23,9 @@
 		<tr>
 			<th>教科書</th>
 			<td>
-				<select name = "id">
+				<select name = "title">
 					<option value="" disabled selected>タイトル名</option>
-					<option th:each = "requests:${item_id}" th:value="" th:text= [[${@textbooks.title}]]></option>
+					<option th:each = "requests:${textbook_id}" th:value="" th:text= "${textbooks.title}"></option>
 				
 <!--						<th:block th:each = "requests:${item_id}">-->
 <!--					<option th:value = "" th:text = "${textbooks.title}"></option>-->

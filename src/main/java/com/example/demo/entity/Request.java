@@ -14,8 +14,8 @@ public class Request {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "item_id")
-	private Integer itemId;
+	@Column(name = "textbook_id")
+	private Integer textbookId;
 	@Column(name = "user_id")
 	private Integer userId;
 	@Column(name = "item_status")
@@ -27,7 +27,7 @@ public class Request {
 
 	public Request(Integer userId, Integer itemId) {
 		this.userId = userId;
-		this.itemId = itemId;
+		this.textbookId = itemId;
 
 	}
 
@@ -36,7 +36,7 @@ public class Request {
 	}
 
 	public Integer getItemId() {
-		return itemId;
+		return textbookId;
 	}
 
 	public Integer getUserId() {

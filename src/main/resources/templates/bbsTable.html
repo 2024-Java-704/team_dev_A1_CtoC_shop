@@ -21,9 +21,9 @@
 			<td th:if = "${requests.item_status}==3">書き込みあり</td>
 			<td th:if = "${requests.item_status}==4">破損あり</td>
 			<td th:if = "${requests.item_status}==5">どちらでもよい</td>
-			<td th:text = "${requests.item_id}"></td>
+			<td th:text = "${requests.textbook_id}"></td>
 			<td>
-				<form>
+				<form th:action = "@{/bbs/{textbooksId}}/delete(textbooksId=${textbook.id})}" method = "post">
 					<button>削除</button>
 				</form>
 			</td>
