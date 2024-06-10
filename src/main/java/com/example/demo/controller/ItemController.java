@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +60,7 @@ public class ItemController {
 			items=itemRepository.findAllByOrderByTextbookIdDesc();
 			Item item = items.get(0);
 			for(int i=0;i<=item.getTextbookId();i++) {
-				itemList.addAll(itemRepository.findDistinctByTextbookIdOrderByIdAsc(i));
+				itemList.addAll(itemRepository.findDistinctByTextbookIdAndDealStatusOrderByIdAsc(i,3));
 			}
 			for(Item itemlist :itemList ) {
 				itemImage.add(itemImageRepository.findDistinctByItemId(itemlist.getId()));
@@ -67,7 +69,7 @@ public class ItemController {
 		}else {
 			bookList=textbookRepository.findByTitleLikeOrderByIdAsc(keyword);
 				for(Textbook booklist :bookList ) {
-					itemList=itemRepository.findDistinctByTextbookIdOrderByIdAsc(booklist.getId());
+					itemList=itemRepository.findDistinctByTextbookIdAndDealStatusOrderByIdAsc(booklist.getId(),3);
 					for(Item itemlist :itemList ) {
 						itemImage.add(itemImageRepository.findDistinctByItemId(itemlist.getId()));
 						textbook.add(textbookRepository.findById(itemlist.getTextbookId()).get());
@@ -91,19 +93,19 @@ public class ItemController {
 		List<ItemImage> itemImage=new ArrayList<>();
 		List<Textbook> textbook=new ArrayList<>();
 		if(sort==1) {
-			itemList=itemRepository.findByTextbookIdOrderByIdDesc(id);
+			itemList=itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id,3);
 			for(Item itemlist :itemList ) {
 				itemImage.add(itemImageRepository.findDistinctByItemId(itemlist.getId()));
 				textbook.add(textbookRepository.findById(itemlist.getTextbookId()).get());
 			}
 				}else if(sort==2) {
-					itemList=itemRepository.findByTextbookIdOrderByItemStatusDesc(id);
+					itemList=itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusDesc(id,3);
 					for(Item itemlist :itemList ) {
 					itemImage.add(itemImageRepository.findDistinctByItemId(itemlist.getId()));
 					textbook.add(textbookRepository.findById(itemlist.getTextbookId()).get());
 			}
 				}else if(sort==3) {
-					itemList=itemRepository.findByTextbookIdOrderByItemStatusAsc(id);
+					itemList=itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusAsc(id,3);
 					for(Item itemlist :itemList ) {
 					itemImage.add(itemImageRepository.findDistinctByItemId(itemlist.getId()));
 					textbook.add(textbookRepository.findById(itemlist.getTextbookId()).get());
@@ -175,13 +177,29 @@ public class ItemController {
 		return "complete";
 	}
 	@GetMapping("/item/add")
-		public String addItem() {
+		public String addItem(Model model) {
+		
+		List<Textbook>textbook=textbookRepository.findAll();
+		Map<String,Integer>ItemStatusMap=new LinkedHashMap<>();
+		ItemStatusMap.put("新品",1);
+		ItemStatusMap.put("中古",2);
+		ItemStatusMap.put("書き込みあり",3);
+		ItemStatusMap.put("破損あり",4);
+		
+		model.addAttribute("TextbookLisr", textbook);
+		model.addAttribute("ItemStatusMap",ItemStatusMap);
 		return "addItem";
 	}
 	@PostMapping("/item/add")
 		public String sendItem(@RequestParam(name="Images") String[] image,
 							   @RequestParam(name="textbookId")Integer textbookId,
 							   @RequestParam(name="itemStatus")Integer itemStatus) {
-		return "";
+			Item item = new Item(textbookId,itemStatus,account.getId());
+			itemRepository.save(item);
+		for(String imgPass :image) {
+		ItemImage itemImage = new ItemImage(item.getId(),imgPass);
+		itemImageRepository.save(itemImage);
+		}
+		return "redirect:/home";
 	}
 }
