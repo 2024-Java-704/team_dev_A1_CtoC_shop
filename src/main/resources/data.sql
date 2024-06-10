@@ -12,8 +12,8 @@
  	VALUES
  	(11620111, 'himitudesuyo', 2, 'はじめまして、よろしくお願いします。'),
  	(84937592, 'himitudesuyo', 2, 'こんにちは、いいのがたくさんあります！'),
- 	(20948499, 'himitudesuyo', 2, '数学、理科の教科書が多いです。'),
- 	(21838119, 'himitudesuyo', 2, '文系教科はお任せください！'),
+ 	(20948499, 'himitudesuyo', 2, '文系教科はお任せください！'),
+ 	(21838119, 'himitudesuyo', 2, '数学、理科の教科書が多いです。'),
  	(82383211, 'himitudesuyo', 2, ''),
  	(99198373, 'himitudesuyo', 1, ''),
  	(99739387, 'himitudesuyo', 1, '');
@@ -36,11 +36,11 @@
  	-- item_images テーブルにデータを挿入するクエリ
  	INSERT INTO item_images (item_id, image_path)
  	VALUES
- 	(1, ''),
- 	(2, ''),
- 	(3, ''),
- 	(4, ''),
- 	(5, '');
+ 	(1, 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwYVB5YDxhUxTNGjsEvlr_e8CorNpwRspvFORMwx90XWPnZzGWpeJC5JyaA-yjqFsV-9S8IATG3L2H9zoLagmsbgflLMBIxzM3zlbDWHtvAT0rXtIX9gNMHrU-iyrzgZRccc0yukxnRjk/s1600/textbook_kokugo.png'),
+ 	(2, 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEif30sHqsDfKQ1RiP68KBT4wX4ToyAgEjFvT4ZxXc_LnGXBhSNEY9pCExcnnH2V7cn-HT8b0ymBb-Swe6dFDGXQbCes1rmXDGHTqZpJuPs0D2i7LJPWsIW2G8kU_fvz4lxvut7QqgOPFLs/s1600/textbook_syakai.png'),
+ 	(3, 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDBRbLotVrskPxXlqe4UlsJ6sw8f2Icd-1DwOt8x9FRNX7ZiUYrTH2Aj65umcIqX44qE42kJfZs_TxOdctfun9ttL61SWAoKhcPHLj-HiYajHCyEXkNfk5D_izepqiA7Qg8A2gDTbJMEI/s1600/textbook_rika.png'),
+ 	(4, 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizjxeB8jBITuKJ7kUPwJtjj4cryqPbzmkAkZhRvSTLX2DjqHiJEDbvQGkrOnoT-KmyaiCFDCnw0iTepI3tpVFlIBi4b2IwxqnlLbkdTwoVYPN39xrnnoypAvtosHbqI3umB9a11hmNGks/s1600/textbook_sugaku.png'),
+ 	(5, 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8GyoY2jToEdKFC9oo7viuWetbC-NA2VfGxHBraVuqyGPPlAmLh54hhOikSJZQQ-PvaRZOndDysmDfE_Xi3OjX0u-9hZ6PE42j8gENjd3P_8HDRqHJIVKGB19PYg4SmB_yMgG4CgZJsV8/s1600/textbook_eigo.png');
  	
  	-- reviews テーブルにデータを挿入するクエリ
  	INSERT INTO reviews (item_id, message)

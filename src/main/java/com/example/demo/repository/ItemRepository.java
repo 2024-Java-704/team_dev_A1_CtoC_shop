@@ -6,7 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entity.Item;
 
-public interface ItemRepository extends JpaRepository<Item,Integer>{
+public interface ItemRepository extends JpaRepository<Item, Integer> {
+
+	List<Item> findBySellerIdOrderByIdDesc(Integer id);
+
+	List<Item> findByBuyerIdOrderByIdDesc(Integer id);
 
 
 	List<Item> findBySellerIdOrderByIdDesc(Integer id);
@@ -26,11 +30,19 @@ public interface ItemRepository extends JpaRepository<Item,Integer>{
 
 	List<Item> findByTextbookIdOrderByItemStatusAsc(Integer textbookId);
 
+	List<Item> findDistinctByTextbookIdOrderByIdAsc();
+
+	List<Item> findDistinctByTextbookIdOrderByIdAsc(Integer id);
+
+	List<Item> findByTextbookIdOrderByIdDesc(Integer textBookid);
+
+	List<Item> findByTextbookIdOrderByitemStatusDesc(Integer id);
+
+	List<Item> findByTextbookIdOrderByitemStatusAsc(Integer id);
+
+	List<Item> findByDealStatus(int dealStatus);
 	
 	List<Item> findAllByOrderByTextbookIdDesc();
-	
-	
-	
 	
 	List<Item> findByDealStatus(Integer dealStatus);
 
