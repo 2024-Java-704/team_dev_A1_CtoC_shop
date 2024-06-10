@@ -5,12 +5,13 @@
 	<meta charset="UTF-8">
 	<title>マイページ</title>
 	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">
+	<link rel="stylesheet" type="text/css" href="/css/mypage.css">
 </head>
 
 <body>
 	<header th:replace="header"></header>
 	<h2>マイページ</h2>
-	<table border="1">
+	<table id="table" border="1">
 		<!--		ユーザーの情報を書くテーブル-->
 		<tr>
 			<th>学籍番号</th>
@@ -18,7 +19,7 @@
 		</tr>
 		<tr>
 			<th>パスワード</th>
-			<td th:text"${user.password}"></td>
+			<td th:text="${user.password}"></td>
 			<td><form action="/account/setPassword" method="get"><button>変更</button></form></td>
 		</tr>
 		<tr>
@@ -27,26 +28,36 @@
 			<td><form action="/account/setIntroduce" method="get"><button>更新</button></form></td>
 		</tr>
 	</table>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<!--	注文履歴を書くテーブル-->
-	<table border="1">
+	<table class="" border="1">
 		<tr>
 			<th colspan="2">注文履歴</th>
 		</tr>
 		<!--		buyListで繰り返し-->
-		<tr th:each="buyItem:${buyList}">
-			<th:block th:each="text:${textbookList}">
+		<buylistloop th:each="buyItem:${buyList}">
+			<textloop th:each="text:${textbookList}">
+				<tr>
 				<td th:if"${buyItem.textbookId} eq ${text.id}">
 					<div th:text="${text.title}"></div>
 				</td>
-			</th:block>
-			<span th:each="img:${imgList}">
+			
+			<imgloop th:each="img:${imgList}">
 				<td th:if="${img.itemId} eq ${buyItem.id}">
 					<img src="[[${img.imagePath}]]">
 				</td>
-			</span>
-
+			</imgloop>
+			</textloop>
 		</tr>
+		</buylistloop>
 	</table>
+	<br>
+	<br>
+	<br>
 	<footer th:replace="footer"></footer>
 </body>
 
