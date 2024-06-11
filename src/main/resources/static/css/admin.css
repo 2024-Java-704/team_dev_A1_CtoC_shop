@@ -42,6 +42,7 @@ button.adminMenu {
 	cursor: pointer;
 	font-size: 200%;
 	margin: 1%;
+	font-weight: bold;
 }
 
 button.list {
@@ -52,6 +53,11 @@ button.list {
 	border-radius: 3px;
 	margin: 3px;
 	cursor: pointer;
+}
+
+button.list:hover {
+	background-color: rgb(255, 159, 123);
+	color: white;
 }
 
 button.itemStatus {

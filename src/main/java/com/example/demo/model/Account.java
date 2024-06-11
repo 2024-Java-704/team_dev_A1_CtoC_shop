@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 import com.example.demo.repository.ClaimRepository;
+import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.NoticeRepository;
 
 //Modelです
@@ -17,6 +18,9 @@ public class Account {
 
 	@Autowired
 	ClaimRepository claimRepository;
+	
+	@Autowired
+	ItemRepository itemRepository;
 
 	private Integer id;
 	private Integer userStatus;
@@ -51,5 +55,9 @@ public class Account {
 
 	public Integer getClaimCount() {
 		return claimRepository.findByClaimStatus(1).size();
+	}
+	
+	public Integer getRequestCount() {
+		return itemRepository.findByDealStatus(1).size();
 	}
 }
