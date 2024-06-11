@@ -5,32 +5,36 @@
 	<meta charset="UTF-8">
 	<title>マイページ</title>
 	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">
+	<link rel="stylesheet" type="text/css" href="/css/mypage.css">
 </head>
 
 <body>
 	<header th:replace="header"></header>
+	<main>
 	<h2>マイページ</h2>
-	<table border="1">
+	<table id="table" border="1">
 		<!--		ユーザーの情報を書くテーブル-->
 		<tr>
-			<th>学籍番号</th>
+			<th class="tabletitle">学籍番号</th>
 			<td th:text="${user.studentNumber}" colspan="2"></td>
 		</tr>
 		<tr>
-			<th>パスワード</th>
+			<th class="tabletitle">パスワード</th>
 			<td th:text="${user.password}"></td>
-			<td><form action="/account/setPassword" method="get"><button>変更</button></form></td>
+			<td><form action="/account/setPassword" method="get"><button class="btn">変更</button></form></td>
 		</tr>
 		<tr>
-			<th>自己紹介<br>メッセージ</th>
+			<th class="tabletitle">自己紹介<br>メッセージ</th>
 			<td th:text="${user.introduce}"></td>
-			<td><form action="/account/setIntroduce" method="get"><button>更新</button></form></td>
+			<td><form action="/account/setIntroduce" method="get"><button class="btn">更新</button></form></td>
 		</tr>
 	</table>
+	<br>
+	<br>
 	<!--	注文履歴を書くテーブル-->
-	<table border="1">
+	<table class="table" border="1">
 		<tr>
-			<th colspan="2">注文履歴</th>
+			<th colspan="2" class="tabletitle">注文履歴</th>
 		</tr>
 		<!--		buyListで繰り返し-->
 		<buylistloop th:each="buyItem:${buyList}">
@@ -49,6 +53,10 @@
 		</tr>
 		</buylistloop>
 	</table>
+	<br>
+	<br>
+	<br>
+	</main>
 	<footer th:replace="footer"></footer>
 </body>
 
