@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "items")
@@ -28,7 +29,12 @@ public class Item {
 
 	@Column(name = "buyer_id")
 	private Integer buyerId; //購入者ID
+	
+	@Transient
+	private Integer textprice; 
 
+	@Transient
+	private String textimg; 
 	//コンストラクタ
 	public Item() { //デフォルトコンストラクタ	
 	}
@@ -71,6 +77,22 @@ public class Item {
 
 	public void setBuyerId(Integer buyerId) {
 		this.buyerId = buyerId;
+	}
+
+	public Integer getTextprice() {
+		return textprice;
+	}
+
+	public void setTextprice(Integer textprice) {
+		this.textprice = textprice;
+	}
+
+	public String getTextimg() {
+		return textimg;
+	}
+
+	public void setTextimg(String textimg) {
+		this.textimg = textimg;
 	}
 
 }

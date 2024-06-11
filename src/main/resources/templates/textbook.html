@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html　xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品一覧</title>
+	<link rel="stylesheet" type="text/css" href="/css/home.css" />
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<form action="/home" method="get">
+		<input type="text" name="keyword" th:value="${keyword}" placeholder="キーワード検索">
+		<button>検索</button>
+	</form>
+	<div class="row">
+
+		<th:block th:each="item:${itemList}">
+			<div class="col">
+				<a th:href="@{/item/{id}(id=${item.id})}">
+					<img class="num" th:src="'/img/'+${item.textimg}"
+						th:alt="'/img/'+${item.textimg}"></img>
+				</a>
+				<th:block th:if="${item.itemStatus == 1}">
+					<p id="" th:text="${item.textprice}+'円'" ></p>
+				</th:block>
+				
+				<th:block th:if="${item.itemStatus == 2}">
+					<p th:text="${item.textprice*0.8}+'円'"></p>
+				</th:block>
+				
+				<th:block th:if="${item.itemStatus == 3}">
+					<p th:text="${item.textprice*0.6}+'円'"></p>
+				</th:block>
+				
+				<th:block th:if="${item.itemStatus == 4}">
+					<p th:text="${item.textprice*0.5}+'円'"></p>
+				</th:block>
+			</div>
+		</th:block>
+	</div>
+	<footer th:replace="footer"></footer>
+	<script>
+	</script>
+</body>
+
+</html>
