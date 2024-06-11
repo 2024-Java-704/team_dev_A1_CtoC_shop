@@ -134,7 +134,7 @@ public class AccountController {
 	}
 
 	@GetMapping("/account/setPassword")
-	public String setPassword() {
+	public String resetPassword() {
 		return "setPassword";
 	}
 
