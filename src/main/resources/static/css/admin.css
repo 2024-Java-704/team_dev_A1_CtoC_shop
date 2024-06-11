@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+/*全体*/
+body {
+	background-color: azure;
+	/*背景色*/
+	text-align: center;
+	/*中央寄せ*/
+	min-width: 900px;
+	/* 最小幅 */
+}
+
+/*入力フォーム*/
+input {
+	width: 80%;
+	/*横幅*/
+	border: 1px solid #ccc;
+	/*線の太さ、色*/
+	border-radius: 4px;
+	/*角の丸み*/
+}
+
+/*ボタン*/
+button.adminMenu {
+	width: 60%;
+	/*横幅*/
+	padding: 10px;
+	/*内側余白*/
+	background-color: rgb(255, 57, 0);
+	/*背景色*/
+	color: black;
+	/*文字の色*/
+	border: none;
+	border-radius: 4px;
+	/*角の丸み*/
+	cursor: pointer;
+	font-size: 200%;
+	margin: 1%;
+}
+
+/*ログインボタン（マウスオーバー時）*/
+main button:hover {
+	background-color: rgb(255, 159, 123);
+	color: black;
+}
+
+table {
+	margin: auto;
+	white-space: pre-line;
+}
+
+.msg {
+	text-align: left;
+}
+
+.list {
+	height: fit-content;
+	width: fit-content;
+}
+
+td {
+	width: fit-content;
+	height: fit-content;
+}
