@@ -5,10 +5,11 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-	<input type="hidden" th:value="${@account.userStatus}" id="userStatus">
+	<input type="hidden" th:value="${@account.userStatus}" name="userStatus">
 	<header id="Header">
 		<h1>A大学教科書売買</h1>
 
@@ -17,10 +18,15 @@
 
 		<div id="header">
 			<a href="/home">商品一覧</a>
-			<a href="/item/add">出品申請</a>
-			<a href="/account">マイページ</a>
+			<a href="/item/add" th:if="!${@account.userStatus == 1}">出品申請</a>
+			<a href="/account" th:if="!${@account.userStatus == 1}">マイページ</a>
 			<a href="/bbs">掲示板</a>
-			<a href="/Notice">通知</a>
+			<a href="/Notice" th:if="!${@account.userStatus == 1}">通知<span th:if="!${@account.noticeCount == 0}"
+					style="color: red;">!</span></a>
+			<a href="/admin/claim" th:if="${@account.userStatus == 1}">問い合わせ確認<span th:if="!${@account.claimCount == 0}"
+					style="color: red;">!</span></a>
+			<a href="/admin" th:if="${@account.userStatus == 1}">管理者画面</a>
+
 		</div>
 	</header>
 
@@ -64,15 +70,18 @@
 		};
 	</script>
 
-	<script type="text/javascript"> //admin化
-		function modeCheck() {
-			var mode = document.getElementById('userStatus');
-			let p1_element = document.getElementById("Header");
+	<script type="text/javascript">
+		$(document).ready(function () {
+			function modeCheck() {
+				var mode = document.getElementsByName('userStatus')[0].value;
+				let p1_element = document.getElementById("Header");
 
-			if (mode == 1) {
-				p1_element.classList.add("admin");
+				if (mode == 1) {
+					p1_element.classList.add("admin");
+				}
 			}
-		}
+			modeCheck();
+		});
 	</script>
 </body>
 
