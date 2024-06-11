@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+table{
+	margin-right:auto;
+	margin-left: auto;
+	text-align: center;
+	width: 600px;
+}
+table th{
+	background-color: black;
+	color: white;	
+}
+table tr{
+	background-color: lightgray;
+}
+
+/*タイトルの表*/
+.tr2{
+	background-color: darkgray;
+}
+.delete{
+	background-color: lightpink;
+	margin: 2px;
+	padding: 5px 20px;
+	border: none;
+	
+	cursor: pointer;
+}
+.delete:hover {
+	background-color: hotpink;
+}
+
+.req {
+	margin: 2px;
+	padding: 5px 20px;
+	border: none;
+	width: 150px;
+	cursor: pointer;
+	background-color: #C0C0C0;
+	display: block;
+	 margin: 0 auto;
+}
+
+.req:hover {
+	background-color: #999999;
+}
+
+textArea {
+	width: 500px;
+	height: 250px;
+}
+
+/*掲示板*/
+.title{
+	text-align: center;
+}
+	

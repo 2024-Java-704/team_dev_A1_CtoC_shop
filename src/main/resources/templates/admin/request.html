@@ -4,10 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>出品申請一覧</title>
+	<link rel="stylesheet" type="text/css" href="/css/admin.css" />
 </head>
 
 <body>
 	<header th:replace="header"></header>
+	<main>
 	<h1>出品申請一覧</h1>
 	<table th:if="${items}" border="1">
 		<tr>
@@ -16,17 +18,13 @@
 			<th>確認</th>
 		</tr>
 		<tr th:each="item:${items}">
-			<td th:each="textbook:${textbooks}" th:if="${item.textbookId == textbook.id}" th:text="${textbook.title}">
-			</td>
-			<td th:each="user:${users}" th:if="${item.sellerId == user.id}" th:text="${user.studentNumber}"></td>
-			<td>
-				<form th:action="'/admin/request/' + ${item.id}" method="get">
-					<button>確認</button>
-				</form>
-			</td>
+			<td th:each="textbook:${textbooks}" th:if="${item.textbookId == textbook.id}" th:text="${textbook.title}"></td>
+			<td th:each="user:${users}" th:if="${item.sellerId == user.id}" th:text="${user.studentNumber}" class="msg"></td>
+			<td><form th:action="'/admin/request/' + ${item.id}" method="get"><button class="list">確認</button></form></td>
 		</tr>
 	</table>
 	<p th:if="!${items}">出品申請はありません</p>
+	</main>
 	<footer th:replace="footer"></footer>
 </body>
 

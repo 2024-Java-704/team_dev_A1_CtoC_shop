@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+/*全体*/
+body {
+	background-color: azure;
+	/*背景色*/
+	text-align: center;
+	/*中央寄せ*/
+	min-width: 900px;
+	/* 最小幅 */
+}
+
+.title {
+	font-size: 30px;
+}
+
+/*入力フォーム*/
+input {
+	width: 80%;
+	/*横幅*/
+	border: 1px solid #ccc;
+	/*線の太さ、色*/
+	border-radius: 4px;
+	/*角の丸み*/
+	font-size: 20px;
+	margin: 2px;
+}
+
+/*ボタン*/
+button.adminMenu {
+	width: 60%;
+	/*横幅*/
+	padding: 10px;
+	/*内側余白*/
+	background-color: rgb(255, 57, 0);
+	/*背景色*/
+	color: black;
+	/*文字の色*/
+	border: none;
+	border-radius: 4px;
+	/*角の丸み*/
+	cursor: pointer;
+	font-size: 200%;
+	margin: 1%;
+	font-weight: bold;
+}
+
+button.list {
+	padding: 5px;
+	background-color: rgb(255, 57, 0);
+	color: white;
+	border: none;
+	border-radius: 3px;
+	margin: 3px;
+	cursor: pointer;
+}
+
+button.list:hover {
+	background-color: rgb(255, 159, 123);
+	color: white;
+}
+
+button.itemStatus {
+	width: 15%;
+	/*横幅*/
+	padding: 10px;
+	/*内側余白*/
+	background-color: rgb(255, 57, 0);
+	/*背景色*/
+	color: black;
+	/*文字の色*/
+	border: none;
+	border-radius: 4px;
+	/*角の丸み*/
+	cursor: pointer;
+	font-size: 200%;
+	margin: 1%;
+}
+
+/*ログインボタン（マウスオーバー時）*/
+main button:hover {
+	background-color: rgb(255, 159, 123);
+	color: black;
+}
+
+table {
+	margin: auto;
+	white-space: pre-line;
+	font-size: 20px;
+}
+
+.msg {
+	text-align: left;
+}
+
+.list {
+	height: fit-content;
+	width: fit-content;
+}
+
+td {
+	width: fit-content;
+	height: fit-content;
+}
+
+.search-form {
+	display: inline-block;
+}
+
+.search-button {
+	vertical-align: top;
+	margin-left: 10px;
+}
