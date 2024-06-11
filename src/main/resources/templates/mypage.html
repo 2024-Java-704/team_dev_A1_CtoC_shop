@@ -18,7 +18,7 @@
 		</tr>
 		<tr>
 			<th>パスワード</th>
-			<td th:text"${user.password}"></td>
+			<td th:text="${user.password}"></td>
 			<td><form action="/account/setPassword" method="get"><button>変更</button></form></td>
 		</tr>
 		<tr>
@@ -33,19 +33,21 @@
 			<th colspan="2">注文履歴</th>
 		</tr>
 		<!--		buyListで繰り返し-->
-		<tr th:each="buyItem:${buyList}">
-			<th:block th:each="text:${textbookList}">
+		<buylistloop th:each="buyItem:${buyList}">
+			<textloop th:each="text:${textbookList}">
+				<tr>
 				<td th:if"${buyItem.textbookId} eq ${text.id}">
 					<div th:text="${text.title}"></div>
 				</td>
-			</th:block>
-			<span th:each="img:${imgList}">
+			
+			<imgloop th:each="img:${imgList}">
 				<td th:if="${img.itemId} eq ${buyItem.id}">
 					<img src="[[${img.imagePath}]]">
 				</td>
-			</span>
-
+			</imgloop>
+			</textloop>
 		</tr>
+		</buylistloop>
 	</table>
 	<footer th:replace="footer"></footer>
 </body>

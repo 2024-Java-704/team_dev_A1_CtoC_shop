@@ -12,4 +12,6 @@ public interface ClaimRepository extends JpaRepository<Claim, Integer> {
 
 	List<Claim> findByOrderByIdDesc();	//問い合わせメッセージをIDの逆順に取得
 
+	List<Claim> findByClaimStatus(Integer claimStatus);	//特定の状態の問い合わせメッセージをすべて取得
+
 }
