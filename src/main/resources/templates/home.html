@@ -1,38 +1,34 @@
 <!DOCTYPE html>
-<html　xmlns:th="http://www.thymeleaf.org">
+<html　xmlns:th="http: //www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>教科書一覧</title>
-<link rel="stylesheet" type="text/css" href="/css/home.css"/>
+	<meta charset="UTF-8">
+	<title>教科書一覧</title>
+	<link rel="stylesheet" type="text/css" href="/css/home.css" />
 </head>
+
 <body>
- <header th:replace="header"></header>
-<form action="/home" method="get">
-	<input type="text" name="keyword" th:value="${keyword}" placeholder="キーワード検索">
-	<button>検索</button>
-</form>
-<div class="row">
-  <div class="col">
-    <div class="num">1</div>
-  </div>
-  <div class="col">
-    <div class="num">2</div>
-  </div>
-  <div class="col">
-    <div class="num">3</div>
-  </div>
-  <div class="col">
-    <div class="num">4</div>
-  </div>
-  <div class="col">
-    <div class="num">5</div>
-  </div>
-  <div class="col">
-    <div class="num">6</div>
-  </div>
-</div>
-	
-</div>
- <footer th:replace="footer"></footer>
+	<header th:replace="header"></header>
+	<form action="/home" method="get">
+		<input type="text" name="keyword" th:value="${keyword}" placeholder="キーワード検索">
+		<button>検索</button>
+	</form>
+	<div class="row">
+
+		<th:block th:each="textbook:${textbooks}">
+			<div class="col">
+				<a th:href="@{/textbook/{id}(id=${textbook.id})}">
+					<img class="num" th:src="'/img/'+${textbook.textimg}"
+						th:alt="'/img/'+${textbook.textimg}"></img>
+				</a>
+				<th:block th:each="textbook:${textbook}">
+					<p th:text="${textbook.title}"></p>
+					<p th:text="${textbook.price}"></p>
+				</th:block>
+			</div>
+		</th:block>
+	</div>
+	<footer th:replace="footer"></footer>
 </body>
+
 </html>

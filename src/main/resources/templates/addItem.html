@@ -2,7 +2,9 @@
 <html　xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>商品追加申請</title>
 <style>
             .img > img{
                 width: 900px;
@@ -16,9 +18,9 @@
          accept属性により、ファイル選択ダイアログで画像ファイルのみが表示されます。
          multiple属性により、ユーザーが複数のファイルを選択できます。
          onchange属性により、選択したファイルが変更されるたびに指定したJavaScript関数が呼び出されます。 -->
-           <form action="/item/add" method="post">
+           <form action="/item/add" method="post" enctype="multipart/form-data">
           <div class="img"></div>
-    <input type="file" id="fileElem" accept='image/*' multiple="multiple" onchange="preview(this);" name="Images" style="display: none;">
+    <input type="file" id="fileElem" accept='image/*' multiple="multiple" onchange="preview(this);" name="images" style="display: none;">
     <button id="fileSelect" type="button">画像を選択</button>
 	<br>
 	<select name="textbookId">
