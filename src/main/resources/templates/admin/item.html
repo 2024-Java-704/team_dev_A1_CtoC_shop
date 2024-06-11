@@ -11,8 +11,8 @@
 	<header th:replace="header"></header>
 	<main>
 		<h1>出品申請詳細画面</h1>
-		<th th:text="${textbook.title}"></th>
-		<table>
+		<span class="title" th:text="${textbook.title}"></span>
+		<table border="1">
 			<tr>
 				<td>出品者</td>
 				<td th:text="${user.studentNumber}"></td>
@@ -22,16 +22,17 @@
 				<td th:if="${item.itemStatus == 1}">新品</td>
 				<td th:if="${item.itemStatus == 2}">中古</td>
 				<td th:if="${item.itemStatus == 3}">書き込みあり</td>
-				<td th:if="${item.itemStatus == 4}"></td>
+				<td th:if="${item.itemStatus == 4}">破損あり</td>
 			</tr>
 		</table>
-		<form th:action="'/admin/request/' + ${item.id}" method="post">
+		<br>
+		<form th:action="'/admin/request/' + ${item.id}" method="post" style="display: inline;">
 			<input type="hidden" name="status" value="3">
-			<button>許可</button>
+			<button class="itemStatus" >許可</button>
 		</form>
-		<form th:action="'/admin/request/' + ${item.id}" method="post">
+		<form th:action="'/admin/request/' + ${item.id}" method="post" style="display: inline;">
 			<input type="hidden" name="status" value="2">
-			<button>不許可</button>
+			<button class="itemStatus" >不許可</button>
 		</form>
 	</main>
 	<footer th:replace="footer"></footer>
