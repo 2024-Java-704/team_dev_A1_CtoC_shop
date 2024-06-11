@@ -11,16 +11,16 @@
 	<header th:replace="header"></header>
 	<main>
 		<h1>会員管理画面</h1>
-		<form action="/admin/user" method="get">
+		<form action="/admin/user" method="get" class="searchForm">
 			<table border="1">
 				<tr>
 					<th>学籍番号</th>
 					<td><input type="text" name="number" th:value="${number}"></td>
+					<td style="border: none;"><button class="searchButton, list">検索</button></td>
 				</tr>
 			</table>
-			<button>検索</button>
 		</form>
-
+		<br>
 		<table th:if="${users}" border="1">
 			<tr>
 				<th>学籍番号</th>
@@ -30,9 +30,7 @@
 			<tr th:each="user:${users}">
 				<td th:text="${user.studentNumber}"></td>
 				<td th:text="${user.studentNumber}"></td>
-				<td>
-					<form th:action="'/admin/user/delete/' + ${user.id}" method="post"><button>削除</button></form>
-				</td>
+				<td><form th:action="'/admin/user/delete/' + ${user.id}" method="post"><button class="list">削除</button></form></td>
 			</tr>
 		</table>
 

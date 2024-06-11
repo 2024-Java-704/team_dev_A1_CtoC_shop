@@ -18,14 +18,9 @@
 			<th>確認</th>
 		</tr>
 		<tr th:each="item:${items}">
-			<td th:each="textbook:${textbooks}" th:if="${item.textbookId == textbook.id}" th:text="${textbook.title}">
-			</td>
+			<td th:each="textbook:${textbooks}" th:if="${item.textbookId == textbook.id}" th:text="${textbook.title}"></td>
 			<td th:each="user:${users}" th:if="${item.sellerId == user.id}" th:text="${user.studentNumber}" class="msg"></td>
-			<td>
-				<form th:action="'/admin/request/' + ${item.id}" method="get">
-					<button>確認</button>
-				</form>
-			</td>
+			<td><form th:action="'/admin/request/' + ${item.id}" method="get"><button class="list">確認</button></form></td>
 		</tr>
 	</table>
 	<p th:if="!${items}">出品申請はありません</p>
