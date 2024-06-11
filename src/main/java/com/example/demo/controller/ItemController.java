@@ -101,30 +101,55 @@ public class ItemController {
 			Model model) {
 		List<Item> itemList = null;
 		//List<Textbook> bookList =null;
-		List<ItemImage> itemImage = new ArrayList<>();
-		List<Textbook> textbook = new ArrayList<>();
+		List<ItemImage> itemImages = new ArrayList<>();
+		List<Textbook> textbooks = new ArrayList<>();
 		if (sort == 1) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id, 3);
 			for (Item item : itemList) {
-				itemImage.add(itemImageRepository.findDistinctByItemId(item.getId()));
-				textbook.add(textbookRepository.findById(item.getTextbookId()).get());
+				Textbook textbook= textbookRepository.findById(item.getTextbookId()).get();
+				ItemImage itemImage= itemImageRepository.findDistinctByItemId(item.getId());
+				item.setTextprice(textbook.getPrice());
+				item.setTextimg(itemImage.getImagePath());
+				itemRepository.save(item);
+				textbooks.add(textbook);
 			}
 		} else if (sort == 2) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusDesc(id, 3);
 			for (Item item : itemList) {
-				itemImage.add(itemImageRepository.findDistinctByItemId(item.getId()));
-				textbook.add(textbookRepository.findById(item.getTextbookId()).get());
+				Textbook textbook= textbookRepository.findById(item.getTextbookId()).get();
+				ItemImage itemImage= itemImageRepository.findDistinctByItemId(item.getId());
+				item.setTextprice(textbook.getPrice());
+				item.setTextimg(itemImage.getImagePath());
+				itemRepository.save(item);
+				textbooks.add(textbook);
 			}
 		} else if (sort == 3) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusAsc(id, 3);
 			for (Item item : itemList) {
-				itemImage.add(itemImageRepository.findDistinctByItemId(item.getId()));
-				textbook.add(textbookRepository.findById(item.getTextbookId()).get());
+				Textbook textbook= textbookRepository.findById(item.getTextbookId()).get();
+				ItemImage itemImage= itemImageRepository.findDistinctByItemId(item.getId());
+				item.setTextprice(textbook.getPrice());
+				item.setTextimg(itemImage.getImagePath());
+				itemRepository.save(item);
+				textbooks.add(textbook);
 			}
 		}
+			switch (sort) {
+			case 1:
+				
+				itemList = itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id, 3);
+				break;
+			case 2:
+				itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusDesc(id, 3);
+				break;
+			case 3:
+				itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusAsc(id, 3);
+						}
+			
+		model.addAttribute("sort", sort);
 		model.addAttribute("itemList", itemList);
-		model.addAttribute("itemImage", itemImage);
-		model.addAttribute("textbook", textbook);
+		//model.addAttribute("itemImage", itemImages);
+		//model.addAttribute("textbook", textbooks);
 		return "textbook";
 	}
 
