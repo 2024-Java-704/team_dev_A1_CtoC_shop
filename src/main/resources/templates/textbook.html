@@ -8,9 +8,13 @@
 
 <body>
 	<header th:replace="header"></header>
-	<form action="/home" method="get">
-		<input type="text" name="keyword" th:value="${keyword}" placeholder="キーワード検索">
-		<button>検索</button>
+	<form th:action="@{/textbook/{id}(id=${textbook.id})}" method="get">
+		<select name="sort">
+			<option value="1">新着順</option>
+			<option value="2">安い順</option>
+			<option value="3">高い順</option>
+		</select>
+		<button>並べ替え</button>
 	</form>
 	<div class="row">
 
@@ -21,19 +25,19 @@
 						th:alt="'/img/'+${item.textimg}"></img>
 				</a>
 				<th:block th:if="${item.itemStatus == 1}">
-					<p id="" th:text="${item.textprice}+'円'" ></p>
+					<p id="" th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'" ></p>
 				</th:block>
 				
 				<th:block th:if="${item.itemStatus == 2}">
-					<p th:text="${item.textprice*0.8}+'円'"></p>
+					<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"></p>
 				</th:block>
 				
 				<th:block th:if="${item.itemStatus == 3}">
-					<p th:text="${item.textprice*0.6}+'円'"></p>
+					<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"></p>
 				</th:block>
 				
 				<th:block th:if="${item.itemStatus == 4}">
-					<p th:text="${item.textprice*0.5}+'円'"></p>
+					<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"></p>
 				</th:block>
 			</div>
 		</th:block>
