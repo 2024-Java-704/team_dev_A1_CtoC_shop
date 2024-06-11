@@ -145,6 +145,7 @@ public class ItemController {
 			case 3:
 				itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusAsc(id, 3);
 						}
+			
 		model.addAttribute("sort", sort);
 		model.addAttribute("itemList", itemList);
 		//model.addAttribute("itemImage", itemImages);
