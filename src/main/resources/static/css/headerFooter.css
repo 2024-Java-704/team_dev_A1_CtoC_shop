@@ -100,6 +100,18 @@ header h1 {
 	animation-duration: 1s;
 	text-align: center;
 	font-weight: bold;
+	animation-name: modalopen;
+	animation-duration: 1s;
+}
+
+@keyframes modalopen{
+	from {
+		opacity: 0
+	}
+
+	to {
+		opacity: 1
+	}
 }
 
 /*モーダルウィンドウ内のヘッダーの文字*/
@@ -124,8 +136,9 @@ header h1 {
 .close{
 	color: black;
 	float: right;
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: bold;
+	padding-right: 10px;
 }
 
 /*閉じるボタン（マウスオーバー時）*/
@@ -194,7 +207,7 @@ footer {
 	padding-bottom: 0;
 	/* 内側余白(下) */
 	bottom: 0;
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	font-size:15pt;
 	font-weight:bold;
