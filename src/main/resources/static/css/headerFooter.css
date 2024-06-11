@@ -40,22 +40,36 @@ header {
 
 header h1 {
 	font-size: 40px;
-	margin-top: 0;
+	margin: 0;
+	text-align: left;
+	height: 40px;
+	width: fit-content;
+	float: left;
 }
 
 #header {
 	text-align: center;
-	font-size:15pt;
+	font-size:17pt;
 	font-weight:bold;
 }
 
 /* ログアウトボタン */
-#logout {
+.logout {
 	position: relative;
-	top: -50px;
-	left: 1140px;
-	font-size:15pt;
+	font-size:13pt;
 	font-weight:bold;
+	text-align: right;
+	margin: 0;
+}
+
+.sitetitle{
+	width: 100%;
+	height: fit-content;
+}
+
+.menu {
+	margin-right: 5px;
+	margin-left: 5px;
 }
 
 /* モーダルウィンドウのスタイル */
