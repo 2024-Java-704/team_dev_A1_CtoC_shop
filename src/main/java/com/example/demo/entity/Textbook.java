@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "textbooks")
@@ -20,6 +21,9 @@ public class Textbook {
 	private Integer price;
 
 	private String publisher;
+	
+	@Transient
+	private String textimg; 
 
 	public Textbook() {
 	}
@@ -49,6 +53,14 @@ public class Textbook {
 
 	public String getPublisher() {
 		return publisher;
+	}
+
+	public String getTextimg() {
+		return textimg;
+	}
+
+	public void setTextimg(String textimg) {
+		this.textimg = textimg;
 	}
 
 }
