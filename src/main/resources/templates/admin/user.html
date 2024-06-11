@@ -7,6 +7,7 @@
 </head>
 
 <body>
+	<header th:replace="header"></header>
 	<h1>会員管理画面</h1>
 	<form action="/admin/user" method="get">
 		<table border="1">
@@ -34,6 +35,7 @@
 	</table>
 
 	<p th:if="!${users}">該当の会員はいません</p>
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>
