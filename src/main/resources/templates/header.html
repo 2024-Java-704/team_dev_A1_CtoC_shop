@@ -23,10 +23,11 @@
 			<a href="/home" class="menu">商品一覧</a><a href="/item/add" th:if="!${@account.userStatus == 1}"
 				class="menu">出品申請</a><a href="/account" th:if="!${@account.userStatus == 1}" class="menu">マイページ</a><a
 				href="/bbs" class="menu">掲示板</a><a href="/Notice" th:if="!${@account.userStatus == 1}"
-				class="menu">通知<span th:if="!${@account.noticeCount == 0}" style="color: red;">!</span></a><a
-				href="/admin/claim" th:if="${@account.userStatus == 1}" class="menu">問い合わせ確認<span
-					th:if="!${@account.claimCount == 0}" style="color: red;">!</span></a><a href="/admin"
-				th:if="${@account.userStatus == 1}" class="menu">管理者画面</a>
+				class="menu" style="text-decoration:none;"><span style="text-decoration: underline;">通知</span><span th:if="!${@account.noticeCount == 0}" style="color: red;">!</span></a><a
+				href="/admin/claim" th:if="${@account.userStatus == 1}" class="menu" style="text-decoration:none;"><span style="text-decoration: underline;">問い合わせ確認</span><span
+					th:if="!${@account.claimCount == 0}" style="color: red;" class="alate">!</span></a><a href="/admin"
+				th:if="${@account.userStatus == 1}" class="menu"style="text-decoration:none;"><span style="text-decoration: underline;">管理者画面</span><span
+					th:if="!${@account.requestCount == 0}" style="color: red;" class="alate">!</span></a>
 		</div>
 
 		<!-- モーダルウィンドウ -->
