@@ -9,34 +9,30 @@
 </head>
 <body>
 	<header th:replace="header"></header>
-
 	<h1 class ="title">掲示板</h1>
-
 	<table>
 		<tr>
 			<th>商品状態</th>
 			<th>タイトル</th>
 			<th>完了</th>
 		</tr>
-<!--		タイムリーフ名の確認-->
 		<tr th:each = "request:${requests}">
 			<td th:if = "${request.itemStatus}==1">新品</td>
 			<td th:if = "${request.itemStatus}==2">中古</td>
 			<td th:if = "${request.itemStatus}==3">書き込みあり</td>
 			<td th:if = "${request.itemStatus}==4">破損あり</td>
 			<td th:if = "${request.itemStatus}==5">どちらでもよい</td>
-
 			<td th:each="title:${titles}" th:if="${title.id == request.textbookId}" th:text = "${title.title}" class = "tr2"></td>
 			<td >
 			<form th:action = "@{/bbs/{id}/delete(id=${request.id})}" method = "post" th:if="${request.userId == @account.id}">
-					<button class = "delete">削除</button>
-
-				</form> 
+				<button class = "delete">削除</button>
+			</form> 
 			</td>
 		</tr>
 	</table>
 <form action ="/bbs/addRequest" method = "get"><br>
 	<button class = "req">新規募集</button>
+	<br><br><br>
 </form>
 <footer th:replace="footer"></footer>
 </body>
