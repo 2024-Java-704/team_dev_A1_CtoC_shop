@@ -7,6 +7,7 @@
 </head>
 
 <body>
+	<header th:replace="header"></header>
 	<h1>出品申請詳細画面</h1>
 	<th th:text="${textbook.title}"></th>
 	<table>
@@ -30,6 +31,7 @@
 		<input type="hidden" name="status" value="2">
 		<button>不許可</button>
 	</form>
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>

@@ -67,6 +67,7 @@
  	INSERT INTO requests (textbook_id, user_id, item_status)
  	VALUES
  	(2, 2, 2),
+ 	(3, 1, 5),
  	(4, 5, 1),
  	(5, 1, 5);
  	
