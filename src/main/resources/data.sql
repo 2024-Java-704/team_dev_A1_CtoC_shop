@@ -30,8 +30,9 @@
  	-- claims テーブルにデータを挿入するクエリ
  	INSERT INTO claims (message, claim_status)
  	VALUES
- 	('購入したものがまだ届きません', 2),
- 	('決済方法をふやしてほしいです', 1);
+ 	('購入した商品がまだ届きません', 2),
+ 	('決済方法をふやしてほしいです', 1),
+ 	('支払いがまだ行われていません', 1);
  	
  	-- item_images テーブルにデータを挿入するクエリ
  	INSERT INTO item_images (item_id, image_path)
@@ -67,8 +68,11 @@
  	INSERT INTO requests (textbook_id, user_id, item_status)
  	VALUES
  	(2, 2, 2),
+ 	(3, 1, 5),
  	(4, 5, 1),
- 	(5, 1, 5);
+ 	(5, 1, 5),
+ 	(1, 3, 3),
+ 	(3, 4, 4);
  	
  	-- students テーブルにデータを挿入するクエリ
  	INSERT INTO students (name, student_number, birthday, address, number, faculty, department)

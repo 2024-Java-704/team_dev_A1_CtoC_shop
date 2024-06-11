@@ -4,12 +4,14 @@
 <meta charset="UTF-8">
 <title>掲示板</title>
 <link rel="stylesheet" type="text/css" href="/css/bbsTable.css" >
+
 <!--画面ID:301 掲示板画面-->
 </head>
 <body>
 	<header th:replace="header"></header>
+
 	<h1 class ="title">掲示板</h1>
-	
+
 	<table>
 		<tr>
 			<th>商品状態</th>
@@ -23,10 +25,12 @@
 			<td th:if = "${request.itemStatus}==3">書き込みあり</td>
 			<td th:if = "${request.itemStatus}==4">破損あり</td>
 			<td th:if = "${request.itemStatus}==5">どちらでもよい</td>
+
 			<td th:each="title:${titles}" th:if="${title.id == request.textbookId}" th:text = "${title.title}" class = "tr2"></td>
 			<td >
 			<form th:action = "@{/bbs/{id}/delete(id=${request.id})}" method = "post" th:if="${request.userId == @account.id}">
 					<button class = "delete">削除</button>
+
 				</form> 
 			</td>
 		</tr>

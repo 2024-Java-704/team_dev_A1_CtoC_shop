@@ -1,9 +1,55 @@
 @charset "UTF-8";
-body{
+main{
 	text-align: center;
 }
-table{
+#table{
 	margin-right:auto;
 	margin-left: auto;
+	width: 50%;
 	white-space: pre-line;
+}
+.table{
+	margin-left:auto;
+	margin-right:auto;
+	
+}
+.tabletitle{
+	font-weight: bold;
+	background-color: #003775;
+	color:white;
+	width:170px;
+}
+.btn{
+	color:#003775;
+  font-size: 20px;
+  font-weight: bold;
+  background: #6C9BD2;
+  padding: 5px 30px;
+  border-radius: 6px;
+  transition: .3s;
+}
+.btn:hover{
+	background-color: #003775;
+	color: white;
+}
+.title{
+	margin-top: 5px;
+	margin-bottom: 0;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+textbox{
+	margin-top: 5px;
+	margin-bottom: 0;
+	line-height: 20px;
+}
+input{
+	margin-top: 5px;
+	margin-bottom: 5px;	
+	width: 350px;
+}
+textarea{
+	width: 80%;
+	height: 200px;
 }

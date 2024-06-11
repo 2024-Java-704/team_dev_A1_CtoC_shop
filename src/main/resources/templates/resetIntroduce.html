@@ -9,22 +9,26 @@
 </head>
 <body>
 	<header th:replace="header"></header>
+	<main>
 	<h2>自己紹介メッセージ更新</h2>
 	<form action="/account/setIntroduce" method="post">
-	<table border="1">
+	<table border="1" id="table">
 		<tr>
-			<th>学籍番号</th>
+			<th class="tabletitle">学籍番号</th>
 			<td th:text="${studentNumber}"></td>
 		</tr>
 		<tr>
-			<th>自己紹介<br>メッセージ</th>
+			<th class="tabletitle">自己紹介<br>メッセージ</th>
 			<td>
 				<textarea name="introduce"></textarea>
 			</td>
 		</tr>
 	</table>
-	<button>更新</button>
+	<br>
+	<br>
+	<button class="btn">更新</button>
 	</form>
+	</main>
 	<footer th:replace="footer"></footer>
 </body>
 </html>
