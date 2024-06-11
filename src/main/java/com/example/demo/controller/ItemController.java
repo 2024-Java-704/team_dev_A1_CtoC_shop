@@ -101,30 +101,56 @@ public class ItemController {
 			Model model) {
 		List<Item> itemList = null;
 		//List<Textbook> bookList =null;
-		List<ItemImage> itemImage = new ArrayList<>();
-		List<Textbook> textbook = new ArrayList<>();
+		//List<ItemImage> itemImages = new ArrayList<>();
+		List<Textbook> textbooks = new ArrayList<>();
 		if (sort == 1) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id, 3);
 			for (Item item : itemList) {
-				itemImage.add(itemImageRepository.findDistinctByItemId(item.getId()));
-				textbook.add(textbookRepository.findById(item.getTextbookId()).get());
+				Textbook textbook= textbookRepository.findById(item.getTextbookId()).get();
+				ItemImage itemImage= itemImageRepository.findDistinctByItemId(item.getId());
+				item.setTextprice(textbook.getPrice());
+				item.setTextimg(itemImage.getImagePath());
+				itemRepository.save(item);
+				textbooks.add(textbook);
 			}
 		} else if (sort == 2) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusDesc(id, 3);
 			for (Item item : itemList) {
-				itemImage.add(itemImageRepository.findDistinctByItemId(item.getId()));
-				textbook.add(textbookRepository.findById(item.getTextbookId()).get());
+				Textbook textbook= textbookRepository.findById(item.getTextbookId()).get();
+				ItemImage itemImage= itemImageRepository.findDistinctByItemId(item.getId());
+				item.setTextprice(textbook.getPrice());
+				item.setTextimg(itemImage.getImagePath());
+				itemRepository.save(item);
+				textbooks.add(textbook);
 			}
 		} else if (sort == 3) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusAsc(id, 3);
 			for (Item item : itemList) {
-				itemImage.add(itemImageRepository.findDistinctByItemId(item.getId()));
-				textbook.add(textbookRepository.findById(item.getTextbookId()).get());
+				Textbook textbook= textbookRepository.findById(item.getTextbookId()).get();
+				ItemImage itemImage= itemImageRepository.findDistinctByItemId(item.getId());
+				item.setTextprice(textbook.getPrice());
+				item.setTextimg(itemImage.getImagePath());
+				itemRepository.save(item);
+				textbooks.add(textbook);
 			}
 		}
-		model.addAttribute("itemList", itemList);
-		model.addAttribute("itemImage", itemImage);
+		Textbook textbook = textbookRepository.findOneById(id);
+			switch (sort) {
+			case 1:
+				
+				itemList = itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id, 3);
+				break;
+			case 2:
+				itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusDesc(id, 3);
+				break;
+			case 3:
+				itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusAsc(id, 3);
+						}
 		model.addAttribute("textbook", textbook);
+		model.addAttribute("sort", sort);
+		model.addAttribute("itemList", itemList);
+		//model.addAttribute("itemImage", itemImages);
+		//model.addAttribute("textbook", textbooks);
 		return "textbook";
 	}
 
@@ -135,7 +161,7 @@ public class ItemController {
 		Item item = null;
 		List<ItemImage> itemImage = new ArrayList<>();
 		item = itemRepository.findById(id).get();
-		itemImage.add(itemImageRepository.findByItemId(item.getId()));
+		itemImage.addAll(itemImageRepository.findByItemId(item.getId()));
 		model.addAttribute("item", item);
 		model.addAttribute("itemImage", itemImage);
 		return "item";
@@ -170,7 +196,7 @@ public class ItemController {
 		List<ItemImage> itemImage = new ArrayList<>();
 		Item item = itemRepository.findById(id).get();
 		User user = userRepository.findById(item.getSellerId()).get();
-		itemImage.add(itemImageRepository.findByItemId(id));
+		itemImage.addAll(itemImageRepository.findByItemId(id));
         
 
 		model.addAttribute("item", item);

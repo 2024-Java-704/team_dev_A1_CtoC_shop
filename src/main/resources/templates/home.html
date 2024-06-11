@@ -23,7 +23,7 @@
 				</a>
 				<th:block th:each="textbook:${textbook}">
 					<p th:text="${textbook.title}"></p>
-					<p th:text="${textbook.price}"></p>
+					<p th:text="${textbook.price}+'円'"></p>
 				</th:block>
 			</div>
 		</th:block>
