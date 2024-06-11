@@ -43,6 +43,7 @@ button.adminMenu {
 	font-size: 200%;
 	margin: 1%;
 	font-weight: bold;
+	min-width: fit-content;
 }
 
 button.list {
@@ -53,6 +54,7 @@ button.list {
 	border-radius: 3px;
 	margin: 3px;
 	cursor: pointer;
+	min-width: fit-content;
 }
 
 button.list:hover {
@@ -75,6 +77,7 @@ button.itemStatus {
 	cursor: pointer;
 	font-size: 200%;
 	margin: 1%;
+	min-width: fit-content;
 }
 
 /*ログインボタン（マウスオーバー時）*/
@@ -110,4 +113,24 @@ td {
 .search-button {
 	vertical-align: top;
 	margin-left: 10px;
+}
+
+.boxImege {
+	width: fit-content;
+}
+
+.boxText {
+	float:left;
+	width: fit-content
+}
+
+.container {
+	display:flex;
+	overflow: hidden;
+	width: fit-content;
+	margin: 0 auto;
+}
+
+.detail {
+	padding-top: 30px;
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Claim;
 import com.example.demo.entity.Item;
+import com.example.demo.entity.ItemImage;
 import com.example.demo.entity.Notice;
 import com.example.demo.entity.Request;
 import com.example.demo.entity.Textbook;
@@ -74,9 +75,10 @@ public class AdminController {
 			@PathVariable("id") Integer id,
 			Model model) {
 		Item item = itemRepository.findOneById(id);
+		List<ItemImage> images = itemImageRepository.findByItemId(id);
 		model.addAttribute("item", item);
 		model.addAttribute("textbook", textbookRepository.findOneById(item.getTextbookId()));
-		model.addAttribute("images", itemImageRepository.findByItemId(id));
+		model.addAttribute("images", images);
 		model.addAttribute("user", userRepository.findOneById(item.getSellerId()));
 		return "admin/item";
 	}
