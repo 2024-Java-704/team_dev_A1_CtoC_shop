@@ -54,4 +54,10 @@ textArea {
 .title{
 	text-align: center;
 }
-	
+
+.wrapper{
+	min-height: 81.7vh;
+	position: relative;
+	padding-bottom: 80px;
+	box-sizing: border-box;
+}	

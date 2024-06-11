@@ -9,6 +9,8 @@
 </head>
 <body>
 	<header th:replace="header"></header>
+	
+	<div class="wrapper">
 
 	<h1 class ="title">掲示板</h1>
 
@@ -35,9 +37,10 @@
 			</td>
 		</tr>
 	</table>
-<form action ="/bbs/addRequest" method = "get"><br>
+	<form action ="/bbs/addRequest" method = "get"><br>
 	<button class = "req">新規募集</button>
-</form>
-<footer th:replace="footer"></footer>
+	</form>
+	<footer th:replace="footer"></footer>
+	</div>
 </body>
 </html>
