@@ -229,7 +229,6 @@ public class ItemController {
 	    }
 	    for(MultipartFile image : images){
 	        Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
-	        System.out.println("aaaaaaaaaaaaa"+image.getInputStream().toString());
 	        Files.copy(image.getInputStream(), dst);
 	    }
 	    return "redirect:/home";
