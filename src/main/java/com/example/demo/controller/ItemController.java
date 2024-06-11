@@ -142,8 +142,8 @@ public class ItemController {
 	}
 
 	@PostMapping("/buy/{id}")
-	public String buy(@PathVariable("id") Integer id,
-			Model model) {
+	public String buy(@PathVariable("id") Integer id
+					) {
 		Item item = itemRepository.findById(id).get();
 		item.setDealStatus(4);
 		item.setBuyerId(account.getId());
@@ -205,7 +205,7 @@ public class ItemController {
 	}
 
 	@PostMapping("/item/add")
-	public String sendItem(@RequestParam(name = "Images") String[] image,
+	public String sendItem(@RequestParam(name = "Images") List<String> image,
 			@RequestParam(name = "textbookId") Integer textbookId,
 			@RequestParam(name = "itemStatus") Integer itemStatus) {
 		Item item = new Item(textbookId, itemStatus, account.getId());
@@ -213,6 +213,7 @@ public class ItemController {
 		
 		for (String imgPass : image) {
 			ItemImage itemImage = new ItemImage(item.getId(), imgPass);
+			System.out.print("aaaaa");
 			itemImageRepository.save(itemImage);
 		}
 		return "redirect:/home";
