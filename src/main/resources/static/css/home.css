@@ -1,14 +1,13 @@
 @charset "UTF-8";
 .row {
   display: flex;
-  background: #ccc;
   flex-wrap:wrap;/*回り込み有効化*/
+  text-align: center;
 }
 .col {
   width: calc(100% / 3);/*3等分*/
 }
 .num {
-  background: #fff;
   text-align: center;
   font-size: 1.5rem;
   margin:10px;

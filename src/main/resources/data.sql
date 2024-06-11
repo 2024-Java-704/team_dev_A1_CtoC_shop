@@ -36,11 +36,11 @@
  	-- item_images テーブルにデータを挿入するクエリ
  	INSERT INTO item_images (item_id, image_path)
  	VALUES
- 	(1, ''),
- 	(2, ''),
- 	(3, ''),
- 	(4, ''),
- 	(5, '');
+ 	(1, 'textbook1_kokugo.png'),
+ 	(2, 'textbook5_syakai.png'),
+ 	(3, 'textbook4_rika.png'),
+ 	(4, 'textbook3_sugakuu.png'),
+ 	(5, 'textbook6_eigo.png');
  	
  	-- reviews テーブルにデータを挿入するクエリ
  	INSERT INTO reviews (item_id, message)
