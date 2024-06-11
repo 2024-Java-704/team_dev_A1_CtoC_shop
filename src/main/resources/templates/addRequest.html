@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>新規募集</title>
-<link rel="stylesheet" type="text/css" href="/css/contactForm.css">
+<link rel="stylesheet" type="text/css" href="/css/addRequest.css">
 <!--画面ID:302 新規募集作成画面-->
 </head>
 <body>
 	<header th:replace="header"></header>
-	<h1>新規募集</h1>
+	<h1 class = "new">新規募集</h1>
 	
 	<form action = "/bbs/addRequest" method ="post">
-	<table border = "1">
+	<table>
 		<tr>
 			<th>商品状態</th>
 			<td>
@@ -36,6 +36,7 @@
 			</td>
 		</tr>
 	</table>
+	<br>
 	<button>投稿</button>
 	</form>
 <footer th:replace="footer"></footer>

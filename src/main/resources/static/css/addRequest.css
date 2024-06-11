@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+table{
+	margin-right:auto;
+	margin-left: auto;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+tr{
+	border: 1px solid black;
+}
+
+td{
+	border: 1px solid black;
+}
+
+button {
+	margin: 2px;
+	padding: 5px 20px;
+	border: none;
+	width: 150px;
+	cursor: pointer;
+	background-color: #C0C0C0;
+	display: block;
+	margin: 0 auto;
+}
+
+button:hover {
+	background-color: #999999;
+}
+
+/*新規募集*/
+.new{
+	text-align: center;
+}
