@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Claim;
 import com.example.demo.entity.Item;
+import com.example.demo.entity.Notice;
+import com.example.demo.entity.Request;
 import com.example.demo.entity.Textbook;
 import com.example.demo.entity.User;
 import com.example.demo.repository.ClaimRepository;
 import com.example.demo.repository.ItemImageRepository;
 import com.example.demo.repository.ItemRepository;
+import com.example.demo.repository.NoticeRepository;
+import com.example.demo.repository.RequestRepository;
 import com.example.demo.repository.TextbookRepository;
 import com.example.demo.repository.UserRepository;
 
@@ -38,6 +42,12 @@ public class AdminController {
 
 	@Autowired
 	ItemImageRepository itemImageRepository;
+
+	@Autowired
+	NoticeRepository noticeRepository;
+
+	@Autowired
+	RequestRepository requestRepository;
 
 	//管理者画面を表示
 	@GetMapping("/admin")
@@ -79,6 +89,21 @@ public class AdminController {
 		Item item = itemRepository.findOneById(id);
 		item.setDealStatus(status);
 		itemRepository.save(item);
+		if (status == 2) {
+			noticeRepository.save(new Notice(item.getSellerId(),
+					"「" + textbookRepository.findOneById(item.getTextbookId()).getTitle() + "」の出品申請が不許可になりました"));
+		}
+		if (status == 3) {
+			noticeRepository.save(new Notice(item.getSellerId(),
+					"「" + textbookRepository.findOneById(item.getTextbookId()).getTitle() + "」の出品申請が承認されました!"));
+			List<Request> requests = requestRepository.findAll();
+			for (Request request : requests) {
+				if (request.getTextbookId() == item.getTextbookId()
+						&& (request.getItemStatus() == 5 || request.getItemStatus() == item.getItemStatus()))
+					noticeRepository.save(new Notice(request.getUserId(),
+							"「" + textbookRepository.findOneById(item.getTextbookId()).getTitle() + "」が出品されました!"));
+			}
+		}
 
 		return "redirect:/admin/request";
 	}

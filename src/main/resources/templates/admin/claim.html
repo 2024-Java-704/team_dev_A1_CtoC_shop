@@ -7,6 +7,7 @@
 </head>
 
 <body>
+	<header th:replace="header"></header>
 	<h1>お問い合わせ確認</h1>
 	<table border="1">
 		<tr>
@@ -17,15 +18,14 @@
 			<th:block th:if="${claim.claimStatus == 1}">
 				<td th:text="${claim.id}" style="color: red;"></td>
 				<td th:text="${claim.message}" style="color: red;"></td>
-				<td th:text="${claim.claimStatus}"></td>
 			</th:block>
 			<th:block th:if="${claim.claimStatus == 2}">
 				<td th:text="${claim.id}"></td>
 				<td th:text="${claim.message}"></td>
-				<td th:text="${claim.claimStatus}"></td>
 			</th:block>
 		</tr>
 	</table>
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>
