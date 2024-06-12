@@ -9,6 +9,7 @@
 
 <body>
 	<header th:replace="header"></header>
+	<main>
 	<div id="contact">
 		<h1>お問い合わせフォーム</h1>
 		<p th:if="${errorList}">
@@ -20,6 +21,7 @@
 		</form>
 	</div>
 	<footer th:replace="footer"></footer>
+	</main>
 </body>
 
 </html>

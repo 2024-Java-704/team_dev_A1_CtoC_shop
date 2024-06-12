@@ -8,6 +8,7 @@
 
 <body>
 	<header th:replace="header"></header>
+	<main>
 	<form th:action="@{/textbook/{id}(id=${textbook.id})}" method="get">
 		<select name="sort">
 			<option value="1">新着順</option>
@@ -43,6 +44,7 @@
 		</th:block>
 	</div>
 	<footer th:replace="footer"></footer>
+	</main>
 	<script>
 	</script>
 </body>
