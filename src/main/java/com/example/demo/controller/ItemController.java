@@ -13,13 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Item;
 import com.example.demo.entity.ItemImage;
+import com.example.demo.entity.Notice;
 import com.example.demo.entity.Review;
 import com.example.demo.entity.Student;
 import com.example.demo.entity.Textbook;
@@ -239,29 +242,49 @@ public class ItemController {
 
 	@GetMapping("/deal/{id}")
 	public String deal(@PathVariable("id") Integer id,
+					   @ModelAttribute("msg") String errorMsg,
 			Model model) {
 		List<ItemImage> itemImage = new ArrayList<>();
 		Item item = itemRepository.findById(id).get();
-		User user = userRepository.findById(item.getSellerId()).get();
+		Textbook textbook = textbookRepository.findOneById(item.getTextbookId());
+		item.setTextprice(textbook.getPrice());
+		User userSeller = userRepository.findById(item.getSellerId()).get();
+		User userBuyer = userRepository.findById(item.getBuyerId()).get();
+		Student student =studentRepository.findOneByStudentNumber(userBuyer.getStudentNumber());
 		itemImage.addAll(itemImageRepository.findByItemId(id));
 		Integer accountId = account.getId();
-		Review review = new Review(id, null);
+		
+		if(errorMsg.length()>0) {
+			model.addAttribute("errorMsg", errorMsg);
+		}
+		
+		Review review = new Review(id,null);
 		reviewRepository.save(review);
 		model.addAttribute("item", item);
+		model.addAttribute("textbook",textbook);
 		model.addAttribute("accountId", accountId);
-		model.addAttribute("user", user);
-		model.addAttribute("itemImage", itemImage);
+		model.addAttribute("userSeller", userSeller);
+		model.addAttribute("student",student);
+		model.addAttribute("itemImages", itemImage);
 
 		return "deal";
 	}
 
 	@PostMapping("/review/{id}")
 	public String review(@PathVariable("id") Integer id,
-			@RequestParam(name = "message", defaultValue = "") String message) {
+						 @RequestParam(name = "message", defaultValue = "") String message,
+						 RedirectAttributes redirectAttributes ) {
+		if(message==null||message.length()<=0) {
+			redirectAttributes.addFlashAttribute("msg","レビューを入力してください");
+			return "redirect:/deal/{id}";
+		}
+		
 		Review review = new Review(id, message);
 		Item item = itemRepository.findById(id).get();
 		item.setDealStatus(5);
 		reviewRepository.save(review);
+		Notice notice = new Notice(item.getSellerId(),"出品した商品へのレビューが来ました！");
+		noticeRepository.save(notice);
 		return "redirect:/complete";
 	}
 

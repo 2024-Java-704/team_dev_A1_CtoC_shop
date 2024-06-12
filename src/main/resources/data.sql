@@ -21,12 +21,16 @@
  	-- items テーブルにデータを挿入するクエリ
  	INSERT INTO items (textbook_id, item_status, deal_status, seller_id, buyer_id)
  	VALUES
- 	(1, 1, 2, 1, 2),
- 	(4, 3, 4, 3, 4),
- 	(4, 3, 4, 4, 3),
- 	(5, 2, 3, 4, 5),
+ 	(1, 1, 2, 1, 0),
+ 	(4, 3, 4, 3, 0),
+ 	(4, 3, 5, 4, 2),
+ 	(5, 2, 3, 4, 0),
  	(2, 1, 5, 5, 1),
- 	(3, 4, 1, 2, 3);
+ 	(3, 4, 1, 2, 0),
+ 	(1, 2, 5, 3, 4),
+ 	(3, 1, 5, 1, 3),
+ 	(5, 4, 5, 2, 5),
+ 	(2, 3, 2, 5, 0);
  	
  	-- claims テーブルにデータを挿入するクエリ
  	INSERT INTO claims (message, claim_status)
@@ -41,9 +45,14 @@
  	(1, 'textbook1_kokugo.png'),
  	(2, 'textbook5_syakai.png'),
  	(3, 'textbook4_rika.png'),
+<<<<<<< HEAD
  	(4, 'textbook3_sugakuu.png'),
  	(5, 'textbook6_eigo.png'),
  	(6, 'textbook3_sugakuu.png');
+=======
+ 	(3, 'textbook3_sugakuu.png'),
+ 	(5, 'textbook6_eigo.png');
+>>>>>>> refs/remotes/origin/main
  	
  	-- reviews テーブルにデータを挿入するクエリ
  	INSERT INTO reviews (item_id, message)
