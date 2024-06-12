@@ -1,98 +1,102 @@
 <!DOCTYPE html>
-<html　xmlns:th="http://www.thymeleaf.org">
+<html　xmlns:th="http: //www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>取引画面</title>
+	<meta charset="UTF-8">
+	<title>取引画面</title>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
 	<link rel="stylesheet" type="text/css" href="/css/item.css">
 	<link rel="stylesheet" type="text/css" href="/css/contactForm.css">
 </head>
+
 <body>
 	<header th:replace="header"></header>
-	
+
 	<!--出品者用取引画面-->
 	<th:block th:if="${accountId == item.sellerId}">
 		<h1 style="text-align: center;">商品が購入されました</h1>
 		<h3 style="text-align: center;">料金が支払われたことを確認し、商品を発送してください</h3>
 		<p style="font-size: 24px; text-align: center;">購入された商品</p>
 		<!--商品画像表示-->
-	<ul class="slider">
-		<th:block th:each="itemImage:${itemImages}">
-			<li><img th:src="'/img/'+${itemImage.imagePath}"></li>
+		<ul class="slider">
+			<th:block th:each="itemImage:${itemImages}">
+				<li><img th:src="'/img/'+${itemImage.imagePath}"></li>
+			</th:block>
+		</ul>
+
+		<!--商品(教科書名表示)-->
+		<h3 th:text="${textbook.title}" style="text-align: center;"></h3>
+
+		<!--価格表示-->
+		<th:block th:if="${item.itemStatus == 1}">
+			<p id="" th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
+				style="text-align: center; font-size: 1.2em;"></p>
 		</th:block>
-	</ul>
 
-	<!--商品(教科書名表示)-->
-	<h3 th:text="${textbook.title}" style="text-align: center;"></h3>
+		<th:block th:if="${item.itemStatus == 2}">
+			<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
+				style="text-align: center; font-size: 1.2em;"></p>
+		</th:block>
 
-	<!--価格表示-->
-	<th:block th:if="${item.itemStatus == 1}">
-		<p id="" th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
-			style="text-align: center; font-size: 1.2em;"></p>
-	</th:block>
+		<th:block th:if="${item.itemStatus == 3}">
+			<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
+				style="text-align: center; font-size: 1.2em;"></p>
+		</th:block>
 
-	<th:block th:if="${item.itemStatus == 2}">
-		<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
-			style="text-align: center; font-size: 1.2em;"></p>
-	</th:block>
+		<th:block th:if="${item.itemStatus == 4}">
+			<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
+				style="text-align: center; font-size: 1.2em;"></p>
+		</th:block>
+		<br>
+		<!--商品状態表示-->
+		<th:block th:if="${item.itemStatus == 1}">
+			<p style="text-align: center; font-size: 1.2em;">商品状態: 新品</p>
+		</th:block>
 
-	<th:block th:if="${item.itemStatus == 3}">
-		<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
-			style="text-align: center; font-size: 1.2em;"></p>
-	</th:block>
+		<th:block th:if="${item.itemStatus == 2}">
+			<p style="text-align: center; font-size: 1.2em;">商品状態: 中古</p>
+		</th:block>
 
-	<th:block th:if="${item.itemStatus == 4}">
-		<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
-			style="text-align: center; font-size: 1.2em;"></p>
-	</th:block>
-	<br>
-	<!--商品状態表示-->
-	<th:block th:if="${item.itemStatus == 1}">
-		<p style="text-align: center; font-size: 1.2em;">商品状態: 新品</p>
-	</th:block>
+		<th:block th:if="${item.itemStatus == 3}">
+			<p style="text-align: center; font-size: 1.2em;">商品状態: 書き込みあり</p>
+		</th:block>
 
-	<th:block th:if="${item.itemStatus == 2}">
-		<p style="text-align: center; font-size: 1.2em;">商品状態: 中古</p>
-	</th:block>
-
-	<th:block th:if="${item.itemStatus == 3}">
-		<p style="text-align: center; font-size: 1.2em;">商品状態: 書き込みあり</p>
-	</th:block>
-
-	<th:block th:if="${item.itemStatus == 4}">
-		<p style="text-align: center; font-size: 1.2em;">商品状態: 破損あり</p>
-	</th:block>
-	<br>
+		<th:block th:if="${item.itemStatus == 4}">
+			<p style="text-align: center; font-size: 1.2em;">商品状態: 破損あり</p>
+		</th:block>
+		<br>
 		<p style="font-size: 24px; text-align: center;">購入者</p>
 		<p style="font-size: 24px; text-align: center;">[[${student.name}]]</p>
 		<p style="font-size: 24px; text-align: center;">学籍番号</p>
 		<p style="font-size: 24px; text-align: center;">[[${student.studentNumber}]]</p>
-		
-		
+
+
 	</th:block>
-	
+
 	<!--購入者用レビュー入力画面-->
 	<th:block th:if="${accountId == item.buyerId}">
 		<h1 style="text-align: center;">ご購入ありがとうございます</h1>
 		<h3 style="text-align: center;">支払いをして商品を受け取り、評価をしてください</h3>
 		<div id="contact">
-		<h5>レビュー</h5>
-		<th:block th:if="${errorMsg}">
-			<p style="text-align: center; color: red;">[[${errorMsg}]]</p>			
-		</th:block>
-		<form th:action="@{/review/{id}(id=${item.id})}" method="post">
-			<textarea name="message" cols="30" rows="4" id="textArea"></textarea> <br>
-			<button>送信</button>
-		</form>
-	</div>
-		
+			<h5>レビュー</h5>
+			<th:block th:if="${errorMsg}">
+				<p style="text-align: center; color: red;">[[${errorMsg}]]</p>
+			</th:block>
+			<form th:action="@{/review/{id}(id=${item.id})}" method="post">
+				<textarea name="message" cols="30" rows="4" id="textArea"></textarea> <br>
+				<button>送信</button>
+			</form>
+		</div>
+
 	</th:block>
-	
+
+
 	<footer th:replace="footer"></footer>
-	
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script src="/js/item.js"></script>
 </body>
+
 </html>

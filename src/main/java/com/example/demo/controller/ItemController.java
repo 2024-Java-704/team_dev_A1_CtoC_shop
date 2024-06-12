@@ -268,6 +268,7 @@ public class ItemController {
 			redirectAttributes.addFlashAttribute("msg","レビューを入力してください");
 			return "redirect:/deal/{id}";
 		}
+		
 		Review review = new Review(id, message);
 		Item item = itemRepository.findById(id).get();
 		item.setDealStatus(5);
