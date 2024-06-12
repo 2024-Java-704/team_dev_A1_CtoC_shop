@@ -333,4 +333,9 @@ public class ItemController {
 		}
 		return "redirect:/home";
 	}
+	
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+	}
 }
