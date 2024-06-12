@@ -29,7 +29,7 @@ tr.itemlist{
 
 main{
 	text-align: center;
-	min-height: 81.7vh;
+	min-height: 85vh;
 	position: relative;
 	padding-bottom: 80px;
 	box-sizing: border-box;
@@ -59,10 +59,12 @@ main{
   padding: 5px 30px;
   border-radius: 6px;
   transition: .3s;
+  cursor: pointer;
 }
 .btn:hover{
 	background-color: #003775;
 	color: white;
+	cursor: pointer;
 }
 .title{
 	margin-top: 5px;
@@ -77,9 +79,12 @@ textbox{
 	line-height: 20px;
 }
 input{
+	padding: 5px;
 	margin-top: 5px;
 	margin-bottom: 5px;	
 	width: 350px;
+	border: 1px solid rgb(0, 0, 0);/*線の太さ、色*/
+	border-radius: 4px;/*角の丸み*/
 }
 textarea{
 	width: 80%;

@@ -245,7 +245,7 @@ public class ItemController {
 
 	@GetMapping("/deal/{id}")
 	public String deal(@PathVariable("id") Integer id,
-					   @ModelAttribute("msg") String errorMsg,
+			@ModelAttribute("msg") String errorMsg,
 			Model model) {
 		List<ItemImage> itemImage = new ArrayList<>();
 		Item item = itemRepository.findById(id).get();
@@ -253,21 +253,21 @@ public class ItemController {
 		item.setTextprice(textbook.getPrice());
 		User userSeller = userRepository.findById(item.getSellerId()).get();
 		User userBuyer = userRepository.findById(item.getBuyerId()).get();
-		Student student =studentRepository.findOneByStudentNumber(userBuyer.getStudentNumber());
+		Student student = studentRepository.findOneByStudentNumber(userBuyer.getStudentNumber());
 		itemImage.addAll(itemImageRepository.findByItemId(id));
 		Integer accountId = account.getId();
-		
-		if(errorMsg.length()>0) {
+
+		if (errorMsg.length() > 0) {
 			model.addAttribute("errorMsg", errorMsg);
 		}
-		
-		Review review = new Review(id,null);
+
+		Review review = new Review(id, null);
 		reviewRepository.save(review);
 		model.addAttribute("item", item);
-		model.addAttribute("textbook",textbook);
+		model.addAttribute("textbook", textbook);
 		model.addAttribute("accountId", accountId);
 		model.addAttribute("userSeller", userSeller);
-		model.addAttribute("student",student);
+		model.addAttribute("student", student);
 		model.addAttribute("itemImages", itemImage);
 
 		return "deal";
@@ -275,18 +275,18 @@ public class ItemController {
 
 	@PostMapping("/review/{id}")
 	public String review(@PathVariable("id") Integer id,
-						 @RequestParam(name = "message", defaultValue = "") String message,
-						 RedirectAttributes redirectAttributes ) {
-		if(message==null||message.length()<=0) {
-			redirectAttributes.addFlashAttribute("msg","レビューを入力してください");
+			@RequestParam(name = "message", defaultValue = "") String message,
+			RedirectAttributes redirectAttributes) {
+		if (message == null || message.length() <= 0) {
+			redirectAttributes.addFlashAttribute("msg", "レビューを入力してください");
 			return "redirect:/deal/{id}";
 		}
-		
+
 		Review review = new Review(id, message);
 		Item item = itemRepository.findById(id).get();
 		item.setDealStatus(5);
 		reviewRepository.save(review);
-		Notice notice = new Notice(item.getSellerId(),"出品した商品へのレビューが来ました！");
+		Notice notice = new Notice(item.getSellerId(), "出品した商品へのレビューが来ました！");
 		noticeRepository.save(notice);
 		return "redirect:/complete";
 	}
@@ -324,10 +324,10 @@ public class ItemController {
 			@RequestParam(name = "itemStatus") Integer itemStatus) throws IOException {
 		Item item = new Item(textbookId, itemStatus, account.getId());
 		itemRepository.save(item);
+
 		for (MultipartFile image : images) {
 			ItemImage itemImage = new ItemImage(item.getId(), image.getOriginalFilename());
 			itemImageRepository.save(itemImage);
-			
 			Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
 			Files.copy(image.getInputStream(), dst);
 		}

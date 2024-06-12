@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+body{
+	text-align: center;
+}
+
+main{
+	min-height: 85vh;
+	position: relative;
+	padding-bottom: 80px;
+	box-sizing: border-box;
+}
+
+button[type="submit"]{
+	width: 100px;
+	height: 40px;
+	background-color:  #6699FF;
+	color: black;
+	border-radius: 10px;
+	margin: auto;
+	border: none;
+	cursor: pointer;
+}
+
+button[type="submit"]:hover{
+	background-color: lightskyblue;
+	color: black;
+}
+
+.dealcomplete{
+	padding-top: 100px;
+	padding-bottom: 30px;
+}

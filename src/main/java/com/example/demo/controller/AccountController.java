@@ -100,19 +100,31 @@ public class AccountController {
 		List<Item> buyList = itemRepository.findByBuyerIdOrderByIdDesc(account.getId());
 		//imgpathを格納するStringの箱を作る
 		List<Textbook> textbookList = new ArrayList<>();
-		List<ItemImage> imgList = new ArrayList<>();
+		List<ItemImage> imgList= new ArrayList<>();
 		List<ItemImage> imgList2 = new ArrayList<>();
+		List<ItemImage>getimg1;
+		List<ItemImage>getimg2;
 
 		//上記二つに全部の要素をぶち込む
 		textbookList = textbookRepository.findAll();
 		for (Item buyItem : buyList) {
-			imgList.add(itemImageRepository.findOneByItemId(buyItem.getId()));
+			//その中から一つの情報を得るための箱を作る
+			ItemImage img1=new ItemImage();
+			//アイテムイメージをアイテムIDで検索をかけて入れる
+			getimg1 = itemImageRepository.findByItemId(buyItem.getId());
+			//その中から一つだけを取り出す
+			img1=getimg1.get(0);
+			//一つの結果をリストに入れていく
+			imgList.add(img1);
 		}
 		for (Item sellItem : sellList) {
-			imgList2.add(itemImageRepository.findOneByItemId(sellItem.getId()));
+			ItemImage img2 = new ItemImage();
+			getimg2 = itemImageRepository.findByItemId(sellItem.getId());
+			img2=getimg2.get(0);
+			imgList2.add(img2);
 		}
-		System.out.println();
-		System.out.println(buyList.size());
+		
+		
 		Integer countbuyList=buyList.size();
 		Integer countsellList=sellList.size();
 
