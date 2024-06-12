@@ -235,6 +235,8 @@ public class ItemController {
 		User user = userRepository.findById(item.getSellerId()).get();
 		itemImage.addAll(itemImageRepository.findByItemId(id));
 		Integer accountId = account.getId();
+		Review review = new Review(id,null);
+		reviewRepository.save(review);
 		model.addAttribute("item", item);
 		model.addAttribute("accountId", accountId);
 		model.addAttribute("user", user);
