@@ -9,6 +9,7 @@
 
 <body>
 	<header th:replace="header"></header>
+	<main>
 	<form action="/home" method="get">
 		<input type="text" name="keyword" th:value="${keyword}" placeholder="キーワード検索">
 		<button>検索</button>
@@ -29,6 +30,7 @@
 		</th:block>
 	</div>
 	<footer th:replace="footer"></footer>
+	</main>
 </body>
 
 </html>

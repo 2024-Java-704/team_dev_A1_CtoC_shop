@@ -23,3 +23,10 @@ th {
 	height: 50px;
 	font-size: 25px;
 }
+
+main{
+	min-height: 85vh;
+	position: relative;
+	padding-bottom: 80px;
+	box-sizing: border-box;
+}

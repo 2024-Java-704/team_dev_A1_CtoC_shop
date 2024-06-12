@@ -11,6 +11,8 @@
 
 <body>
 	<header th:replace="header"></header>
+	
+	<main>
 
 	<!--出品者用取引画面-->
 	<th:block th:if="${accountId == item.sellerId}">
@@ -92,6 +94,8 @@
 
 
 	<footer th:replace="footer"></footer>
+	
+	</main>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

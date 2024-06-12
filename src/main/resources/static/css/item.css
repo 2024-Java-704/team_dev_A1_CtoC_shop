@@ -71,3 +71,10 @@
 .slick-dots .slick-active button{
     background:#333;/*ドットボタンの現在地表示の色*/
 }
+
+main{
+	min-height: 85vh;
+	position: relative;
+	padding-bottom: 80px;
+	box-sizing: border-box;
+}

@@ -8,7 +8,17 @@ tablemarge{
 	margin-left: auto;
 	width: fit-content;
 }
+#table3{
+	margin-right: 0%;
+	margin-left: auto;
+	width: fit-content;
+}
 #table2{
+	margin-right: auto;
+	margin-left: 0%;
+	width: fit-content;
+}
+#table4{
 	margin-right: auto;
 	margin-left: 0%;
 	width: fit-content;

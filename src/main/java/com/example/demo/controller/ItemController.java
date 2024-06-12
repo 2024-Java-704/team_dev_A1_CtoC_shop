@@ -197,10 +197,13 @@ public class ItemController {
 		List<Item> itemList = itemRepository.findBySellerIdOrderByIdDesc(id);
 		List<Item> sellItemList = new ArrayList<>();
 
+		System.out.println();
+		System.out.println(itemList.size());
 		for (Item item : itemList) {
-			if (item.getItemStatus() > 2)
+			if (item.getDealStatus() > 2)
 				sellItemList.add(item);
 		}
+		System.out.println(sellItemList.size());
 
 		List<ItemImage> imageList = new ArrayList<>();
 		List<Review> reviewList = new ArrayList<>();
