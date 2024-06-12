@@ -4,7 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>出品申請詳細画面</title>
-	<link rel="stylesheet" type="text/css" href="/css/admin.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="/css/adminItem.css">
+	<!--<link rel="stylesheet" type="text/css" href="/css/admin.css" />-->
 </head>
 
 <body>
@@ -12,10 +14,13 @@
 	<main class="deteil">
 		<div class="container">
 			<div class="boxImage">
-				<block th:each="image:${images}">
-				<img th:src="'/img/'+${image.imagePath}" th:alt="'/img/'+${image.imagePath}" /><br>
-				</block>
+				<ul class="slider">
+					<th:block th:each="image:${images}">
+						<li><img th:src="'/img/'+${image.imagePath}" th:alt="'/img/'+${image.imagePath}" /></li>
+					</th:block>
+				</ul>
 			</div>
+			
 			<div class="boxText">
 				<h1>出品申請詳細画面</h1>
 				<span class="title" th:text="${textbook.title}"></span>
@@ -45,6 +50,10 @@
 		</div>
 	<footer th:replace="footer"></footer>
 	</main>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<script src="/js/item.js"></script>
 </body>
 
 </html>

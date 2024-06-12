@@ -53,7 +53,7 @@
  	(9, 'textbook3_sugakuu.png'),
  	(10, 'textbook6_eigo.png'),
  	(6, 'textbook3_sugakuu.png'),
- 	(7, 'textbook3_sugakuu.png'),
+ 	(4, 'textbook3_sugakuu.png'),
  	(8, 'textbook6_eigo.png');
 
  	
