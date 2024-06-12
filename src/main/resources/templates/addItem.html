@@ -32,6 +32,7 @@
 	
 	<label class="selectbox-2">
 	<select name="textbookId">
+		<option value="" disabled selected>タイトル名</option>
 		<option th:each="textbook:${TextbookMap}"th:value="${textbook.value}" th:text="${textbook.key}"></option>
 		</select>
 	</label>	
@@ -40,6 +41,7 @@
 	
 	<label class="selectbox-2">
 	<select name="itemStatus">
+		<option value="" disabled selected>教科書の状態</option>
 		<option th:each="item:${ItemStatusMap}"th:value="${item.value}" th:text="${item.key}"></option>
 		</select>
 	</label>	
