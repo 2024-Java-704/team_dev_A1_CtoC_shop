@@ -113,6 +113,8 @@ public class AccountController {
 		}
 		System.out.println();
 		System.out.println(buyList.size());
+		Integer countbuyList=buyList.size();
+		Integer countsellList=sellList.size();
 
 		//		//要素を引っ張り出してリスト化するだけですむようにします
 		//		List<String>textname=new ArrayList<>();
@@ -140,6 +142,8 @@ public class AccountController {
 		model.addAttribute("imgList2", imgList2);
 		model.addAttribute("buyList", buyList);
 		model.addAttribute("sellList", sellList);
+		model.addAttribute("countsellList",countsellList);
+		model.addAttribute("countbuyList",countbuyList);
 		//mypage表示
 		return "mypage";
 	}

@@ -46,7 +46,12 @@
  	(2, 'textbook5_syakai.png'),
  	(3, 'textbook4_rika.png'),
  	(4, 'textbook3_sugakuu.png'),
- 	(5, 'textbook6_eigo.png');
+ 	(5, 'textbook6_eigo.png'),
+ 	(6, 'textbook1_kokugo.png'),
+ 	(7, 'textbook5_syakai.png'),
+ 	(8, 'textbook4_rika.png'),
+ 	(9, 'textbook3_sugakuu.png'),
+ 	(10, 'textbook6_eigo.png');
  	
  	-- reviews テーブルにデータを挿入するクエリ
  	INSERT INTO reviews (item_id, message)
