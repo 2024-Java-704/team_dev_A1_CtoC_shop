@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>ユーザー詳細</title>
-	<link rel="stylesheet" type="text/css" href="/css/home.css" />
-	<link rel="stylesheet" type="text/css" href="/css/mypage.css">
+	<meta charset="UTF-8">
+	<title>ユーザー詳細</title>
+	<link rel="stylesheet" type="text/css" href="/css/user.css" />
 </head>
+
 <body>
 	<header th:replace="header"></header>
 	<main>
@@ -16,37 +17,27 @@
 			</tr>
 		</table>
 		<br>
-		
-		<div>
-			<div th:each="sellItem${sellItemList}">
-				<img th:each="image:${imageList}" th:src="'/img/' + ${image.imagePath}" th:alt="'/img/'+${image.imagePath}" /><p></p>
+		<p>出品履歴</p>
+		<div class="container">
+			<div th:each="sellItem:${sellItemList}" class="box">
+					<p th:if="${sellItem.itemStatus == 3}">出品中</p>
+					<p th:if="!${sellItem.itemStatus == 3}">SOLD OUT</p>
+				<img th:each="image:${imageList}" th:if="${image.itemId == sellItem.id}"
+					th:src="'/img/' + ${image.imagePath}" th:alt="'/img/'+${image.imagePath}" />
+				<p th:each="textbook:${textbooks}" th:if="${textbook.id == sellItem.textbookId}"
+					th:text="${textbook.title}"></p>
 			</div>
-		
-		<table class="table" border="1">
-			<tr>
-				<th colspan="2" class="tabletitle">注文履歴</th>
+		</div>
+		<p>レビュー一覧</p>
+		<table border="1" style="width: 60%;">
+			<tr th:each="review:${reviewList}">
+				<td th:text="${review.message}"></td>
 			</tr>
-			<!--		buyListで繰り返し-->
-			<buylistloop th:each="buyItem:${buyList}">
-				<tr>
-					<textloop th:each="text:${textbookList}">
-						<td th:if="${buyItem.textbookId} eq ${text.id}">
-							<div th:text="${text.title}"></div>
-						</td>
-					</textloop>
-					<imageloop th:each="img:${imgList}">
-						<td th:if="${img.itemId == buyItem.id}">
-							<img th:src="'/img/' + ${img.imagePath}" th:alt="'/img/'+${img.imagePath}" />
-						</td>
-					</imageloop>
-				</tr>
-			</buylistloop>
 		</table>
-		<br>
-		<br>
-		<br>
+		
+		<footer th:replace="footer"></footer>
 	</main>
-	<footer th:replace="footer"></footer>
 </body>
 </body>
+
 </html>
