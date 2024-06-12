@@ -158,12 +158,19 @@ public class ItemController {
 	public String viewItem(
 			@PathVariable("id") Integer id,
 			Model model) {
-		Item item = null;
-		List<ItemImage> itemImage = new ArrayList<>();
-		item = itemRepository.findById(id).get();
-		itemImage.addAll(itemImageRepository.findByItemId(item.getId()));
+		List<ItemImage> itemImages = new ArrayList<>();
+		Item item = itemRepository.findById(id).get();
+		
+		Textbook textbook = textbookRepository.findOneById(item.getTextbookId());
+		item.setTextprice(textbook.getPrice());
+		
+		User user = userRepository.findById(item.getSellerId()).get(); 
+		
+		itemImages = itemImageRepository.findByItemId(id);
+		model.addAttribute("textbook",textbook);
+		model.addAttribute("user", user);
 		model.addAttribute("item", item);
-		model.addAttribute("itemImage", itemImage);
+		model.addAttribute("itemImages", itemImages);
 		return "item";
 	}
 
@@ -174,6 +181,7 @@ public class ItemController {
 		User user = null;
 		Item item = itemRepository.findById(id).get();
 		user = userRepository.findById(item.getSellerId()).get();
+		
 		model.addAttribute("item", item);
 		model.addAttribute("user", user);
 		return "user";
