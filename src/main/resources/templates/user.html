@@ -18,23 +18,27 @@
 		</table>
 		<br>
 		<p>出品履歴</p>
-		<div class="container">
+		<div class="container" th:if="${sellItemCount > 0}">
 			<div th:each="sellItem:${sellItemList}" class="box">
-					<p th:if="${sellItem.itemStatus == 3}">出品中</p>
-					<p th:if="!${sellItem.itemStatus == 3}">SOLD OUT</p>
+				<p th:if="${sellItem.dealStatus == 3}">出品中</p>
+				<p th:if="!${sellItem.dealStatus == 3}">SOLD OUT</p>
 				<img th:each="image:${imageList}" th:if="${image.itemId == sellItem.id}"
 					th:src="'/img/' + ${image.imagePath}" th:alt="'/img/'+${image.imagePath}" />
-				<p th:each="textbook:${textbooks}" th:if="${textbook.id == sellItem.textbookId}"
+				<p th:each="textbook:${textbooks}"
+					th:if="${textbook.id == sellItem.textbookId && sellItem.dealStatus == 3}"><a
+						href="'/item/' + ${sellItem.id}" th:text="${textbook.title}"></a></p>
+				<p th:each="textbook:${textbooks}"
+					th:if="${textbook.id == sellItem.textbookId && sellItem.dealStatus != 3}"
 					th:text="${textbook.title}"></p>
 			</div>
 		</div>
 		<p>レビュー一覧</p>
-		<table border="1" style="width: 60%;">
+		<table border="1" style="width: 60%;" th:if="${reviewCount > 0}">
 			<tr th:each="review:${reviewList}">
 				<td th:text="${review.message}"></td>
 			</tr>
 		</table>
-		
+
 		<footer th:replace="footer"></footer>
 	</main>
 </body>
