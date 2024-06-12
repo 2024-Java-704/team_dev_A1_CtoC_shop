@@ -17,7 +17,7 @@
 		<tr>
 			<th>商品状態</th>
 			<th>タイトル</th>
-			<th>完了</th>
+			<th class = "complete">完了</th>
 		</tr>
 		<tr th:each = "request:${requests}">
 			<td th:if = "${request.itemStatus}==1">新品</td>
