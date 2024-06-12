@@ -1,6 +1,10 @@
 @charset "UTF-8";
 main{
 	text-align: center;
+	min-height: 81.7vh;
+	position: relative;
+	padding-bottom: 80px;
+	box-sizing: border-box;
 }
 #table{
 	margin-right:auto;

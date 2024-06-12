@@ -139,6 +139,7 @@ public class AccountController {
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("imgList2", imgList2);
 		model.addAttribute("buyList", buyList);
+		model.addAttribute("sellList", sellList);
 		//mypage表示
 		return "mypage";
 	}
