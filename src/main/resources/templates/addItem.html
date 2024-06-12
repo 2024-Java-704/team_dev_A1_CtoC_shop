@@ -30,16 +30,19 @@
 	
 	<br>
 	
+	<label class="selectbox-2">
 	<select name="textbookId">
 		<option th:each="textbook:${TextbookMap}"th:value="${textbook.value}" th:text="${textbook.key}"></option>
 		</select>
+	</label>	
 	
 	<br>
 	
+	<label class="selectbox-2">
 	<select name="itemStatus">
 		<option th:each="item:${ItemStatusMap}"th:value="${item.value}" th:text="${item.key}"></option>
 		</select>
-		
+	</label>	
     <!-- 選択した画像のプレビューを表示するためのdiv要素を設定します。 -->
 	<br>
 	
