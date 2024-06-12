@@ -53,7 +53,7 @@ public class ItemController {
 
 	@Autowired
 	NoticeRepository noticeRepository;
-	
+
 	@Autowired
 	StudentRepository studentRepository;
 
@@ -175,7 +175,7 @@ public class ItemController {
 		item.setTextprice(textbook.getPrice());
 
 		User user = userRepository.findById(item.getSellerId()).get();
-		Student student=studentRepository.findOneByStudentNumber(user.getStudentNumber());
+		Student student = studentRepository.findOneByStudentNumber(user.getStudentNumber());
 
 		itemImages = itemImageRepository.findByItemId(id);
 		model.addAttribute("textbook", textbook);
@@ -193,27 +193,37 @@ public class ItemController {
 		List<Textbook> textbooks = textbookRepository.findAll();
 		List<Item> itemList = itemRepository.findBySellerIdOrderByIdDesc(id);
 		List<Item> sellItemList = new ArrayList<>();
-		
-		for(Item item : itemList) {
-			if(item.getItemStatus() > 2)
+
+		for (Item item : itemList) {
+			if (item.getItemStatus() > 2)
 				sellItemList.add(item);
 		}
-		
+
 		List<ItemImage> imageList = new ArrayList<>();
 		List<Review> reviewList = new ArrayList<>();
 
-		for (Item item : sellItemList) {
-			List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
-			ItemImage image = itemImageList.get(0);
-			imageList.add(image);
-			reviewList.add(reviewRepository.findOneByItemId(item.getId()));
-		}
+		if (sellItemList.size() > 0)
+			for (Item item : sellItemList) {
+				List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
+				ItemImage image = itemImageList.get(0);
+				imageList.add(image);
+				Review review = reviewRepository.findOneByItemId(item.getId());
+				if (review != null) {
+					reviewList.add(reviewRepository.findOneByItemId(item.getId()));
+				}
+			}
 
 		model.addAttribute("user", user);
 		model.addAttribute("textbooks", textbooks);
-		model.addAttribute("sellItemList", sellItemList);
-		model.addAttribute("imageList", imageList);
-		model.addAttribute("reviewList", reviewList);
+		if (sellItemList.size() > 0)
+			model.addAttribute("sellItemList", sellItemList);
+		model.addAttribute("sellItemCount", sellItemList.size());
+		if (imageList.size() > 0)
+			model.addAttribute("imageList", imageList);
+		model.addAttribute("imageCount", imageList.size());
+		if (reviewList.size() > 0)
+			model.addAttribute("reviewList", reviewList);
+		model.addAttribute("reviewCount", reviewList.size());
 		return "user";
 	}
 
@@ -235,7 +245,7 @@ public class ItemController {
 		User user = userRepository.findById(item.getSellerId()).get();
 		itemImage.addAll(itemImageRepository.findByItemId(id));
 		Integer accountId = account.getId();
-		Review review = new Review(id,null);
+		Review review = new Review(id, null);
 		reviewRepository.save(review);
 		model.addAttribute("item", item);
 		model.addAttribute("accountId", accountId);
