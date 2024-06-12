@@ -13,13 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Item;
 import com.example.demo.entity.ItemImage;
+import com.example.demo.entity.Notice;
 import com.example.demo.entity.Review;
 import com.example.demo.entity.Student;
 import com.example.demo.entity.Textbook;
@@ -53,7 +56,7 @@ public class ItemController {
 
 	@Autowired
 	NoticeRepository noticeRepository;
-	
+
 	@Autowired
 	StudentRepository studentRepository;
 
@@ -175,7 +178,7 @@ public class ItemController {
 		item.setTextprice(textbook.getPrice());
 
 		User user = userRepository.findById(item.getSellerId()).get();
-		Student student=studentRepository.findOneByStudentNumber(user.getStudentNumber());
+		Student student = studentRepository.findOneByStudentNumber(user.getStudentNumber());
 
 		itemImages = itemImageRepository.findByItemId(id);
 		model.addAttribute("textbook", textbook);
@@ -193,27 +196,40 @@ public class ItemController {
 		List<Textbook> textbooks = textbookRepository.findAll();
 		List<Item> itemList = itemRepository.findBySellerIdOrderByIdDesc(id);
 		List<Item> sellItemList = new ArrayList<>();
-		
-		for(Item item : itemList) {
-			if(item.getItemStatus() > 2)
+
+		System.out.println();
+		System.out.println(itemList.size());
+		for (Item item : itemList) {
+			if (item.getDealStatus() > 2)
 				sellItemList.add(item);
 		}
-		
+		System.out.println(sellItemList.size());
+
 		List<ItemImage> imageList = new ArrayList<>();
 		List<Review> reviewList = new ArrayList<>();
 
-		for (Item item : sellItemList) {
-			List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
-			ItemImage image = itemImageList.get(0);
-			imageList.add(image);
-			reviewList.add(reviewRepository.findOneByItemId(item.getId()));
-		}
+		if (sellItemList.size() > 0)
+			for (Item item : sellItemList) {
+				List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
+				ItemImage image = itemImageList.get(0);
+				imageList.add(image);
+				Review review = reviewRepository.findOneByItemId(item.getId());
+				if (review != null) {
+					reviewList.add(reviewRepository.findOneByItemId(item.getId()));
+				}
+			}
 
 		model.addAttribute("user", user);
 		model.addAttribute("textbooks", textbooks);
-		model.addAttribute("sellItemList", sellItemList);
-		model.addAttribute("imageList", imageList);
-		model.addAttribute("reviewList", reviewList);
+		if (sellItemList.size() > 0)
+			model.addAttribute("sellItemList", sellItemList);
+		model.addAttribute("sellItemCount", sellItemList.size());
+		if (imageList.size() > 0)
+			model.addAttribute("imageList", imageList);
+		model.addAttribute("imageCount", imageList.size());
+		if (reviewList.size() > 0)
+			model.addAttribute("reviewList", reviewList);
+		model.addAttribute("reviewCount", reviewList.size());
 		return "user";
 	}
 
@@ -229,29 +245,49 @@ public class ItemController {
 
 	@GetMapping("/deal/{id}")
 	public String deal(@PathVariable("id") Integer id,
+					   @ModelAttribute("msg") String errorMsg,
 			Model model) {
 		List<ItemImage> itemImage = new ArrayList<>();
 		Item item = itemRepository.findById(id).get();
-		User user = userRepository.findById(item.getSellerId()).get();
+		Textbook textbook = textbookRepository.findOneById(item.getTextbookId());
+		item.setTextprice(textbook.getPrice());
+		User userSeller = userRepository.findById(item.getSellerId()).get();
+		User userBuyer = userRepository.findById(item.getBuyerId()).get();
+		Student student =studentRepository.findOneByStudentNumber(userBuyer.getStudentNumber());
 		itemImage.addAll(itemImageRepository.findByItemId(id));
 		Integer accountId = account.getId();
+		
+		if(errorMsg.length()>0) {
+			model.addAttribute("errorMsg", errorMsg);
+		}
+		
 		Review review = new Review(id,null);
 		reviewRepository.save(review);
 		model.addAttribute("item", item);
+		model.addAttribute("textbook",textbook);
 		model.addAttribute("accountId", accountId);
-		model.addAttribute("user", user);
-		model.addAttribute("itemImage", itemImage);
+		model.addAttribute("userSeller", userSeller);
+		model.addAttribute("student",student);
+		model.addAttribute("itemImages", itemImage);
 
 		return "deal";
 	}
 
 	@PostMapping("/review/{id}")
 	public String review(@PathVariable("id") Integer id,
-			@RequestParam(name = "message", defaultValue = "") String message) {
+						 @RequestParam(name = "message", defaultValue = "") String message,
+						 RedirectAttributes redirectAttributes ) {
+		if(message==null||message.length()<=0) {
+			redirectAttributes.addFlashAttribute("msg","レビューを入力してください");
+			return "redirect:/deal/{id}";
+		}
+		
 		Review review = new Review(id, message);
 		Item item = itemRepository.findById(id).get();
 		item.setDealStatus(5);
 		reviewRepository.save(review);
+		Notice notice = new Notice(item.getSellerId(),"出品した商品へのレビューが来ました！");
+		noticeRepository.save(notice);
 		return "redirect:/complete";
 	}
 
