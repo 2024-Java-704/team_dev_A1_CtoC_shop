@@ -5,5 +5,18 @@
 <title>取引画面</title>
 </head>
 <body>
+	<header th:replace="header"></header>
+	
+	<!--出品者用取引画面-->
+	<!--<th:block th:if="${accountId == item.sellerId}">-->
+		<h1 style="text-align: center;">商品が購入されました</h1>
+		<h3 style="text-align: center;">料金が支払われたことを確認し、商品を発送してください</h3>
+		<br>
+		<a style="font-size: 24px;">購入された商品</a>
+		<a style="font-size: 24px;">購入者</a>
+		
+	</th:block>
+	
+	<footer th:replace="footer"></footer>
 </body>
 </html>
