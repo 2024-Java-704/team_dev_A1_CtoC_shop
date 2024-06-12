@@ -36,58 +36,82 @@
 		<br>
 		<br>
 		<tablemarge>
-		<!--	注文履歴を書くテーブル-->
-		<table class="table" border="1" id="table1">
-			<tr>
-				<th colspan="3" class="tabletitle" id="tabletitle1">注文履歴</th>
-			</tr>
-			<!--		buyListで繰り返し-->
-			<buylistloop th:each="buyItem:${buyList}">
-				<tr class="itemlist">
-					<textloop th:each="text:${textbookList}">
-						<td th:if="${buyItem.textbookId} eq ${text.id}">
-							<div th:text="${text.title}"></div>
-						</td>
-					</textloop>
-					<imageloop th:each="img:${imgList}">
-						<td th:if="${img.itemId == buyItem.id}">
-							<img th:src="'/img/' + ${img.imagePath}" th:alt="'/img/'+${img.imagePath}" />
-						</td>
-					</imageloop>
-					<td th:if="${buyItem.buyerId == @account.id && buyItem.dealStatus == 4}">
-						<form th:action="@{/deal/{id}(id=${buyItem.id})}" method="get">
-							<button class="btn">レビュー画面へ</button>
-						</form>
-					</td>
-				</tr>
-			</buylistloop>
-			
-		</table>
-		<table class="table" border="1" id="table2">
-			<tr>
-				<th colspan="3" class="tabletitle" id="tabletitle2">販売履歴</th>
-			</tr>
-<!--					buyListで繰り返し-->
-			<buylistloop th:each="sellItem:${sellList}">
-				<tr class="itemlist">
-					<textloop th:each="text:${textbookList}">
-						<td th:if="${sellItem.textbookId} eq ${text.id}">
-							<div th:text="${text.title}"></div>
-						</td>
-					</textloop>
-					<imageloop th:each="img2:${imgList2}">
-						<td th:if="${img2.itemId == sellItem.id}">
-							<img th:src="'/img/' + ${img2.imagePath}" th:alt="'/img/'+${img2.imagePath}" />
-						</td>
-					</imageloop>
-					<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 4}">
-						<form th:action="@{/deal/{id}(id=${sellItem.id})}" method="get">
-							<button class="btn">取引画面へ</button>
-						</form>
-					</td>
-				</tr>
-			</buylistloop>
-		</table>
+			<!--	注文履歴を書くテーブル-->
+			<th:block th:if="${countbuyList > 0}">
+				<table class="table" border="1" id="table1">
+					<tr>
+						<th colspan="3" class="tabletitle" id="tabletitle1">注文履歴</th>
+					</tr>
+
+					<!--		buyListで繰り返し-->
+					<buylistloop th:each="buyItem:${buyList}">
+						<tr class="itemlist">
+							<textloop th:each="text:${textbookList}">
+								<td th:if="${buyItem.textbookId} eq ${text.id}">
+									<div th:text="${text.title}"></div>
+								</td>
+							</textloop>
+							<imageloop th:each="img:${imgList}">
+								<td th:if="${img.itemId == buyItem.id}">
+									<img th:src="'/img/' + ${img.imagePath}" th:alt="'/img/'+${img.imagePath}" />
+								</td>
+							</imageloop>
+							<td th:if="${buyItem.buyerId == @account.id && buyItem.dealStatus == 4}">
+								<form th:action="@{/deal/{id}(id=${buyItem.id})}" method="get">
+									<button class="btn">レビュー画面へ</button>
+								</form>
+							</td>
+						</tr>
+					</buylistloop>
+				</table>
+			</th:block>
+
+			<th:block th:if="${countbuyList==0}">
+				<table class="table" border="1" id="table3">
+					<tr>
+						<th class="tabletitle" id="tabletitle3">注文履歴</th>
+					</tr>
+					<td>注文履歴はありません</td>
+				</table>
+			</th:block>
+
+			<th:block th:if="${countsellList>0}">
+				<table class="table" border="1" id="table2">
+					<tr>
+						<th colspan="3" class="tabletitle" id="tabletitle2">販売履歴</th>
+					</tr>
+
+					<!--					buyListで繰り返し-->
+					<buylistloop th:each="sellItem:${sellList}">
+						<tr class="itemlist">
+							<textloop th:each="text:${textbookList}">
+								<td th:if="${sellItem.textbookId} eq ${text.id}">
+									<div th:text="${text.title}"></div>
+								</td>
+							</textloop>
+							<imageloop th:each="img2:${imgList2}">
+								<td th:if="${img2.itemId == sellItem.id}">
+									<img th:src="'/img/' + ${img2.imagePath}" th:alt="'/img/'+${img2.imagePath}" />
+								</td>
+							</imageloop>
+							<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 4}">
+								<form th:action="@{/deal/{id}(id=${sellItem.id})}" method="get">
+									<button class="btn">取引画面へ</button>
+								</form>
+							</td>
+						</tr>
+					</buylistloop>
+
+				</table>
+			</th:block>
+			<th:block th:if="${countsellList==0}">
+				<table class="table" border="1" id="table4">
+					<tr>
+						<th class="tabletitle" id="tabletitle4">購入履歴</th>
+					</tr>
+					<td>購入履歴はありません</td>
+				</table>
+			</th:block>
 		</tablemarge>
 		<br>
 		<br>
