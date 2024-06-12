@@ -45,14 +45,11 @@
  	(1, 'textbook1_kokugo.png'),
  	(2, 'textbook5_syakai.png'),
  	(3, 'textbook4_rika.png'),
-<<<<<<< HEAD
  	(4, 'textbook3_sugakuu.png'),
  	(5, 'textbook6_eigo.png'),
  	(6, 'textbook3_sugakuu.png');
-=======
  	(3, 'textbook3_sugakuu.png'),
  	(5, 'textbook6_eigo.png');
->>>>>>> refs/remotes/origin/main
  	
  	-- reviews テーブルにデータを挿入するクエリ
  	INSERT INTO reviews (item_id, message)
