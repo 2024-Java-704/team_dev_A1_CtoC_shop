@@ -11,51 +11,54 @@
 <body>
 	<header th:replace="header"></header>
 	<main>
-	<h2>マイページ</h2>
-	<table id="table" border="1">
-		<!--		ユーザーの情報を書くテーブル-->
-		<tr>
-			<th class="tabletitle">学籍番号</th>
-			<td th:text="${user.studentNumber}" colspan="2"></td>
-		</tr>
-		<tr>
-			<th class="tabletitle">パスワード</th>
-			<td>●●●●●●●●</td>
-			<td><form action="/account/setPassword" method="get"><button class="btn">変更</button></form></td>
-		</tr>
-		<tr>
-			<th class="tabletitle">自己紹介<br>メッセージ</th>
-			<td th:text="${user.introduce}"></td>
-			<td><form action="/account/setIntroduce" method="get"><button class="btn">更新</button></form></td>
-		</tr>
-	</table>
-	<br>
-	<br>
-	<!--	注文履歴を書くテーブル-->
-	<table class="table" border="1">
-		<tr>
-			<th colspan="2" class="tabletitle">注文履歴</th>
-		</tr>
-		<!--		buyListで繰り返し-->
-		<buylistloop th:each="buyItem:${buyList}">
-			<textloop th:each="text:${textbookList}">
+		<h2>マイページ</h2>
+		<table id="table" border="1">
+			<!--		ユーザーの情報を書くテーブル-->
+			<tr>
+				<th class="tabletitle">学籍番号</th>
+				<td th:text="${user.studentNumber}" colspan="2"></td>
+			</tr>
+			<tr>
+				<th class="tabletitle">パスワード</th>
+				<td>●●●●●●●●</td>
+				<td>
+					<form action="/account/setPassword" method="get"><button class="btn">変更</button></form>
+				</td>
+			</tr>
+			<tr>
+				<th class="tabletitle">自己紹介<br>メッセージ</th>
+				<td th:text="${user.introduce}"></td>
+				<td>
+					<form action="/account/setIntroduce" method="get"><button class="btn">更新</button></form>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<!--	注文履歴を書くテーブル-->
+		<table class="table" border="1">
+			<tr>
+				<th colspan="2" class="tabletitle">注文履歴</th>
+			</tr>
+			<!--		buyListで繰り返し-->
+			<buylistloop th:each="buyItem:${buyList}">
 				<tr>
-				<td th:if"${buyItem.textbookId} eq ${text.id}">
-					<div th:text="${text.title}"></div>
-				</td>
-			
-			<imgloop th:each="img:${imgList}">
-				<td th:if="${img.itemId} eq ${buyItem.id}">
-					<img src="[[${img.imagePath}]]">
-				</td>
-			</imgloop>
-			</textloop>
-		</tr>
-		</buylistloop>
-	</table>
-	<br>
-	<br>
-	<br>
+					<textloop th:each="text:${textbookList}">
+						<td th:if="${buyItem.textbookId} eq ${text.id}">
+							<div th:text="${text.title}"></div>
+						</td>
+					</textloop>
+					<imageloop th:each="img:${imgList}">
+						<td th:if="${img.itemId == buyItem.id}">
+							<img th:src="'/img/' + ${img.imagePath}" th:alt="'/img/'+${img.imagePath}" />
+						</td>
+					</imageloop>
+				</tr>
+			</buylistloop>
+		</table>
+		<br>
+		<br>
+		<br>
 	</main>
 	<footer th:replace="footer"></footer>
 </body>

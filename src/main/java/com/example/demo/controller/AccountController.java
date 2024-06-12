@@ -96,14 +96,23 @@ public class AccountController {
 		User user = userRepository.findById(account.getId()).get();
 		model.addAttribute("user", user);
 		//注文を降順にリスト化する
+		List<Item>sellList = itemRepository.findBySellerIdOrderByIdDesc(account.getId());
 		List<Item> buyList = itemRepository.findByBuyerIdOrderByIdDesc(account.getId());
 		//imgpathを格納するStringの箱を作る
 		List<Textbook> textbookList = new ArrayList<>();
 		List<ItemImage> imgList = new ArrayList<>();
+		List<ItemImage> imgList2 = new ArrayList<>();
 
 		//上記二つに全部の要素をぶち込む
 		textbookList = textbookRepository.findAll();
-		imgList = itemImageRepository.findAll();
+		for (Item buyItem : buyList) {
+			imgList.add(itemImageRepository.findOneByItemId(buyItem.getId()));
+		}
+		for (Item sellItem : sellList) {
+			imgList2.add(itemImageRepository.findOneByItemId(sellItem.getId()));
+		}
+		System.out.println();
+		System.out.println(buyList.size());
 
 		//		//要素を引っ張り出してリスト化するだけですむようにします
 		//		List<String>textname=new ArrayList<>();
@@ -128,6 +137,7 @@ public class AccountController {
 
 		model.addAttribute("textbookList", textbookList);
 		model.addAttribute("imgList", imgList);
+		model.addAttribute("imgList2", imgList2);
 		model.addAttribute("buyList", buyList);
 		//mypage表示
 		return "mypage";
