@@ -327,11 +327,15 @@ public class ItemController {
 		for (MultipartFile image : images) {
 			ItemImage itemImage = new ItemImage(item.getId(), image.getOriginalFilename());
 			itemImageRepository.save(itemImage);
-		}
-		for (MultipartFile image : images) {
+			
 			Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
 			Files.copy(image.getInputStream(), dst);
 		}
 		return "redirect:/home";
+	}
+	
+	@GetMapping("/test")
+	public String test() {
+		return "test";
 	}
 }
