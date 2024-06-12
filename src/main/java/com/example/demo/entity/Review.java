@@ -8,37 +8,37 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="items")
+@Table(name = "reviews")
 public class Review {
-@Id
-@GeneratedValue(strategy=GenerationType.IDENTITY)
-private Integer id; //レビューID
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id; //レビューID
 
-@Column(name="item_id")
-private Integer itemId; //商品ID
+	@Column(name = "item_id")
+	private Integer itemId; //商品ID
 
-private String message;
+	private String message;
 
-//コンストラクタ
-public Review(){
-}
+	//コンストラクタ
+	public Review() {
+	}
 
-public Review(Integer itemId,String message){
-	this.itemId=itemId;
-	this.message=message;
-}
+	public Review(Integer itemId, String message) {
+		this.itemId = itemId;
+		this.message = message;
+	}
 
- //メソッド
-public Integer getId() {
-	return id;
-}
+	//メソッド
+	public Integer getId() {
+		return id;
+	}
 
-public Integer getItemId() {
-	return itemId;
-}
+	public Integer getItemId() {
+		return itemId;
+	}
 
-public String getMessage() {
-	return message;
-}
+	public String getMessage() {
+		return message;
+	}
 
 }
