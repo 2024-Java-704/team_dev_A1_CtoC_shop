@@ -2,7 +2,7 @@
 
 /*全体*/
 body {
-	background-color: azure;/*背景色*/
+	background-color: rgb(255, 255, 255);/*背景色*/
 	text-align: center;/*中央寄せ*/
 	min-width: 900px; /* 最小幅 */
 }
