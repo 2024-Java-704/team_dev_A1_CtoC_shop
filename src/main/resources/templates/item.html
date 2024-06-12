@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html　xmlns:th="http: //www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>商品詳細</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="/css/item.css">
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<ul class="slider">
+		<th:block th:each="itemImage:${itemImages}">
+			<li><img th:src="'/img/'+${itemImage.imagePath}"></li>
+		</th:block>
+	</ul>
+	<h3 th:text="${textbook.title}" style="text-align: center;"></h3>
+	<footer th:replace="footer"></footer>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="/js/item.js"></script>
+</body>
+
+</html>
