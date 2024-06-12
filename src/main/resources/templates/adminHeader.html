@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-
 <body>
-	<th:block th:if="${@account.userStatus == 1}">
-		<header th:replace="adminHeader"></header>
-	</th:block>
-	<header id="Header" th:if="!${@account.userStatus == 1}">
+	<header id="Header" class="admin">
 		<div class="sitetitle">
 			<h1>A大学教科書売買</h1>
 
@@ -22,11 +12,11 @@
 		<br>
 
 		<div id="header">
-			<a href="/home" class="menu">商品一覧</a><a href="/item/add" th:if="!${@account.userStatus == 1}"
-				class="menu">出品申請</a><a href="/account" th:if="!${@account.userStatus == 1}" class="menu">マイページ</a><a
-				href="/bbs" class="menu">掲示板</a><a href="/Notice" th:if="!${@account.userStatus == 1}" class="menu"
-				style="text-decoration:none;"><span style="text-decoration: underline;">通知</span><span
-					th:if="!${@account.noticeCount == 0}" style="color: red;">!</span></a>
+			<a href="/home" class="menu">商品一覧</a><a href="/bbs" class="menu">掲示板</a><a href="/admin/claim" class="menu"
+				style="text-decoration:none;"><span style="text-decoration: underline;">問い合わせ確認</span><span
+					style="color: red;" class="alate">!</span></a><a href="/admin" class="menu"
+				style="text-decoration:none;"><span style="text-decoration: underline;">管理者画面</span><span
+					style="color: red;" class="alate">!</span></a>
 		</div>
 
 		<!-- モーダルウィンドウ -->
@@ -68,9 +58,8 @@
 				}
 			};
 		</script>
-
-	</header>
 </body>
 
+</header>
 
 </html>
