@@ -1,4 +1,22 @@
 @charset "UTF-8";
+tablemarge{
+	align-items: flex-start;
+	display: flex;
+}
+#table1{
+	margin-right: 0%;
+	margin-left: auto;
+	width: fit-content;
+}
+#table2{
+	margin-right: auto;
+	margin-left: 0%;
+	width: fit-content;
+}
+tr.itemlist{
+	height: 70px;
+}
+
 main{
 	text-align: center;
 	min-height: 81.7vh;
