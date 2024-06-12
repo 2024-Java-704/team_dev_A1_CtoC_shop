@@ -19,6 +19,7 @@ button[type="submit"]{
 	border-radius: 10px;
 	margin: auto;
 	border: none;
+	cursor: pointer;
 }
 
 button[type="submit"]:hover{
