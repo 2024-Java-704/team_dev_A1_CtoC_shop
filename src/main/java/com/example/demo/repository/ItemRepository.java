@@ -14,7 +14,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
 	Item findOneById(Integer id);	//該当のIDの商品の情報を取得
 
-	List<Item> findDistinctByTextbookIdAndDealStatusOrderByIdAsc(Integer textbookId, Integer dealStatus);
+	List<Item> findOneByTextbookIdAndDealStatusOrderByIdAsc(Integer textbookId, Integer dealStatus);
 
 	List<Item> findByTextbookIdAndDealStatusOrderByIdDesc(Integer textbookId, Integer dealStatus);
 

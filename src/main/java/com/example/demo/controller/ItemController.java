@@ -48,7 +48,7 @@ public class ItemController {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	NoticeRepository noticeRepository;
 
@@ -68,21 +68,23 @@ public class ItemController {
 			items = itemRepository.findAllByOrderByTextbookIdDesc();
 			Item item = items.get(0);
 			for (int i = 0; i <= item.getTextbookId(); i++) {
-				itemList.addAll(itemRepository.findDistinctByTextbookIdAndDealStatusOrderByIdAsc(i+1, 3));
+				itemList.addAll(itemRepository.findOneByTextbookIdAndDealStatusOrderByIdAsc(i + 1, 3));
 			}
 			for (Item i : itemList) {
-				Textbook textbook= textbookRepository.findById(i.getTextbookId()).get();
-				ItemImage itemImage= itemImageRepository.findDistinctByItemId(i.getId());
+				Textbook textbook = textbookRepository.findById(i.getTextbookId()).get();
+				List<ItemImage> itemImageList = itemImageRepository.findByItemId(i.getId());
+				ItemImage itemImage = itemImageList.get(0);
 				textbook.setTextimg(itemImage.getImagePath());
 				textbooks.add(textbook);
 			}
 		} else {
 			bookList = textbookRepository.findByTitleLikeOrderByIdAsc(keyword);
 			for (Textbook book : bookList) {
-				itemList = itemRepository.findDistinctByTextbookIdAndDealStatusOrderByIdAsc(book.getId(), 3);
+				itemList = itemRepository.findOneByTextbookIdAndDealStatusOrderByIdAsc(book.getId(), 3);
 				for (Item it : itemList) {
-					Textbook textbook= textbookRepository.findById(it.getTextbookId()).get();
-					ItemImage itemImage= itemImageRepository.findDistinctByItemId(it.getId());
+					Textbook textbook = textbookRepository.findById(it.getTextbookId()).get();
+					List<ItemImage> itemImageList = itemImageRepository.findByItemId(it.getId());
+					ItemImage itemImage = itemImageList.get(0);
 					textbook.setTextimg(itemImage.getImagePath());
 					textbooks.add(textbook);
 				}
@@ -106,8 +108,9 @@ public class ItemController {
 		if (sort == 1) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id, 3);
 			for (Item item : itemList) {
-				Textbook textbook= textbookRepository.findById(item.getTextbookId()).get();
-				ItemImage itemImage= itemImageRepository.findDistinctByItemId(item.getId());
+				Textbook textbook = textbookRepository.findById(item.getTextbookId()).get();
+				List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
+				ItemImage itemImage = itemImageList.get(0);
 				item.setTextprice(textbook.getPrice());
 				item.setTextimg(itemImage.getImagePath());
 				itemRepository.save(item);
@@ -116,8 +119,9 @@ public class ItemController {
 		} else if (sort == 2) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusDesc(id, 3);
 			for (Item item : itemList) {
-				Textbook textbook= textbookRepository.findById(item.getTextbookId()).get();
-				ItemImage itemImage= itemImageRepository.findDistinctByItemId(item.getId());
+				Textbook textbook = textbookRepository.findById(item.getTextbookId()).get();
+				List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
+				ItemImage itemImage = itemImageList.get(0);
 				item.setTextprice(textbook.getPrice());
 				item.setTextimg(itemImage.getImagePath());
 				itemRepository.save(item);
@@ -126,8 +130,9 @@ public class ItemController {
 		} else if (sort == 3) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusAsc(id, 3);
 			for (Item item : itemList) {
-				Textbook textbook= textbookRepository.findById(item.getTextbookId()).get();
-				ItemImage itemImage= itemImageRepository.findDistinctByItemId(item.getId());
+				Textbook textbook = textbookRepository.findById(item.getTextbookId()).get();
+				List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
+				ItemImage itemImage = itemImageList.get(0);
 				item.setTextprice(textbook.getPrice());
 				item.setTextimg(itemImage.getImagePath());
 				itemRepository.save(item);
@@ -135,17 +140,17 @@ public class ItemController {
 			}
 		}
 		Textbook textbook = textbookRepository.findOneById(id);
-			switch (sort) {
-			case 1:
-				
-				itemList = itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id, 3);
-				break;
-			case 2:
-				itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusDesc(id, 3);
-				break;
-			case 3:
-				itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusAsc(id, 3);
-						}
+		switch (sort) {
+		case 1:
+
+			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id, 3);
+			break;
+		case 2:
+			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusDesc(id, 3);
+			break;
+		case 3:
+			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusAsc(id, 3);
+		}
 		model.addAttribute("textbook", textbook);
 		model.addAttribute("sort", sort);
 		model.addAttribute("itemList", itemList);
@@ -160,14 +165,14 @@ public class ItemController {
 			Model model) {
 		List<ItemImage> itemImages = new ArrayList<>();
 		Item item = itemRepository.findById(id).get();
-		
+
 		Textbook textbook = textbookRepository.findOneById(item.getTextbookId());
 		item.setTextprice(textbook.getPrice());
-		
-		User user = userRepository.findById(item.getSellerId()).get(); 
-		
+
+		User user = userRepository.findById(item.getSellerId()).get();
+
 		itemImages = itemImageRepository.findByItemId(id);
-		model.addAttribute("textbook",textbook);
+		model.addAttribute("textbook", textbook);
 		model.addAttribute("user", user);
 		model.addAttribute("item", item);
 		model.addAttribute("itemImages", itemImages);
@@ -178,18 +183,29 @@ public class ItemController {
 	public String viewUser(
 			@PathVariable("id") Integer id,
 			Model model) {
-		User user = null;
-		Item item = itemRepository.findById(id).get();
-		user = userRepository.findById(item.getSellerId()).get();
-		
-		model.addAttribute("item", item);
+		User user = userRepository.findOneById(id);
+		List<Textbook> textbooks = textbookRepository.findAll();
+		List<Item> sellItemList = itemRepository.findBySellerIdOrderByIdDesc(id);
+		List<ItemImage> imageList = new ArrayList<>();
+		List<Review> reviewList = new ArrayList<>();
+
+		for (Item item : sellItemList) {
+			List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
+			ItemImage image = itemImageList.get(0);
+			imageList.add(image);
+			reviewList.add(reviewRepository.findOneByItemId(item.getId()));
+		}
+
 		model.addAttribute("user", user);
+		model.addAttribute("textbooks", textbooks);
+		model.addAttribute("sellItemList", sellItemList);
+		model.addAttribute("imageList", imageList);
+		model.addAttribute("reviewList", reviewList);
 		return "user";
 	}
 
 	@PostMapping("/buy/{id}")
-	public String buy(@PathVariable("id") Integer id
-					) {
+	public String buy(@PathVariable("id") Integer id) {
 		Item item = itemRepository.findById(id).get();
 		item.setDealStatus(4);
 		item.setBuyerId(account.getId());
@@ -205,7 +221,6 @@ public class ItemController {
 		Item item = itemRepository.findById(id).get();
 		User user = userRepository.findById(item.getSellerId()).get();
 		itemImage.addAll(itemImageRepository.findByItemId(id));
-        
 
 		model.addAttribute("item", item);
 		model.addAttribute("user", user);
@@ -250,21 +265,21 @@ public class ItemController {
 		model.addAttribute("TextbookMap", textbookMap);
 		return "addItem";
 	}
-	
+
 	@PostMapping("/item/add")
-	public String sendItem(@RequestParam(name="images") MultipartFile[] images,
-	        @RequestParam(name = "textbookId") Integer textbookId,
-	        @RequestParam(name = "itemStatus") Integer itemStatus) throws IOException{
-	    Item item = new Item(textbookId, itemStatus, account.getId());
-	    itemRepository.save(item);
-	    for(MultipartFile image:images) {
-	    ItemImage itemImage = new ItemImage(item.getId(),image.getOriginalFilename());
-	    itemImageRepository.save(itemImage);
-	    }
-	    for(MultipartFile image : images){
-	        Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
-	        Files.copy(image.getInputStream(), dst);
-	    }
-	    return "redirect:/home";
+	public String sendItem(@RequestParam(name = "images") MultipartFile[] images,
+			@RequestParam(name = "textbookId") Integer textbookId,
+			@RequestParam(name = "itemStatus") Integer itemStatus) throws IOException {
+		Item item = new Item(textbookId, itemStatus, account.getId());
+		itemRepository.save(item);
+		for (MultipartFile image : images) {
+			ItemImage itemImage = new ItemImage(item.getId(), image.getOriginalFilename());
+			itemImageRepository.save(itemImage);
+		}
+		for (MultipartFile image : images) {
+			Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
+			Files.copy(image.getInputStream(), dst);
+		}
+		return "redirect:/home";
 	}
 }
