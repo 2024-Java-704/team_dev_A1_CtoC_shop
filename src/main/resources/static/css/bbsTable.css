@@ -4,7 +4,7 @@ table{
 	margin-right:auto;
 	margin-left: auto;
 	text-align: center;
-	width: 600px;
+	width: 500px;
 }
 table th{
 	background-color: black;
@@ -12,11 +12,18 @@ table th{
 }
 table tr{
 	background-color: lightgray;
+	height: 40px;
 }
 
 /*タイトルの表*/
 .tr2{
 	background-color: darkgray;
+	height: 40px;
+}
+
+.complete{
+	height: 40px;
+	width: 80px;
 }
 .delete{
 	background-color: lightpink;

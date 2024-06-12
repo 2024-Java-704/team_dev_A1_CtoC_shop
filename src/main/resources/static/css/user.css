@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+body {
+	background-color: azure;
+	text-align: center;
+	min-width: 900px;
+}
+
+table {
+	margin: auto;
+	white-space: pre-line;
+	font-size: 20px;
+}
+
+.box {
+	float:left;
+	width: fit-content
+}
+
+.container {
+	display:flex;
+	overflow: hidden;
+	width: fit-content;
+	margin: 0 auto;
+}

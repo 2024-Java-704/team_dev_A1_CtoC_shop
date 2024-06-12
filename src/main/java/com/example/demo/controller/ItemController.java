@@ -191,7 +191,14 @@ public class ItemController {
 			Model model) {
 		User user = userRepository.findOneById(id);
 		List<Textbook> textbooks = textbookRepository.findAll();
-		List<Item> sellItemList = itemRepository.findBySellerIdOrderByIdDesc(id);
+		List<Item> itemList = itemRepository.findBySellerIdOrderByIdDesc(id);
+		List<Item> sellItemList = new ArrayList<>();
+		
+		for(Item item : itemList) {
+			if(item.getItemStatus() > 2)
+				sellItemList.add(item);
+		}
+		
 		List<ItemImage> imageList = new ArrayList<>();
 		List<Review> reviewList = new ArrayList<>();
 
@@ -228,6 +235,8 @@ public class ItemController {
 		User user = userRepository.findById(item.getSellerId()).get();
 		itemImage.addAll(itemImageRepository.findByItemId(id));
 		Integer accountId = account.getId();
+		Review review = new Review(id,null);
+		reviewRepository.save(review);
 		model.addAttribute("item", item);
 		model.addAttribute("accountId", accountId);
 		model.addAttribute("user", user);

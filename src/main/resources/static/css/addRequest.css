@@ -9,10 +9,12 @@ table{
 
 tr{
 	border: 1px solid black;
+	height: 40px;
 }
 
 td{
 	border: 1px solid black;
+	height: 40px;
 }
 
 button {
@@ -33,4 +35,63 @@ button:hover {
 /*新規募集*/
 .new{
 	text-align: center;
+}
+
+main{
+	min-height: 81.7vh;
+	position: relative;
+	padding-bottom: 80px;
+	box-sizing: border-box;
+}	
+
+/*教科書のセレクトボックス*/
+.selectbox-2 {
+    position: relative;
+}
+
+.selectbox-2::before,
+.selectbox-2::after {
+    position: absolute;
+    content: '';
+    pointer-events: none;
+}
+
+.selectbox-2::before {
+    right: 0;
+    display: inline-block;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 0 3px 3px 0;
+    background-color: #000000;
+    content: '';
+}
+
+.selectbox-2::after {
+    position: absolute;
+    top: 50%;
+    right: 0.9em;
+    transform: translate(50%, -50%) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+    content: '';
+}
+
+.selectbox-2 select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    min-width: 230px;
+    height: 2em;
+    padding: .4em 3.6em .4em .8em;
+    border: 1px solid #000000;
+    border-radius: 3px;
+    color: #333333;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.selectbox-2 select:focus {
+    outline: 1px solid #000000;
 }

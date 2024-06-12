@@ -10,6 +10,7 @@
 </head>
 <body>
 	<header th:replace="header"></header>
+	<main>
 	<h1 class = "new">新規募集</h1>
 	<form action = "/bbs/addRequest" method ="post">
 	<table>
@@ -26,10 +27,12 @@
 		<tr>
 			<th>教科書</th>
 			<td>
+				<label class="selectbox-2">
 				<select name = "title" required>
 					<option value="" disabled selected>タイトル名</option>
 					<option th:each = "textbook:${title}" th:value="${textbook.id}" th:text= "${textbook.title}"></option>
 				</select>
+				</label>
 			</td>
 		</tr>
 	</table>
@@ -37,5 +40,6 @@
 	<button>投稿</button>
 	</form>
 <footer th:replace="footer"></footer>
+</main>
 </body>
 </html>
