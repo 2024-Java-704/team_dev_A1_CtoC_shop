@@ -52,9 +52,9 @@
  	(8, 'textbook4_rika.png'),
  	(9, 'textbook3_sugakuu.png'),
  	(10, 'textbook6_eigo.png'),
- 	(11, 'textbook3_sugakuu.png'),
- 	(12, 'textbook3_sugakuu.png'),
- 	(13, 'textbook6_eigo.png');
+ 	(6, 'textbook3_sugakuu.png'),
+ 	(7, 'textbook3_sugakuu.png'),
+ 	(8, 'textbook6_eigo.png');
 
  	
  	-- reviews テーブルにデータを挿入するクエリ
