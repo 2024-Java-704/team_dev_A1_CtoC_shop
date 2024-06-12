@@ -26,7 +26,7 @@
 					th:src="'/img/' + ${image.imagePath}" th:alt="'/img/'+${image.imagePath}" />
 				<p th:each="textbook:${textbooks}"
 					th:if="${textbook.id == sellItem.textbookId && sellItem.dealStatus == 3}"><a
-						href="'/item/' + ${sellItem.id}" th:text="${textbook.title}"></a></p>
+						th:href="'/item/' + ${sellItem.id}" th:text="${textbook.title}"></a></p>
 				<p th:each="textbook:${textbooks}"
 					th:if="${textbook.id == sellItem.textbookId && sellItem.dealStatus != 3}"
 					th:text="${textbook.title}"></p>
