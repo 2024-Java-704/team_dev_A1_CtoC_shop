@@ -1,5 +1,9 @@
 package com.example.demo.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.repository.ItemImageRepository;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +15,7 @@ import jakarta.persistence.Transient;
 @Entity
 @Table(name = "items")
 public class Item {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id; //商品ID
@@ -29,12 +34,17 @@ public class Item {
 
 	@Column(name = "buyer_id")
 	private Integer buyerId; //購入者ID
-	
-	@Transient
-	private Integer textprice; 
 
 	@Transient
-	private String textimg; 
+	private Integer textprice;
+
+	@Transient
+	private String textimg;
+
+	@Transient
+	@Autowired
+	ItemImageRepository itemImageRepository;
+
 	//コンストラクタ
 	public Item() { //デフォルトコンストラクタ	
 	}
@@ -93,6 +103,12 @@ public class Item {
 
 	public void setTextimg(String textimg) {
 		this.textimg = textimg;
+	}
+	
+	@Transient
+	public String getItemImagePath() {
+		ItemImage itemImage = itemImageRepository.findOneByItemId(id);
+		return itemImage.getImagePath();
 	}
 
 }

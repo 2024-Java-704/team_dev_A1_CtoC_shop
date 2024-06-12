@@ -12,4 +12,6 @@ public interface ItemImageRepository extends JpaRepository<ItemImage, Integer> {
 
 	ItemImage findDistinctByItemId(Integer itemId);
 
+	ItemImage findOneByItemId(Integer itemId);
+
 }
