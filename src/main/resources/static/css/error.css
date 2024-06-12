@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.error {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	margin: auto;
+}
+
+.box {
+	width: 100%; margin: auto;
+}
+
+.message {
+	width: fit-content; display: flex; justify-content:center; flex-direction: column; margin: auto;
+}
+
+.title {
+	text-align: center; display: block; width: fit-content; margin: auto;
+}
+
+.text {
+	width: 100%;font-size: 1.6rem; line-height: 1.8; color: #555;  margin-top: 8px; margin: auto;
+}
+
+.errorNumber {
+	font-weight: bold; font-size: 6rem; color: #555;
+}
+
+.errorLog {
+	font-size: 3rem; color: #aaa;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>URLエラー</title>
+	<link rel="stylesheet" type="text/css" href="/css/error.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<th:block th:if="${@account.id}">
+		<header th:replace="header"></header>
+	</th:block>
+	<th:block th:if="!${@account.id}">
+		<link rel="stylesheet" type="text/css" href="/css/login.css">
+		<header>
+			<h1><a href="/" style="text-decoration: none; color:inherit;">A大学</a></h1>
+		</header>
+	</th:block>
+
+	<main>
+		<div class="error">
+			<div calss="box">
+				<div class="message">
+					<div class="title">
+						<span class="errorNumber">[[${status}]]</span>
+						<span class="errorLog">[[${error}]]</span>
+					</div>
+					<div class="text">
+						お探しのページは一時的にアクセスができない状況にあるか、移動もしくは削除された可能性があります。<br>
+						また、URL、ファイル名にタイプミスがないか再度ご確認ください。</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<p>[[${rootcause}]]</p>
+		<th:block th:if="${@account.id}">
+			<footer th:replace="footer"></footer>
+		</th:block>
+	</main>
+</body>
+
+</html>
