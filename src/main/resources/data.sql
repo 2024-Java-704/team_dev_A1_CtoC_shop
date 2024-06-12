@@ -47,7 +47,7 @@
  	(3, 'textbook4_rika.png'),
  	(4, 'textbook3_sugakuu.png'),
  	(5, 'textbook6_eigo.png'),
- 	(6, 'textbook3_sugakuu.png');
+ 	(6, 'textbook3_sugakuu.png'),
  	(3, 'textbook3_sugakuu.png'),
  	(5, 'textbook6_eigo.png');
  	
