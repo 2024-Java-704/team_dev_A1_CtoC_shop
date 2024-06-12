@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.entity.Item;
 import com.example.demo.entity.ItemImage;
 import com.example.demo.entity.Review;
+import com.example.demo.entity.Student;
 import com.example.demo.entity.Textbook;
 import com.example.demo.entity.User;
 import com.example.demo.model.Account;
@@ -28,6 +29,7 @@ import com.example.demo.repository.ItemImageRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.NoticeRepository;
 import com.example.demo.repository.ReviewRepository;
+import com.example.demo.repository.StudentRepository;
 import com.example.demo.repository.TextbookRepository;
 import com.example.demo.repository.UserRepository;
 
@@ -51,6 +53,9 @@ public class ItemController {
 
 	@Autowired
 	NoticeRepository noticeRepository;
+	
+	@Autowired
+	StudentRepository studentRepository;
 
 	@Autowired
 	Account account;
@@ -170,10 +175,11 @@ public class ItemController {
 		item.setTextprice(textbook.getPrice());
 
 		User user = userRepository.findById(item.getSellerId()).get();
+		Student student=studentRepository.findOneByStudentNumber(user.getStudentNumber());
 
 		itemImages = itemImageRepository.findByItemId(id);
 		model.addAttribute("textbook", textbook);
-		model.addAttribute("user", user);
+		model.addAttribute("student", student);
 		model.addAttribute("item", item);
 		model.addAttribute("itemImages", itemImages);
 		return "item";
