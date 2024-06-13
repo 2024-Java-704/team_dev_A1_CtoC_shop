@@ -127,9 +127,12 @@ public class AdminController {
 			users = userRepository.findByStudentNumberContaining(number);
 			model.addAttribute("number", number);
 		}
-
+		
+		users.remove(userRepository.findOneById(1));
+		
 		if (users.size() > 0)
 			model.addAttribute("users", users);
+		
 		
 		model.addAttribute("students", studentRepository.findAll());
 
