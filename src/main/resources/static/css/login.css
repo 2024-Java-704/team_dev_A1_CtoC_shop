@@ -48,3 +48,7 @@ button[type="submit"]:hover {
 	background-color: aquamarine;
 	color: black;
 }
+
+.error{
+	margin: 5px;
+}

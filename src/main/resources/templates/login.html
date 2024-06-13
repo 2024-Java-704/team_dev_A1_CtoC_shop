@@ -14,7 +14,7 @@
 	<form action="/" method="post">
 		<h1>会員ログイン</h1>
 		
-		<span th:text="${errorList}" style="color:red;"></span><br>
+		<p th:if="${errorList}" th:each="error:${errorList}" th:text="${error}" class="error" style="color:red;"></p><br>
 		
 		<input type="text" name="studentNumber" placeholder="学籍番号"><br>
 		<input type="password" name="password" placeholder="パスワード"><br>
