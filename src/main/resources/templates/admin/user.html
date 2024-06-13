@@ -29,7 +29,7 @@
 			</tr>
 			<tr th:each="user:${users}">
 				<td th:text="${user.studentNumber}"></td>
-				<td th:text="${user.studentNumber}"></td>
+				<td th:each="student:${students}" th:if="${user.studentNumber == student.studentNumber}" th:text="${student.name}"></td>
 				<td><form th:action="'/admin/user/delete/' + ${user.id}" method="post"><button class="list">削除</button></form></td>
 			</tr>
 		</table>
