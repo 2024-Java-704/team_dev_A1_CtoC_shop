@@ -219,6 +219,7 @@ public class ItemController {
 				}
 			}
 
+		model.addAttribute("student", studentRepository.findOneByStudentNumber(user.getStudentNumber()));
 		model.addAttribute("user", user);
 		model.addAttribute("textbooks", textbooks);
 		if (sellItemList.size() > 0)
