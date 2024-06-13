@@ -10,6 +10,7 @@
  	-- users テーブルにデータを挿入するクエリ
  	INSERT INTO users (student_number, password, user_status, introduce)
  	VALUES
+ 	('00000000', 'himitudesuyo', 1, 'ここに表示されている商品は未出品・未購入のものです'),
  	('11620111', 'himitudesuyo', 2, 'はじめまして、よろしくお願いします。'),
  	('84937592', 'himitudesuyo', 2, 'こんにちは、いいのがたくさんあります！'),
  	('20948499', 'himitudesuyo', 2, '数学、理科の教科書が多いです。'),
@@ -21,16 +22,16 @@
  	-- items テーブルにデータを挿入するクエリ
  	INSERT INTO items (textbook_id, item_status, deal_status, seller_id, buyer_id)
  	VALUES
- 	(1, 1, 2, 1, 0),
- 	(4, 3, 4, 3, 0),
- 	(4, 3, 5, 4, 2),
- 	(5, 2, 3, 4, 0),
- 	(2, 1, 5, 5, 1),
- 	(3, 4, 1, 2, 0),
- 	(1, 2, 5, 3, 4),
- 	(3, 1, 5, 1, 3),
- 	(5, 4, 5, 2, 5),
- 	(2, 3, 2, 5, 0);
+ 	(1, 1, 2, 2, 1),
+ 	(4, 3, 4, 4, 5),
+ 	(4, 3, 5, 5, 3),
+ 	(5, 2, 3, 5, 1),
+ 	(2, 1, 5, 6, 2),
+ 	(3, 4, 1, 3, 1),
+ 	(1, 2, 5, 4, 5),
+ 	(3, 1, 5, 2, 4),
+ 	(5, 4, 5, 3, 6),
+ 	(2, 3, 2, 6, 1);
  	
  	-- claims テーブルにデータを挿入するクエリ
  	INSERT INTO claims (message, claim_status)
@@ -44,27 +45,27 @@
  	VALUES
  	(1, 'textbook1_kokugo.png'),
  	(2, 'textbook5_syakai.png'),
- 	(3, 'textbook4_rika.png'),
- 	(4, 'textbook3_sugakuu.png'),
- 	(5, 'textbook6_eigo.png'),
- 	(6, 'textbook1_kokugo.png'),
- 	(7, 'textbook5_syakai.png'),
- 	(8, 'textbook4_rika.png'),
- 	(9, 'textbook3_sugakuu.png'),
- 	(10, 'textbook6_eigo.png'),
+ 	(3, 'textbook5_syakai.png'),
+ 	(4, 'textbook4_rika.png'),
+ 	(4, 'textbook7_blank.png'),
+ 	(5, 'textbook3_sugakuu.png'),
+ 	(6, 'textbook6_eigo.png'),
+ 	(7, 'textbook1_kokugo.png'),
+ 	(8, 'textbook6_eigo.png'),
+ 	(9, 'textbook4_rika.png'),
+ 	(10, 'textbook3_sugakuu.png'),
  	(6, 'textbook3_sugakuu.png'),
- 	(4, 'textbook3_sugakuu.png'),
  	(8, 'textbook6_eigo.png');
 
  	
  	-- reviews テーブルにデータを挿入するクエリ
  	INSERT INTO reviews (item_id, message)
  	VALUES
- 	(1, '新品同様でキズなどは特になく良かったです'),
- 	(2, '書き込みはありましたがあまり多くなくてよかったです'),
- 	(3, '中古でしたが思ったよりキズがなくいい買い物をしました'),
- 	(4, '新品の割には使い古された感があったので気になりましたが、使えそうなので大丈夫です'),
- 	(5, '破損していましたが表紙だけだったので使えそうです');
+ 	(3, '新品同様でキズなどは特になく良かったです'),
+ 	(5, '書き込みはありましたがあまり多くなくてよかったです'),
+ 	(7, '中古でしたが思ったよりキズがなくいい買い物をしました'),
+ 	(8, '新品の割には使い古された感があったので気になりましたが、使えそうなので大丈夫です'),
+ 	(9, '破損していましたが表紙だけだったので使えそうです');
  	
  	-- notices テーブルにデータを挿入するクエリ
  	INSERT INTO notices (user_id, message, notice_status)
@@ -91,6 +92,7 @@
  	-- students テーブルにデータを挿入するクエリ
  	INSERT INTO students (name, student_number, birthday, address, number, faculty, department)
  	VALUES
+ 	('管理者(1)','00000000','2000-1-1','東京都中央区','0120500500','講師','天文学'),
  	('三井悠太郎', '11620111', '2000-9-3', '神奈川県横浜市', '08012345678', '文学部', '史学科'),
  	('渡邊徹也', '84937592', '2001-10-29', '東京都練馬区', '08089348403', '経済学部', '経済学科'),
  	('須谷裕斗', '20948499', '2002-1-22', '埼玉県大宮市', '08011920241', '教育学部', '教育学科'),
