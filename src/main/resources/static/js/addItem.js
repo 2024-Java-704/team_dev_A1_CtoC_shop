@@ -18,8 +18,14 @@
                 });
                 // ファイルをData URLとして読み込みます。
                 fileReader.readAsDataURL(obj.files[i]);
-                console.log(obj.files.length);
+                //ボタンを活性化
             }
+			if(obj.files.length){
+				const button = document.getElementById("submitButton");
+				button.disabled = null;
+			}else {
+				button.disabled = "disabled";
+			}
         }
         
        

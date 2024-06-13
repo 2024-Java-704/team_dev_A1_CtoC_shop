@@ -23,6 +23,7 @@ import com.example.demo.repository.ItemImageRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.NoticeRepository;
 import com.example.demo.repository.RequestRepository;
+import com.example.demo.repository.StudentRepository;
 import com.example.demo.repository.TextbookRepository;
 import com.example.demo.repository.UserRepository;
 
@@ -49,6 +50,9 @@ public class AdminController {
 
 	@Autowired
 	RequestRepository requestRepository;
+	
+	@Autowired
+	StudentRepository studentRepository;
 
 	//管理者画面を表示
 	@GetMapping("/admin")
@@ -126,6 +130,8 @@ public class AdminController {
 
 		if (users.size() > 0)
 			model.addAttribute("users", users);
+		
+		model.addAttribute("students", studentRepository.findAll());
 
 		return "admin/user";
 	}
