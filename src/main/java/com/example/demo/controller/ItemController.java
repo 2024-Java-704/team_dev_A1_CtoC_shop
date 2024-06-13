@@ -86,7 +86,7 @@ public class ItemController {
 				textbooks.add(textbook);
 			}
 		} else {
-			bookList = textbookRepository.findByTitleLikeOrderByIdAsc(keyword);
+			bookList = textbookRepository.findByTitleContainingOrderByIdAsc(keyword);
 			for (Textbook book : bookList) {
 				itemList = itemRepository.findOneByTextbookIdAndDealStatusOrderByIdAsc(book.getId(), 3);
 				for (Item it : itemList) {
