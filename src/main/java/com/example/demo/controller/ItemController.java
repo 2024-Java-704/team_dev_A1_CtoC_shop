@@ -72,32 +72,28 @@ public class ItemController {
 		List<Textbook> bookList = null;
 		List<ItemImage> itemImages = new ArrayList<>();
 		List<Textbook> textbooks = new ArrayList<>();
+		
 		if (keyword.length() == 0 || keyword.equals(null)) {
-			items = itemRepository.findAllByOrderByTextbookIdDesc();
-			Item item = items.get(0);
-			for (int i = 0; i <= item.getTextbookId(); i++) {
-				itemList.addAll(itemRepository.findOneByTextbookIdAndDealStatusOrderByIdAsc(i + 1, 3));
-			}
-			for (Item i : itemList) {
-				Textbook textbook = textbookRepository.findById(i.getTextbookId()).get();
-				List<ItemImage> itemImageList = itemImageRepository.findByItemId(i.getId());
-				ItemImage itemImage = itemImageList.get(0);
-				textbook.setTextimg(itemImage.getImagePath());
-				textbooks.add(textbook);
-			}
+			bookList = textbookRepository.findAll();
 		} else {
 			bookList = textbookRepository.findByTitleContainingOrderByIdAsc(keyword);
-			for (Textbook book : bookList) {
-				itemList = itemRepository.findOneByTextbookIdAndDealStatusOrderByIdAsc(book.getId(), 3);
-				for (Item it : itemList) {
-					Textbook textbook = textbookRepository.findById(it.getTextbookId()).get();
-					List<ItemImage> itemImageList = itemImageRepository.findByItemId(it.getId());
-					ItemImage itemImage = itemImageList.get(0);
-					textbook.setTextimg(itemImage.getImagePath());
-					textbooks.add(textbook);
-				}
+		}
+		
+		for (Textbook book : bookList) {
+			items = itemRepository.findByTextbookIdAndDealStatusOrderByTextbookIdDesc(book.getId(), 3);
+			if (items.size() > 0) {
+				Item item = items.get(0);
+				itemList.add(item);
 			}
 		}
+		for (Item item : itemList) {
+			Textbook textbook = textbookRepository.findById(item.getTextbookId()).get();
+			List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
+			ItemImage itemImage = itemImageList.get(0);
+			textbook.setTextimg(itemImage.getImagePath());
+			textbooks.add(textbook);
+		}
+		
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("itemImages", itemImages);
 		model.addAttribute("textbooks", textbooks);
@@ -334,7 +330,7 @@ public class ItemController {
 		}
 		return "redirect:/home";
 	}
-	
+
 	@GetMapping("/test")
 	public String test() {
 		return "test";

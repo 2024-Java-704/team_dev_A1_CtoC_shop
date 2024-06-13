@@ -26,4 +26,6 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
 	List<Item> findByDealStatus(Integer dealStatus); //特定の取引状態の商品をすべて取得
 
+	List<Item> findByTextbookIdAndDealStatusOrderByTextbookIdDesc(Integer textbookId, Integer dealStatus);
+
 }
