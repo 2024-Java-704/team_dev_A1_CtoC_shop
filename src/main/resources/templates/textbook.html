@@ -34,11 +34,11 @@
 					</th:block>
 
 					<th:block th:if="${item.itemStatus == 3}">
-						<p th:text="${#numbers.formatDecimal(item.textprice*0.5,0,'COMMA',0,'POINT')}+'円'"></p>
+						<p th:text="${#numbers.formatDecimal(item.textprice*0.6,0,'COMMA',0,'POINT')}+'円'"></p>
 					</th:block>
 
 					<th:block th:if="${item.itemStatus == 4}">
-						<p th:text="${#numbers.formatDecimal(item.textprice*0.4,0,'COMMA',0,'POINT')}+'円'"></p>
+						<p th:text="${#numbers.formatDecimal(item.textprice*0.5,0,'COMMA',0,'POINT')}+'円'"></p>
 					</th:block>
 				</div>
 			</th:block>
