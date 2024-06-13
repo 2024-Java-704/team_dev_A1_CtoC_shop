@@ -62,12 +62,14 @@ public class AccountController {
 
 		List<User> userList = userRepository.findByStudentNumberAndPassword(studentNumber, password);
 
-		//学籍番号入力時のエラー
+		//学籍番号未入力時のエラー
 		if (studentNumber.length() == 0) {
 			errorList.add("学籍番号は必須です");
 
-			//パスワード入力時のエラー	
-		} else if (password.length() == 0) {
+			//パスワード未入力時のエラー	
+		}
+
+		if (password.length() == 0) {
 			errorList.add("パスワードは必須です");
 
 			//	正しくない学籍番号またはパスワード入力時のエラー
@@ -96,37 +98,36 @@ public class AccountController {
 		User user = userRepository.findById(account.getId()).get();
 		model.addAttribute("user", user);
 		//注文を降順にリスト化する
-		List<Item>sellList = itemRepository.findBySellerIdOrderByIdDesc(account.getId());
+		List<Item> sellList = itemRepository.findBySellerIdOrderByIdDesc(account.getId());
 		List<Item> buyList = itemRepository.findByBuyerIdOrderByIdDesc(account.getId());
 		//imgpathを格納するStringの箱を作る
 		List<Textbook> textbookList = new ArrayList<>();
-		List<ItemImage> imgList= new ArrayList<>();
+		List<ItemImage> imgList = new ArrayList<>();
 		List<ItemImage> imgList2 = new ArrayList<>();
-		List<ItemImage>getimg1;
-		List<ItemImage>getimg2;
+		List<ItemImage> getimg1;
+		List<ItemImage> getimg2;
 
 		//上記二つに全部の要素をぶち込む
 		textbookList = textbookRepository.findAll();
 		for (Item buyItem : buyList) {
 			//その中から一つの情報を得るための箱を作る
-			ItemImage img1=new ItemImage();
+			ItemImage img1 = new ItemImage();
 			//アイテムイメージをアイテムIDで検索をかけて入れる
 			getimg1 = itemImageRepository.findByItemId(buyItem.getId());
 			//その中から一つだけを取り出す
-			img1=getimg1.get(0);
+			img1 = getimg1.get(0);
 			//一つの結果をリストに入れていく
 			imgList.add(img1);
 		}
 		for (Item sellItem : sellList) {
 			ItemImage img2 = new ItemImage();
 			getimg2 = itemImageRepository.findByItemId(sellItem.getId());
-			img2=getimg2.get(0);
+			img2 = getimg2.get(0);
 			imgList2.add(img2);
 		}
-		
-		
-		Integer countbuyList=buyList.size();
-		Integer countsellList=sellList.size();
+
+		Integer countbuyList = buyList.size();
+		Integer countsellList = sellList.size();
 
 		//		//要素を引っ張り出してリスト化するだけですむようにします
 		//		List<String>textname=new ArrayList<>();
@@ -154,8 +155,8 @@ public class AccountController {
 		model.addAttribute("imgList2", imgList2);
 		model.addAttribute("buyList", buyList);
 		model.addAttribute("sellList", sellList);
-		model.addAttribute("countsellList",countsellList);
-		model.addAttribute("countbuyList",countbuyList);
+		model.addAttribute("countsellList", countsellList);
+		model.addAttribute("countbuyList", countbuyList);
 		//mypage表示
 		return "mypage";
 	}
