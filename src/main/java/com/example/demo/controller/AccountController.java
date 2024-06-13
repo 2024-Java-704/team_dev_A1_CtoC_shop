@@ -66,13 +66,12 @@ public class AccountController {
 		if (studentNumber.length() == 0) {
 			errorList.add("学籍番号は必須です");
 
-			//パスワード未入力時のエラー	
 		}
-
+		//パスワード未入力時のエラー	
 		if (password.length() == 0) {
 			errorList.add("パスワードは必須です");
 
-			//	正しくない学籍番号またはパスワード入力時のエラー
+			//正しくない学籍番号またはパスワード入力時のエラー
 		} else if (userList.size() == 0 || userList == null) {
 			errorList.add("学籍番号もしくはパスワードが正しくありません");
 		}
