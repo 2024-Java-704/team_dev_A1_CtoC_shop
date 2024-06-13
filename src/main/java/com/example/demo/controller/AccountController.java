@@ -219,6 +219,8 @@ public class AccountController {
 		User user = userRepository.findById(account.getId()).get();
 		//検索したユーザーの学籍番号を送信
 		model.addAttribute("studentNumber", user.getStudentNumber());
+		//検索したユーザーの自己紹介メッセージを送信
+		model.addAttribute("introduce", user.getIntroduce());
 		//自己紹介更新ページを開く
 		return "resetIntroduce";
 	}
