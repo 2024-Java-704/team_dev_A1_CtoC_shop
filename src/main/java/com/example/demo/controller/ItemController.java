@@ -281,7 +281,7 @@ public class ItemController {
 		Item item = itemRepository.findById(id).get();
 		item.setDealStatus(5);
 		reviewRepository.save(review);
-		Notice notice = new Notice(item.getSellerId(), "出品した商品へのレビューが来ました！");
+		Notice notice = new Notice(item.getSellerId(), "出品した商品へのレビューが来ました！ 「" + message + "」");
 		noticeRepository.save(notice);
 		return "redirect:/complete";
 	}
