@@ -24,12 +24,58 @@
 				<p th:if="!${sellItem.dealStatus == 3}">SOLD OUT</p>
 				<img th:each="image:${imageList}" th:if="${image.itemId == sellItem.id}"
 					th:src="'/img/' + ${image.imagePath}" th:alt="'/img/'+${image.imagePath}" />
-				<p th:each="textbook:${textbooks}"
-					th:if="${textbook.id == sellItem.textbookId && sellItem.dealStatus == 3}"><a
-						th:href="'/item/' + ${sellItem.id}" th:text="${textbook.title}"></a></p>
-				<p th:each="textbook:${textbooks}"
-					th:if="${textbook.id == sellItem.textbookId && sellItem.dealStatus != 3}"
-					th:text="${textbook.title}"></p>
+				 <th:block th:each="textbook:${textbooks}"
+					th:if="${textbook.id == sellItem.textbookId && sellItem.dealStatus == 3}">
+					<p><a th:href="'/item/' + ${sellItem.id}" th:text="${textbook.title}"></a></p>
+					
+					<!--価格表示-->
+					<th:block th:if="${sellItem.itemStatus == 1}">
+						<p id="" th:text="${#numbers.formatDecimal(textbook.price*1.0,0,'COMMA',0,'POINT')}+'円'"
+							style="text-align: center; font-size: 1.2em;"></p>
+					</th:block>
+
+					<th:block th:if="${sellItem.itemStatus == 2}">
+						<p th:text="${#numbers.formatDecimal(textbook.price*0.8,0,'COMMA',0,'POINT')}+'円'"
+							style="text-align: center; font-size: 1.2em;"></p>
+					</th:block>
+
+					<th:block th:if="${sellItem.itemStatus == 3}">
+						<p th:text="${#numbers.formatDecimal(textbook.price*0.6,0,'COMMA',0,'POINT')}+'円'"
+							style="text-align: center; font-size: 1.2em;"></p>
+					</th:block>
+
+					<th:block th:if="${sellItem.itemStatus == 4}">
+						<p th:text="${#numbers.formatDecimal(textbook.price*0.5,0,'COMMA',0,'POINT')}+'円'"
+							style="text-align: center; font-size: 1.2em;"></p>
+					</th:block>
+				</th:block>
+				
+				<!--売り切れ商品-->
+				<th:block th:each="textbook:${textbooks}"
+					th:if="${textbook.id == sellItem.textbookId && sellItem.dealStatus != 3}">
+					<p th:text="${textbook.title}"></p>
+
+					<!--価格表示-->
+					<th:block th:if="${sellItem.itemStatus == 1}">
+						<p id="" th:text="${#numbers.formatDecimal(textbook.price*1.0,0,'COMMA',0,'POINT')}+'円'"
+							style="text-align: center; font-size: 1.2em;"></p>
+					</th:block>
+
+					<th:block th:if="${sellItem.itemStatus == 2}">
+						<p th:text="${#numbers.formatDecimal(textbook.price*0.8,0,'COMMA',0,'POINT')}+'円'"
+							style="text-align: center; font-size: 1.2em;"></p>
+					</th:block>
+
+					<th:block th:if="${sellItem.itemStatus == 3}">
+						<p th:text="${#numbers.formatDecimal(textbook.price*0.6,0,'COMMA',0,'POINT')}+'円'"
+							style="text-align: center; font-size: 1.2em;"></p>
+					</th:block>
+
+					<th:block th:if="${sellItem.itemStatus == 4}">
+						<p th:text="${#numbers.formatDecimal(textbook.price*0.5,0,'COMMA',0,'POINT')}+'円'"
+							style="text-align: center; font-size: 1.2em;"></p>
+					</th:block>
+				</th:block>
 			</div>
 		</div>
 		<p>レビュー一覧</p>
