@@ -11,62 +11,63 @@
 <body>
 	<header th:replace="header"></header>
 	<main>
-<br>
-	<!--商品画像表示-->
-	<ul class="slider">
-		<th:block th:each="itemImage:${itemImages}">
-			<li><img th:src="'/img/'+${itemImage.imagePath}"></li>
+		<br>
+		<!--商品画像表示-->
+		<ul class="slider">
+			<th:block th:each="itemImage:${itemImages}">
+				<li><img th:src="'/img/'+${itemImage.imagePath}"></li>
+			</th:block>
+		</ul>
+
+		<!--商品(教科書名表示)-->
+		<h3 th:text="${textbook.title}" style="text-align: center;"></h3>
+
+		<!--価格表示-->
+		<th:block th:if="${item.itemStatus == 1}">
+			<p id="" th:text="${#numbers.formatDecimal(item.textprice*1.0,0,'COMMA',0,'POINT')}+'円'"
+				style="text-align: center; font-size: 1.2em;"></p>
 		</th:block>
-	</ul>
 
-	<!--商品(教科書名表示)-->
-	<h3 th:text="${textbook.title}" style="text-align: center;"></h3>
+		<th:block th:if="${item.itemStatus == 2}">
+			<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
+				style="text-align: center; font-size: 1.2em;"></p>
+		</th:block>
 
-	<!--価格表示-->
-	<th:block th:if="${item.itemStatus == 1}">
-		<p id="" th:text="${#numbers.formatDecimal(item.textprice*1.0,0,'COMMA',0,'POINT')}+'円'"
-			style="text-align: center; font-size: 1.2em;"></p>
-	</th:block>
+		<th:block th:if="${item.itemStatus == 3}">
+			<p th:text="${#numbers.formatDecimal(item.textprice*0.5,0,'COMMA',0,'POINT')}+'円'"
+				style="text-align: center; font-size: 1.2em;"></p>
+		</th:block>
 
-	<th:block th:if="${item.itemStatus == 2}">
-		<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
-			style="text-align: center; font-size: 1.2em;"></p>
-	</th:block>
+		<th:block th:if="${item.itemStatus == 4}">
+			<p th:text="${#numbers.formatDecimal(item.textprice*0.4,0,'COMMA',0,'POINT')}+'円'"
+				style="text-align: center; font-size: 1.2em;"></p>
+		</th:block>
 
-	<th:block th:if="${item.itemStatus == 3}">
-		<p th:text="${#numbers.formatDecimal(item.textprice*0.5,0,'COMMA',0,'POINT')}+'円'"
-			style="text-align: center; font-size: 1.2em;"></p>
-	</th:block>
+		<!--商品状態表示-->
+		<th:block th:if="${item.itemStatus == 1}">
+			<p style="text-align: center; font-size: 1.2em;">商品状態: 新品</p>
+		</th:block>
 
-	<th:block th:if="${item.itemStatus == 4}">
-		<p th:text="${#numbers.formatDecimal(item.textprice*0.4,0,'COMMA',0,'POINT')}+'円'"
-			style="text-align: center; font-size: 1.2em;"></p>
-	</th:block>
-	
-	<!--商品状態表示-->
-	<th:block th:if="${item.itemStatus == 1}">
-		<p style="text-align: center; font-size: 1.2em;">商品状態: 新品</p>
-	</th:block>
+		<th:block th:if="${item.itemStatus == 2}">
+			<p style="text-align: center; font-size: 1.2em;">商品状態: 中古</p>
+		</th:block>
 
-	<th:block th:if="${item.itemStatus == 2}">
-		<p style="text-align: center; font-size: 1.2em;">商品状態: 中古</p>
-	</th:block>
+		<th:block th:if="${item.itemStatus == 3}">
+			<p style="text-align: center; font-size: 1.2em;">商品状態: 書き込みあり</p>
+		</th:block>
 
-	<th:block th:if="${item.itemStatus == 3}">
-		<p style="text-align: center; font-size: 1.2em;">商品状態: 書き込みあり</p>
-	</th:block>
+		<th:block th:if="${item.itemStatus == 4}">
+			<p style="text-align: center; font-size: 1.2em;">商品状態: 破損あり</p>
+		</th:block>
 
-	<th:block th:if="${item.itemStatus == 4}">
-		<p style="text-align: center; font-size: 1.2em;">商品状態: 破損あり</p>
-	</th:block>
-	
-	<!--出品者情報-->
-	<p style="font-size: 1.2em; padding-left: 40%;">出品者</p>
-	<a th:href="@{/user/{id}(id=${item.sellerId})}" style="font-size: 1.2em; padding-left: 40%;">[[${student.name}]]</a>
-	<form th:action="@{/buy/{id}(id=${item.id})}" th:if="${@account.id != item.sellerId}" method="post">
-		<button style="position: relative; left: 60%; bottom: 30px;">購入する</button>
-	</form>
-	<footer th:replace="footer"></footer>
+		<!--出品者情報-->
+		<p style="font-size: 1.2em; padding-left: 40%;">出品者</p>
+		<a th:href="@{/user/{id}(id=${item.sellerId})}"
+			style="font-size: 1.2em; padding-left: 40%;">[[${student.name}]]</a>
+		<form th:action="@{/buy/{id}(id=${item.id})}" th:if="${@account.id != item.sellerId}" method="post">
+			<button style="position: relative; left: 60%; bottom: 30px;">購入する</button>
+		</form>
+		<footer th:replace="footer"></footer>
 	</main>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"

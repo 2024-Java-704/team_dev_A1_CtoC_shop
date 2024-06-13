@@ -1,49 +1,49 @@
 <!DOCTYPE html>
-<html　xmlns:th="http://www.thymeleaf.org">
+<html　xmlns:th="http: //www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>商品一覧</title>
+	<meta charset="UTF-8">
+	<title>商品一覧</title>
 	<link rel="stylesheet" type="text/css" href="/css/home.css" />
 </head>
 
 <body>
 	<header th:replace="header"></header>
 	<main>
-	<form th:action="@{/textbook/{id}(id=${textbook.id})}" method="get">
-		<select name="sort">
-			<option value="1">新着順</option>
-			<option value="2">安い順</option>
-			<option value="3">高い順</option>
-		</select>
-		<button>並べ替え</button>
-	</form>
-	<div class="row">
+		<form th:action="@{/textbook/{id}(id=${textbook.id})}" method="get">
+			<select name="sort">
+				<option value="1">新着順</option>
+				<option value="2">安い順</option>
+				<option value="3">高い順</option>
+			</select>
+			<button>並べ替え</button>
+		</form>
+		<div class="row">
 
-		<th:block th:each="item:${itemList}">
-			<div class="col">
-				<a th:href="@{/item/{id}(id=${item.id})}">
-					<img class="num" th:src="'/img/'+${item.textimg}"
-						th:alt="'/img/'+${item.textimg}"></img>
-				</a>
-				<th:block th:if="${item.itemStatus == 1}">
-					<p id="" th:text="${#numbers.formatDecimal(item.textprice*1.0,0,'COMMA',0,'POINT')}+'円'" ></p>
-				</th:block>
-				
-				<th:block th:if="${item.itemStatus == 2}">
-					<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"></p>
-				</th:block>
-				
-				<th:block th:if="${item.itemStatus == 3}">
-					<p th:text="${#numbers.formatDecimal(item.textprice*0.5,0,'COMMA',0,'POINT')}+'円'"></p>
-				</th:block>
-				
-				<th:block th:if="${item.itemStatus == 4}">
-					<p th:text="${#numbers.formatDecimal(item.textprice*0.4,0,'COMMA',0,'POINT')}+'円'"></p>
-				</th:block>
-			</div>
-		</th:block>
-	</div>
-	<footer th:replace="footer"></footer>
+			<th:block th:each="item:${itemList}">
+				<div class="col">
+					<a th:href="@{/item/{id}(id=${item.id})}">
+						<img class="num" th:src="'/img/'+${item.textimg}" th:alt="'/img/'+${item.textimg}"></img>
+					</a>
+					<th:block th:if="${item.itemStatus == 1}">
+						<p id="" th:text="${#numbers.formatDecimal(item.textprice*1.0,0,'COMMA',0,'POINT')}+'円'"></p>
+					</th:block>
+
+					<th:block th:if="${item.itemStatus == 2}">
+						<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"></p>
+					</th:block>
+
+					<th:block th:if="${item.itemStatus == 3}">
+						<p th:text="${#numbers.formatDecimal(item.textprice*0.5,0,'COMMA',0,'POINT')}+'円'"></p>
+					</th:block>
+
+					<th:block th:if="${item.itemStatus == 4}">
+						<p th:text="${#numbers.formatDecimal(item.textprice*0.4,0,'COMMA',0,'POINT')}+'円'"></p>
+					</th:block>
+				</div>
+			</th:block>
+		</div>
+		<footer th:replace="footer"></footer>
 	</main>
 	<script>
 	</script>

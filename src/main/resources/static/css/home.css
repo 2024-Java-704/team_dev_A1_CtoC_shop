@@ -20,3 +20,28 @@ main{
 	padding-bottom: 80px;
 	box-sizing: border-box;
 }
+
+input[type="text"]{
+	width: 150px;/*横幅*/
+	padding: 5px;/*内側余白*/
+/*	margin-bottom: 30px;外側余白（下）*/
+	border: 1px solid #ccc;/*線の太さ、色*/
+	border-radius: 4px;/*角の丸み*/
+	margin: 5px;
+	
+}
+
+.searchbtn{
+	width: 50px;/*横幅*/
+	padding: 3px;/*内側余白*/
+	background-color: rgb(128, 128, 128);/*背景色*/
+	color: black;/*文字の色*/
+	border: none;
+	border-radius: 4px;/*角の丸み*/
+	cursor: pointer;
+}
+
+.searchbtn:hover{
+	background-color: rgb(162, 162, 162);
+	color: black;
+}

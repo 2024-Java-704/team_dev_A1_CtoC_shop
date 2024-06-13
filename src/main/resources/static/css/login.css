@@ -16,12 +16,20 @@ header {
 }
 
 /*入力フォーム*/
-input {
+input[type="text"] {
   width: 40%;/*横幅*/
   padding: 10px;/*内側余白*/
   margin-bottom: 30px;/*外側余白（下）*/
   border: 1px solid #ccc;/*線の太さ、色*/
   border-radius: 4px;/*角の丸み*/
+}
+
+input[type="password"]{
+	width: 40%;/*横幅*/
+	padding: 10px;/*内側余白*/
+	margin-bottom: 30px;/*外側余白（下）*/
+	border: 1px solid #ccc;/*線の太さ、色*/
+	border-radius: 4px;/*角の丸み*/
 }
 
 /*登録ボタン*/
