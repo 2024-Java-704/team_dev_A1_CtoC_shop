@@ -258,8 +258,6 @@ public class ItemController {
 			model.addAttribute("errorMsg", errorMsg);
 		}
 
-		Review review = new Review(id, null);
-		reviewRepository.save(review);
 		model.addAttribute("item", item);
 		model.addAttribute("textbook", textbook);
 		model.addAttribute("accountId", accountId);
