@@ -31,7 +31,7 @@
 
 		<!--価格表示-->
 		<th:block th:if="${item.itemStatus == 1}">
-			<p id="" th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
+			<p id="" th:text="${#numbers.formatDecimal(item.textprice*1.0,0,'COMMA',0,'POINT')}+'円'"
 				style="text-align: center; font-size: 1.2em;"></p>
 		</th:block>
 
@@ -41,12 +41,12 @@
 		</th:block>
 
 		<th:block th:if="${item.itemStatus == 3}">
-			<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
+			<p th:text="${#numbers.formatDecimal(item.textprice*0.6,0,'COMMA',0,'POINT')}+'円'"
 				style="text-align: center; font-size: 1.2em;"></p>
 		</th:block>
 
 		<th:block th:if="${item.itemStatus == 4}">
-			<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
+			<p th:text="${#numbers.formatDecimal(item.textprice*0.5,0,'COMMA',0,'POINT')}+'円'"
 				style="text-align: center; font-size: 1.2em;"></p>
 		</th:block>
 		<br>
