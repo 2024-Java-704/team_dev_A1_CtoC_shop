@@ -48,3 +48,19 @@ input[type="text"]{
 	background-color: rgb(162, 162, 162);
 	color: black;
 }
+
+.sortbtn{
+	width: 60px;/*横幅*/
+	padding: 3px;/*内側余白*/
+	margin: 5px;
+	background-color: rgb(128, 128, 128);/*背景色*/
+	color: black;/*文字の色*/
+	border: none;
+	border-radius: 4px;/*角の丸み*/
+	cursor: pointer;
+}
+
+.sortbtn:hover{
+	background-color: rgb(162, 162, 162);
+	color: black;
+}
