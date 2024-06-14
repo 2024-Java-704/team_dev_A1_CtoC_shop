@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -72,13 +73,13 @@ public class ItemController {
 		List<Textbook> bookList = null;
 		List<ItemImage> itemImages = new ArrayList<>();
 		List<Textbook> textbooks = new ArrayList<>();
-		
+
 		if (keyword.length() == 0 || keyword.equals(null)) {
 			bookList = textbookRepository.findAll();
 		} else {
 			bookList = textbookRepository.findByTitleContainingOrderByIdAsc(keyword);
 		}
-		
+
 		for (Textbook book : bookList) {
 			items = itemRepository.findByTextbookIdAndDealStatusOrderByTextbookIdDesc(book.getId(), 3);
 			if (items.size() > 0) {
@@ -93,7 +94,7 @@ public class ItemController {
 			textbook.setTextimg(itemImage.getImagePath());
 			textbooks.add(textbook);
 		}
-		
+
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("itemImages", itemImages);
 		model.addAttribute("textbooks", textbooks);
@@ -324,13 +325,13 @@ public class ItemController {
 			ItemImage itemImage = new ItemImage(item.getId(), image.getOriginalFilename());
 			itemImageRepository.save(itemImage);
 			Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
-			Files.copy(image.getInputStream(), dst);
+
+			if (Files.exists(dst)) {
+				System.out.println("同名ファイルがあります！");
+			}
+
+			Files.copy(image.getInputStream(), dst, StandardCopyOption.REPLACE_EXISTING);
 		}
 		return "redirect:/home";
-	}
-
-	@GetMapping("/test")
-	public String test() {
-		return "test";
 	}
 }
