@@ -113,6 +113,23 @@
 				</table>
 			</th:block>
 		</tablemarge>
+
+		<table class="table" border="1" id="table5">
+			<tr>
+				<th></th>
+				<th>月</th>
+				<th>火</th>
+				<th>水</th>
+				<th>木</th>
+				<th>金</th>
+				<th>土</th>
+			</tr>
+			<tr>
+				<th>1</th>
+				<td th:if="${class11 != null}"><div th:href="@{/account/viewTimetable?timetableId=={id}(id=${class11.id})}" th:text="${class11.name}" ></div></td>
+				<td th:if="${class11 == null}"><div href="/account/addTimetable?day=1&period=1" ></div></td>
+			</tr>
+		</table>
 		<br>
 		<br>
 		<br>
