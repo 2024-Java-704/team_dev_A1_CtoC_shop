@@ -50,7 +50,4 @@ public class History {
 	public Integer getUserId() {
 		return userId;
 	}
-	
-	
-	
 }
