@@ -107,8 +107,6 @@ public class ItemController {
 			@RequestParam(name = "sort", defaultValue = "1") Integer sort,
 			Model model) {
 		List<Item> itemList = null;
-		//List<Textbook> bookList =null;
-		//List<ItemImage> itemImages = new ArrayList<>();
 		List<Textbook> textbooks = new ArrayList<>();
 		if (sort == 1) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id, 3);
@@ -159,8 +157,6 @@ public class ItemController {
 		model.addAttribute("textbook", textbook);
 		model.addAttribute("sort", sort);
 		model.addAttribute("itemList", itemList);
-		//model.addAttribute("itemImage", itemImages);
-		//model.addAttribute("textbook", textbooks);
 		return "textbook";
 	}
 

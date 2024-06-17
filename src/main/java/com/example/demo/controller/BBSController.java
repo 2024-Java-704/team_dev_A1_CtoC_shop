@@ -50,10 +50,6 @@ public class BBSController {
 		List<Textbook> textbookList = textbookRepository.findAll();
 		model.addAttribute("title", textbookList);
 
-		//		List<Item> itemList = itemRepository.findAll();
-		//		model.addAttribute("item_status", itemList);
-		//		List<Request> RequestsList = requestRepository.findAll();
-
 		return "addRequest";
 	}
 
@@ -66,16 +62,6 @@ public class BBSController {
 		requestRepository.save(request);
 		return "redirect:/bbs";
 	}
-
-	//	//募集追加の処理
-	//		@PostMapping("/bbs/addRequest")
-	//		public String sendRequest(
-	//				@RequestParam(name = "id", defaultValue = "") Integer id,
-	//				@RequestParam(name = "itemStatus", defaultValue = "") Integer itemStatus) {
-	//			Request request = new Request(id, itemStatus);
-	//			requestRepository.save(request);
-	//			return "redirect:/bbs";
-	//		}
 
 	//募集の削除処理
 	@PostMapping("/bbs/{id}/delete")

@@ -128,27 +128,6 @@ public class AccountController {
 		Integer countbuyList = buyList.size();
 		Integer countsellList = sellList.size();
 
-		//		//要素を引っ張り出してリスト化するだけですむようにします
-		//		List<String>textname=new ArrayList<>();
-		//		List<String>imgpath=new ArrayList<>();
-		//		//buyListの数だけ繰り返す拡張for文
-		//		for(Item buy:buyList) {
-		//			//すべてのtextbookからIdが一致するものを検索し、結果のタイトルをストリングのリストに入れる
-		//			for(Textbook text:textbookList) {
-		//				if(text.getId()==buy.getTextbookId()) {
-		//					textname.add(text.getTitle());
-		//				}
-		//			}
-		//			//すべてのItemImageからIdが一致するものを検索し、結果のimgpathをストリングのリストに入れる
-		//			for(ItemImage img:imgList) {
-		//				if(img.getItemId()==buy.getId()) {
-		//					imgpath.add(img.getImagePath());
-		//				}
-		//			}
-		//		}
-		//		model.addAttribute("textnameList",textname);
-		//		model.addAttribute("imgpathList",imgpath);
-
 		model.addAttribute("textbookList", textbookList);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("imgList2", imgList2);

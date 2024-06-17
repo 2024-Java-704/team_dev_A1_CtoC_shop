@@ -22,11 +22,13 @@
 		<br>
 
 		<div id="header">
-			<a href="/home" class="menu">商品一覧</a><a href="/item/add" th:if="!${@account.userStatus == 1}"
-				class="menu">出品申請</a><a href="/account" th:if="!${@account.userStatus == 1}" class="menu">マイページ</a><a
-				href="/bbs" class="menu">掲示板</a><a href="/Notice" th:if="!${@account.userStatus == 1}" class="menu"
-				style="text-decoration:none;"><span style="text-decoration: underline;">通知</span><span
-					th:if="!${@account.noticeCount == 0}" style="color: red;">!</span></a>
+			<a href="/home" class="menu">商品一覧</a>
+			<a href="/item/add" th:if="!${@account.userStatus == 1}"class="menu">出品申請</a>
+			<a href="/account" th:if="!${@account.userStatus == 1}" class="menu">マイページ</a>
+			<a href="/bbs" class="menu">掲示板</a>
+			<a href="/Notice" th:if="!${@account.userStatus == 1}" class="menu" style="text-decoration:none;">
+				<span style="text-decoration: underline;">通知</span>
+				<span th:if="!${@account.noticeCount == 0}" style="color: red;">!</span></a>
 		</div>
 
 		<!-- モーダルウィンドウ -->
