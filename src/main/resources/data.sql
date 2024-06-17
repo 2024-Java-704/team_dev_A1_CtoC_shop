@@ -8,7 +8,7 @@
  	('大学生の理科', '中島五郎', 2200, '宗英社');
  	 
  	-- users テーブルにデータを挿入するクエリ
- 	INSERT INTO users (student_number, password, user_status, introduce)
+ 	INSERT INTO users (personal_number, password, user_status, introduce)
  	VALUES
  	('00000000', 'himitudesuyo', 1, 'ここに表示されている商品は未出品・未購入のものです'),
  	('11620111', 'himitudesuyo', 2, 'はじめまして、よろしくお願いします。'),
@@ -98,7 +98,7 @@
  	(3, 4, 4);
  	
  	-- students テーブルにデータを挿入するクエリ
- 	INSERT INTO students (name, student_number, birthday, address, number, faculty, department)
+ 	INSERT INTO students (name, personal_number, birthday, address, number, faculty, department)
  	VALUES
  	('管理者(1)','00000000','2000-1-1','東京都中央区','0120500500','講師','天文学'),
  	('三井悠太郎', '11620111', '2000-9-3', '神奈川県横浜市', '08012345678', '文学部', '史学科'),

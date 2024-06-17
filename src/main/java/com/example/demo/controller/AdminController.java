@@ -138,7 +138,7 @@ public class AdminController {
 		if (number.equals(""))
 			users = userRepository.findByUserStatus(2);
 		else {
-			users = userRepository.findByStudentNumberContainingAndUserStatus(number, 2);
+			users = userRepository.findByPersonalNumberContainingAndUserStatus(number, 2);
 			model.addAttribute("number", number);
 		}
 

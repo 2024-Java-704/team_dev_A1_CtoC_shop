@@ -175,7 +175,7 @@ public class ItemController {
 		item.setTextprice(textbook.getPrice());
 
 		User user = userRepository.findById(item.getSellerId()).get();
-		Student student = studentRepository.findOneByStudentNumber(user.getStudentNumber());
+		Student student = studentRepository.findOneByPersonalNumber(user.getPersonalNumber());
 
 		itemImages = itemImageRepository.findByItemId(id);
 		model.addAttribute("textbook", textbook);
@@ -216,7 +216,7 @@ public class ItemController {
 				}
 			}
 
-		model.addAttribute("student", studentRepository.findOneByStudentNumber(user.getStudentNumber()));
+		model.addAttribute("student", studentRepository.findOneByPersonalNumber(user.getPersonalNumber()));
 		model.addAttribute("user", user);
 		model.addAttribute("textbooks", textbooks);
 		if (sellItemList.size() > 0)
@@ -251,7 +251,7 @@ public class ItemController {
 		item.setTextprice(textbook.getPrice());
 		User userSeller = userRepository.findById(item.getSellerId()).get();
 		User userBuyer = userRepository.findById(item.getBuyerId()).get();
-		Student student = studentRepository.findOneByStudentNumber(userBuyer.getStudentNumber());
+		Student student = studentRepository.findOneByPersonalNumber(userBuyer.getPersonalNumber());
 		itemImage.addAll(itemImageRepository.findByItemId(id));
 		Integer accountId = account.getId();
 
