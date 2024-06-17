@@ -14,13 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.Claim;
 import com.example.demo.entity.Item;
 import com.example.demo.entity.ItemImage;
+import com.example.demo.entity.Lesson;
+import com.example.demo.entity.LessonTextbook;
 import com.example.demo.entity.Notice;
 import com.example.demo.entity.Request;
 import com.example.demo.entity.Textbook;
 import com.example.demo.entity.User;
+import com.example.demo.model.Account;
 import com.example.demo.repository.ClaimRepository;
 import com.example.demo.repository.ItemImageRepository;
 import com.example.demo.repository.ItemRepository;
+import com.example.demo.repository.LessonRepository;
+import com.example.demo.repository.LessonTextbookRepository;
 import com.example.demo.repository.NoticeRepository;
 import com.example.demo.repository.RequestRepository;
 import com.example.demo.repository.StudentRepository;
@@ -29,6 +34,9 @@ import com.example.demo.repository.UserRepository;
 
 @Controller
 public class AdminController {
+
+	@Autowired
+	Account account;
 
 	@Autowired
 	TextbookRepository textbookRepository;
@@ -50,9 +58,15 @@ public class AdminController {
 
 	@Autowired
 	RequestRepository requestRepository;
-	
+
 	@Autowired
 	StudentRepository studentRepository;
+
+	@Autowired
+	LessonRepository lessonRepository;
+
+	@Autowired
+	LessonTextbookRepository lessonTextbookRepository;
 
 	//管理者画面を表示
 	@GetMapping("/admin")
@@ -102,12 +116,12 @@ public class AdminController {
 		if (status == 3) {
 			noticeRepository.save(new Notice(item.getSellerId(),
 					"「" + textbookRepository.findOneById(item.getTextbookId()).getTitle() + "」の出品申請が承認されました!"));
-			List<Request> requests = requestRepository.findAll();
+			List<Request> requests = requestRepository.findByTextbookId(item.getTextbookId());
 			for (Request request : requests) {
-				if (request.getTextbookId() == item.getTextbookId()
-						&& (request.getItemStatus() == 5 || request.getItemStatus() == item.getItemStatus()))
+				if (request.getItemStatus() == 5 || request.getItemStatus() == item.getItemStatus()) {
 					noticeRepository.save(new Notice(request.getUserId(),
 							"「" + textbookRepository.findOneById(item.getTextbookId()).getTitle() + "」が出品されました!"));
+				}
 			}
 		}
 
@@ -122,18 +136,17 @@ public class AdminController {
 		List<User> users;
 
 		if (number.equals(""))
-			users = userRepository.findAll();
+			users = userRepository.findByUserStatus(2);
 		else {
-			users = userRepository.findByStudentNumberContaining(number);
+			users = userRepository.findByStudentNumberContainingAndUserStatus(number, 2);
 			model.addAttribute("number", number);
 		}
-		
+
 		users.remove(userRepository.findOneById(1));
-		
+
 		if (users.size() > 0)
 			model.addAttribute("users", users);
-		
-		
+
 		model.addAttribute("students", studentRepository.findAll());
 
 		return "admin/user";
@@ -210,6 +223,45 @@ public class AdminController {
 		textbookRepository.save(textbook);
 
 		return "redirect:/admin/addTextbook";
+	}
+
+	//新規授業追加画面を表示
+	@GetMapping("/admin/addLesson")
+	public String addLesson(Model model) {
+
+		model.addAttribute("textbooks", textbookRepository.findAll());
+
+		return "admin/addLesson";
+	}
+
+	//新規授業追加処理
+	@PostMapping("/admin/addLesson")
+	public String sendLesson(
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "day", defaultValue = "") Integer day,
+			@RequestParam(name = "period", defaultValue = "") Integer period,
+			@RequestParam(name = "textbooks", defaultValue = "") Integer[] textbooks,
+			Model model) {
+
+		if (name.equals("")) {
+			model.addAttribute("name", name);
+			model.addAttribute("day", day);
+			model.addAttribute("period", period);
+			model.addAttribute("textbooks", textbooks);
+
+			model.addAttribute("msg", "授業名が入力されていません");
+
+			return "admin/addLesson";
+		}
+		Lesson lesson = new Lesson(name, day, period, account.getId());
+		lessonRepository.save(lesson);
+
+		for (Integer textbookId : textbooks) {
+			LessonTextbook lessonTextbook = new LessonTextbook(lesson.getId(), textbookId);
+			lessonTextbookRepository.save(lessonTextbook);
+		}
+
+		return "redirect:/admin";
 	}
 
 }

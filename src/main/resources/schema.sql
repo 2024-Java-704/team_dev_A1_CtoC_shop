@@ -11,7 +11,7 @@
  	DROP TABLE IF EXISTS teachers;
  	DROP TABLE IF EXISTS lessons;
  	DROP TABLE IF EXISTS lesson_textbooks;
- 	DROP TABLE IF EXISTS timetablese;
+ 	DROP TABLE IF EXISTS timetables;
  	DROP TABLE IF EXISTS histories;
  	 
  	-- textbooks テーブルを作成するクエリ

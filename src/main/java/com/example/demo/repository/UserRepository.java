@@ -16,4 +16,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	List<User> findByStudentNumberContaining(String number);	//指定の文字を含む学籍番号を持つユーザー情報をすべて取得
 
+	List<User> findByUserStatus(Integer userStatus);
+
+	List<User> findByStudentNumberContainingAndUserStatus(String number, Integer userStatus);
+
 }
