@@ -8,6 +8,11 @@
  	DROP TABLE IF EXISTS notices;
  	DROP TABLE IF EXISTS requests;
  	DROP TABLE IF EXISTS students;
+ 	DROP TABLE IF EXISTS teachers;
+ 	DROP TABLE IF EXISTS lessons;
+ 	DROP TABLE IF EXISTS lesson_textbooks;
+ 	DROP TABLE IF EXISTS timetablese;
+ 	DROP TABLE IF EXISTS histories;
  	 
  	-- textbooks テーブルを作成するクエリ
  	CREATE TABLE textbooks (
@@ -85,4 +90,48 @@
  	faculty TEXT,
  	department TEXT
  	);
+ 	
+ 	-- teachers テーブルを作成するクエリ
+ 	CREATE TABLE teachers (
+ 	id SERIAL PRIMARY KEY,
+ 	name TEXT,
+ 	teacher_number TEXT,
+ 	birthday DATE,
+ 	address TEXT,
+ 	number TEXT,
+ 	faculty TEXT,
+ 	department TEXT
+ 	);
+ 	
+ 	-- lessons テーブルを作成するクエリ
+ 	CREATE TABLE lessons (
+ 	id SERIAL PRIMARY KEY,
+ 	name TEXT,
+ 	day INTEGER,
+ 	period INTEGER,
+ 	teacher_id INTEGER
+ 	);
+ 	
+ 	-- lesson_textbooks テーブルを作成するクエリ
+ 	CREATE TABLE lesson_textbooks (
+ 	id SERIAL PRIMARY KEY,
+ 	lesson_id INTEGER,
+ 	textbook_id INTEGER
+ 	);
+ 	
+ 	--timetables テーブルを作成するクエリ
+ 	CREATE TABLE timetables (
+ 	id SERIAL PRIMARY KEY,
+ 	lesson_id INTEGER,
+ 	user_id INTEGER
+ 	);
+ 	
+ 	--histories テーブルを作成するクエリ
+ 	CREATE TABLE histories (
+ 	id SERIAL PRIMARY KEY,
+ 	textbook_id INTEGER,
+ 	user_id INTEGER,
+ 	status INTEGER
+ 	);
+ 	
 
