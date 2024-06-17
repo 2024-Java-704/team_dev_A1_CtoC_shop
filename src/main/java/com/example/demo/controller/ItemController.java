@@ -325,7 +325,9 @@ public class ItemController {
 			ItemImage itemImage = new ItemImage(item.getId(), image.getOriginalFilename());
 			itemImageRepository.save(itemImage);
 			Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
-
+			
+			System.out.println(image.getContentType());
+			
 			if (Files.exists(dst)) {
 				System.out.println("同名ファイルがあります！");
 			}
