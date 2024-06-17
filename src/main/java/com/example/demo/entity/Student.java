@@ -17,7 +17,7 @@ public class Student {
 
 	private String name;
 	
-	private String studentNumber;
+	private String personalNumber;
 
 	private LocalDate birthday;
 
@@ -36,8 +36,8 @@ public class Student {
 		return name;
 	}
 
-	public String getStudentNumber() {
-		return studentNumber;
+	public String getPersonalNumber() {
+		return personalNumber;
 	}
 
 	public LocalDate getBirthday() {

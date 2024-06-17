@@ -26,6 +26,7 @@ public class Notice {
 	public Notice(Integer userId, String message) {
 		this.userId = userId;
 		this.message = message;
+		this.noticeStatus = 1;
 	}
 
 	public Integer getId() {

@@ -52,7 +52,7 @@ public class AccountController {
 	//ログイン処理
 	@PostMapping("/")
 	public String login(
-			@RequestParam(name = "studentNumber", defaultValue = "") String studentNumber,
+			@RequestParam(name = "personalNumber", defaultValue = "") String personalNumber,
 			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
 
@@ -60,10 +60,10 @@ public class AccountController {
 
 		List<String> errorList = new ArrayList<>();
 
-		List<User> userList = userRepository.findByStudentNumberAndPassword(studentNumber, password);
+		List<User> userList = userRepository.findByPersonalNumberAndPassword(personalNumber, password);
 
 		//学籍番号未入力時のエラー
-		if (studentNumber.length() == 0) {
+		if (personalNumber.length() == 0) {
 			errorList.add("学籍番号は必須です");
 
 		}
@@ -79,7 +79,7 @@ public class AccountController {
 		//エラーメッセージの出力
 		if (errorList.size() > 0) {
 			model.addAttribute("errorList", errorList);
-			model.addAttribute("studentNumber", studentNumber);
+			model.addAttribute("personalNumber", personalNumber);
 			model.addAttribute("password", password);
 			return "login";
 		}
@@ -218,7 +218,7 @@ public class AccountController {
 		//idでuserを検索
 		User user = userRepository.findById(account.getId()).get();
 		//検索したユーザーの学籍番号を送信
-		model.addAttribute("studentNumber", user.getStudentNumber());
+		model.addAttribute("personalNumber", user.getPersonalNumber());
 		//検索したユーザーの自己紹介メッセージを送信
 		model.addAttribute("introduce", user.getIntroduce());
 		//自己紹介更新ページを開く
