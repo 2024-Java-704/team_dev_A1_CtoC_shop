@@ -90,7 +90,7 @@ textarea{
 	width: 80%;
 	height: 200px;
 }
-img{
+.textimg{
 	 object-fit: cover;
   height: 200px;
   width: 155px;

@@ -6,6 +6,7 @@
 	<title>マイページ</title>
 	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">
 	<link rel="stylesheet" type="text/css" href="/css/mypage.css">
+
 </head>
 
 <body>
@@ -53,7 +54,7 @@
 							</textloop>
 							<imageloop th:each="img:${imgList}">
 								<td th:if="${img.itemId == buyItem.id}">
-									<img th:src="'/img/' + ${img.imagePath}" th:alt="'/img/'+${img.imagePath}" />
+									<img class="textimg" th:src="'/img/' + ${img.imagePath}" th:alt="'/img/'+${img.imagePath}" />
 								</td>
 							</imageloop>
 							<td th:if="${buyItem.buyerId == @account.id && buyItem.dealStatus == 4}">
@@ -91,7 +92,7 @@
 							</textloop>
 							<imageloop th:each="img2:${imgList2}">
 								<td th:if="${img2.itemId == sellItem.id}">
-									<img th:src="'/img/' + ${img2.imagePath}" th:alt="'/img/'+${img2.imagePath}" />
+									<img class="textimg" th:src="'/img/' + ${img2.imagePath}" th:alt="'/img/'+${img2.imagePath}" />
 								</td>
 							</imageloop>
 							<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 4}">
