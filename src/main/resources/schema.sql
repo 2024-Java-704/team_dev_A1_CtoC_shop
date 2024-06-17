@@ -11,7 +11,7 @@
  	DROP TABLE IF EXISTS teachers;
  	DROP TABLE IF EXISTS lessons;
  	DROP TABLE IF EXISTS lesson_textbooks;
- 	DROP TABLE IF EXISTS timetablese;
+ 	DROP TABLE IF EXISTS timetables;
  	DROP TABLE IF EXISTS histories;
  	 
  	-- textbooks テーブルを作成するクエリ
@@ -26,7 +26,7 @@
  	-- users テーブルを作成するクエリ
  	CREATE TABLE users (
  	id SERIAL PRIMARY KEY,
- 	student_number TEXT,
+ 	personal_number TEXT,
  	password TEXT,
  	user_status INTEGER,
  	introduce TEXT
@@ -83,7 +83,7 @@
  	CREATE TABLE students (
  	id SERIAL PRIMARY KEY,
  	name TEXT,
- 	student_number TEXT,
+ 	personal_number TEXT,
  	birthday DATE,
  	address TEXT,
  	number TEXT,
@@ -95,7 +95,7 @@
  	CREATE TABLE teachers (
  	id SERIAL PRIMARY KEY,
  	name TEXT,
- 	teacher_number TEXT,
+ 	personal_number TEXT,
  	birthday DATE,
  	address TEXT,
  	number TEXT,
