@@ -81,10 +81,10 @@ public class TimetableController {
 	//授業詳細画面の表示
 	@GetMapping("/account/viewTimatabel")
 	public String viewTimatabel(
-			@RequestParam(name = "timetableId") Integer timetableId,
+			@RequestParam(name = "lessonId") Integer lessonId,
 			Model model) {
 
-		Timetable timetable = timetableRepository.findOneById(timetableId);
+		Timetable timetable = timetableRepository.findOneByLessonIdAndUserId(lessonId, account.getId());
 
 		Lesson lesson = lessonRepository.findOneById(timetable.getLessonId());
 

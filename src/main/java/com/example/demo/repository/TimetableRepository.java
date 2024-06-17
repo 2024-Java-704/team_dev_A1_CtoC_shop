@@ -11,4 +11,6 @@ public interface TimetableRepository extends JpaRepository<Timetable, Integer> {
 	Timetable findOneById(Integer id);
 	
 	List<Timetable> findByUserId(Integer UserId);
+
+	Timetable findOneByLessonIdAndUserId(Integer lessonId, Integer userId);
 }
