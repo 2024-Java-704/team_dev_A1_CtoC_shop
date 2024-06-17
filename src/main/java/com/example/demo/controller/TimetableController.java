@@ -285,6 +285,8 @@ public class TimetableController {
 			@PathVariable("id") Integer historyId,
 			@RequestParam("timetableId") Integer timetableId) {
 		History history = historyRepository.findOneById(historyId);
+		
+		Timetable timetable = timetableRepository.findOneById(timetableId);
 
 		if (history.getStatus() == 1) {
 			history.setStatus(2);
@@ -294,7 +296,7 @@ public class TimetableController {
 
 		historyRepository.save(history);
 
-		return "redirect:/account/viewTimatabel?timetableId=" + timetableId;
+		return "redirect:/account/viewTimatabel?lessonId=" + timetable.getLessonId();
 	}
 
 }
