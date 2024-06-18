@@ -113,3 +113,22 @@ textarea{
 #table5 a:hover{
 	background-color: darkgrey;
 }
+.changebtn{
+	color:#003775;
+	font-weight: bold;
+  	background: #6C9BD2;
+
+  cursor: pointer;
+}
+.changebtn:hover{
+	background-color: #003775;
+	color: white;
+	cursor: pointer;
+}
+
+main a {
+	width: 120px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

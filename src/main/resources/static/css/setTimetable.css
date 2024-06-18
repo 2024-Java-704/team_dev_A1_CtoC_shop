@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+#viewtimetable {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+main {
+	text-align: center;
+}
+
+.tabletitle {
+	background-color: #003775;
+	color: white;
+	font-size: 25px;
+}
+
+.tabledata {
+	width: fit-content;
+	height: fit-content;
+	font-size: 20px;
+	min-width: 200px;
+}
+
+.btn {
+	color: #003775;
+	font-size: 20px;
+	font-weight: bold;
+	background: #6C9BD2;
+	padding: 5px 30px;
+	border-radius: 6px;
+	transition: .3s;
+	cursor: pointer;
+	margin: 5px;
+	margin-top: 20px;
+}
+
+.btn:hover {
+	background-color: #003775;
+	color: white;
+	cursor: pointer;
+}
+
+#option {
+	width: fit-content;
+	height: fit-content;
+	font-size: 20px;
+	min-width: 200px;
+}

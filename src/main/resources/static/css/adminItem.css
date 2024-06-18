@@ -71,6 +71,11 @@
 .slick-dots .slick-active button{
     background:#333;/*ドットボタンの現在地表示の色*/
 }
+body {
+	background-color: azure;
+	text-align: center;
+	min-width: 900px;
+}
 
 main{
 	min-height: 85vh;
@@ -144,6 +149,7 @@ main button:hover {
 
 
 table {
+	background-color: white;
 	margin: auto;
 	white-space: pre-line;
 	font-size: 20px;
