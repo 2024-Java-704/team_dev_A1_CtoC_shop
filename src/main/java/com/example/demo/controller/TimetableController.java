@@ -45,7 +45,7 @@ public class TimetableController {
 	TimetableRepository timetableRepository;
 
 	//時間割追加画面の表示
-	@GetMapping("/account/addTimetabel")
+	@GetMapping("/account/addTimetable")
 	public String addTimatabel(
 			@RequestParam(name = "day") Integer day,
 			@RequestParam(name = "period") Integer period,
@@ -65,7 +65,7 @@ public class TimetableController {
 	}
 
 	//時間割追加処理
-	@PostMapping("/account/addTimetabel")
+	@PostMapping("/account/addTimetable")
 	public String sendTimatabel(@RequestParam(name = "lessonId", defaultValue = "") Integer lessonId) {
 
 		Timetable timetable = new Timetable(lessonId, account.getId());
@@ -85,7 +85,7 @@ public class TimetableController {
 	}
 
 	//授業詳細画面の表示
-	@GetMapping("/account/viewTimetabel")
+	@GetMapping("/account/viewTimetable")
 	public String viewTimatabel(
 			@RequestParam(name = "lessonId") Integer lessonId,
 			Model model) {
