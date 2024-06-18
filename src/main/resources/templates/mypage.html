@@ -134,7 +134,7 @@
 						th:text="${class22.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
-						<input type="hidden" name="lessonId" th:value="${class2.id}">
+						<input type="hidden" name="lessonId" th:value="${class22.id}">
 						<button>変更</button>
 					</form>
 				</td>
@@ -456,11 +456,11 @@
 				<td th:if="${class66 != null}">
 					<a class="tts" th:href="@{/account/viewTimetable?lesoonId=={id}(id=${class66.id})}"
 						th:text="${class66.name}">
+					</a>
 					<form action="/account/setTimetable" method="get">
 						<input type="hidden" name="lessonId" th:value="${class66.id}">
 						<button>変更</button>
 					</form>
-					</a>
 				</td>
 				<td th:if="${class66 == null}"><a href="/account/addTimetable?day=6&period=6">授業登録</a></td>
 			</tr>
