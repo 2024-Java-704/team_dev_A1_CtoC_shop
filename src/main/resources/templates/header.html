@@ -26,7 +26,7 @@
 				class="menu">出品申請</a><a href="/account" th:if="!${@account.userStatus == 1}" class="menu">マイページ</a><a
 				href="/bbs" class="menu">掲示板</a><a href="/Notice" th:if="!${@account.userStatus == 1}" class="menu"
 				style="text-decoration:none;"><span style="text-decoration: underline;"><image src="/img/Bell.png" id="bell"></image></span><span
-					th:if="!${@account.noticeCount == 0}" style="color: red;">!</span></a>
+					th:if="!${@account.noticeCount == 0}" th:text="${@account.noticeCount}" style="color: red;" class="alartcount"></span></a>
 		</div>
 
 		<!-- モーダルウィンドウ -->

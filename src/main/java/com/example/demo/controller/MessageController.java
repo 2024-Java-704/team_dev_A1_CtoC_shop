@@ -52,8 +52,9 @@ public class MessageController {
 			model.addAttribute("message", message);
 			return "contactForm";
 		}
-		
+		//Claimオブジェクトの生成
 		Claim claim = new Claim(message);
+		//claimsテーブルへの反映
 		claimRepository.save(claim);
 
 		return "home";
@@ -62,9 +63,13 @@ public class MessageController {
 	// 通知画面の表示
 	@GetMapping("/Notice")
 	public String Notice(Model model) {
+		//ログインしているユーザーの情報を取得
 		List<Notice> noticeList = noticeRepository.findByUserId(account.getId());
+		//通知を一つずつ処理
 		for (Notice notice : noticeList) {
+			//通知を既読状態にする
 			notice.setNoticeStatus(2);
+			//noticesテーブルへの反映
 			noticeRepository.save(notice);
 		}
 		

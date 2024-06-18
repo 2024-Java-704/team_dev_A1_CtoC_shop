@@ -35,10 +35,13 @@ public class BBSController {
 	//募集一覧画面を表示
 	@GetMapping("/bbs")
 	public String index(Model model) {
+		//教科書の一覧を取得
 		List<Textbook> textbookList = textbookRepository.findAll();
 		model.addAttribute("titles", textbookList);
+		//募集されている教科書の一覧を取得
 		List<Request> requestList = requestRepository.findAll();
 		model.addAttribute("requests", requestList);
+		
 		return "bbsTable";
 	}
 
@@ -47,6 +50,7 @@ public class BBSController {
 	public String addRequest(
 			@RequestParam(name = "title", defaultValue = "") String title,
 			Model model) {
+		//教科書の一覧を取得
 		List<Textbook> textbookList = textbookRepository.findAll();
 		model.addAttribute("title", textbookList);
 
@@ -58,7 +62,9 @@ public class BBSController {
 	public String sendRequest(
 			@RequestParam(name = "title", defaultValue = "") Integer id,
 			@RequestParam(name = "item_status", defaultValue = "") Integer item_status) {
+		//Requestオブジェクトの生成
 		Request request = new Request(account.getId(), id, item_status);
+		//requestsテーブルへの反映
 		requestRepository.save(request);
 		return "redirect:/bbs";
 	}
