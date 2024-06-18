@@ -4,33 +4,30 @@
 <head>
 	<meta charset="UTF-8">
 	<title>時間割追加</title>
-	<link rel="stylesheet" type="text/css" href="/css/addTimetable.css">
 </head>
 
 <body>
 	<header th:replace="header"></header>
 	<main>
 		<h1>時間割追加</h1>
-		<br id="space">
 		<th:block th:if="${lessonCount > 0}">
 			<form action="/account/addTimetable" method="post">
-				<table border="1" class="timeTable">
+				<table border="1">
 					<tr>
-						<th id="tabletitle">授業名</th>
-						<td><select id="option" name="lessonId">
-								<option  th:each="lesson:${lessons}" th:value="${lesson.id}">[[${lesson.name}]]</option>
+						<th>授業名</th>
+						<td><select name="lessonId">
+								<option th:each="lesson:${lessons}" th:value="${lesson.id}">[[${lesson.name}]]</option>
 							</select></td>
 					</tr>
 				</table>
-				<br>
-				<button class="btn">登録</button>
+				<button>登録</button>
 			</form>
 		</th:block>
 		<th:block th:if="${lessonCount == 0}">
 			<br>
 			<h3>該当の時間の授業はありません</h3>
 			<br>
-			<button onclick="location.href='/account'" class="btn">戻る</button>
+			<button onclick="location.href='/account'">戻る</button>
 		</th:block>
 		<footer th:replace="footer"></footer>
 	</main>

@@ -32,3 +32,6 @@ main{
 	color: white;
 	cursor: pointer;
 }
+table{
+	margin: 0 auto;
+}
