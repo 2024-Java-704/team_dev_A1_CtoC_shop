@@ -14,7 +14,7 @@
 		<form action="/admin/user" method="get" class="searchForm">
 			<table border="1">
 				<tr>
-					<th>個人番号</th>
+					<th>学籍番号</th>
 					<td><input type="text" name="number" th:value="${number}"></td>
 					<td style="border: none;"><button class="searchButton, list">検索</button></td>
 				</tr>
@@ -23,7 +23,7 @@
 		<br>
 		<table th:if="${users}" border="1">
 			<tr>
-				<th>個人番号</th>
+				<th>学籍番号</th>
 				<th>名前</th>
 				<th>削除</th>
 			</tr>
