@@ -65,6 +65,10 @@ header h1 {
 	text-align: right;
 	margin: 0;
 }
+#logout:hover{
+	text-decoration: none;
+	color:lightcyan;
+}
 
 .sitetitle{
 	width: 100%;
@@ -74,6 +78,14 @@ header h1 {
 .menu {
 	margin-right: 5px;
 	margin-left: 5px;
+	text-decoration: none;
+}
+.menu:hover{
+	text-decoration:underline;
+	color: lightcyan;
+}
+#bell:hover{
+	filter: brightness(200%) saturate(50%);
 }
 
 /* モーダルウィンドウのスタイル */
@@ -211,4 +223,8 @@ footer {
 	width: 100%;
 	font-size:15pt;
 	font-weight:bold;
+}
+
+.claimjump:hover{
+	color: lightcyan;
 }
