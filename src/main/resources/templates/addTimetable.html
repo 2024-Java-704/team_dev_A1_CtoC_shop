@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>時間割追加</title>
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<main>
+		<h1>時間割追加</h1>
+		<th:block th:if="${lessonCount > 0}">
+			<form action="/account/addTimetable" method="post">
+				<table border="1">
+					<tr>
+						<th>授業名</th>
+						<td><select name="lessonId">
+								<option th:each="lesson:${lessons}" th:value="${lesson.id}">[[${lesson.name}]]</option>
+							</select></td>
+					</tr>
+					<button>登録</button>
+			</form>
+		</th:block>
+		<th:block th:if="${lessonCount == 0}">
+			<br>
+			<h3>該当の時間の授業はありません</h3>
+			<br>
+			<button onclick="location.href='/account'">戻る</button>
+		</th:block>
+		<footer th:replace="footer"></footer>
+	</main>
+</body>
+
+</html>

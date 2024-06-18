@@ -45,7 +45,7 @@ public class TimetableController {
 	TimetableRepository timetableRepository;
 
 	//時間割追加画面の表示
-	@GetMapping("/account/addTimatabel")
+	@GetMapping("/account/addTimetabel")
 	public String addTimatabel(
 			@RequestParam(name = "day") Integer day,
 			@RequestParam(name = "period") Integer period,
@@ -53,13 +53,19 @@ public class TimetableController {
 
 		List<Lesson> lessons = lessonRepository.findByDayAndPeriod(day, period);
 
-		model.addAttribute("lessons", lessons);
-
+		if (lessons.size() > 0) {
+			model.addAttribute("lessons", lessons);
+			model.addAttribute("lessonCount", lessons.size());
+		}
+		else
+			model.addAttribute("lessonCount", 0);
+		
+		
 		return "addTimetable";
 	}
 
 	//時間割追加処理
-	@PostMapping("/account/addTimatabel")
+	@PostMapping("/account/addTimetabel")
 	public String sendTimatabel(@RequestParam(name = "lessonId", defaultValue = "") Integer lessonId) {
 
 		Timetable timetable = new Timetable(lessonId, account.getId());
@@ -79,7 +85,7 @@ public class TimetableController {
 	}
 
 	//授業詳細画面の表示
-	@GetMapping("/account/viewTimatabel")
+	@GetMapping("/account/viewTimetabel")
 	public String viewTimatabel(
 			@RequestParam(name = "lessonId") Integer lessonId,
 			Model model) {
@@ -285,7 +291,7 @@ public class TimetableController {
 			@PathVariable("id") Integer historyId,
 			@RequestParam("timetableId") Integer timetableId) {
 		History history = historyRepository.findOneById(historyId);
-		
+
 		Timetable timetable = timetableRepository.findOneById(timetableId);
 
 		if (history.getStatus() == 1) {
