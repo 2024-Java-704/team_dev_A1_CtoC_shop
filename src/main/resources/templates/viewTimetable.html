@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>授業詳細</title>
+	<link rel="stylesheet" type="text/css" href="/css/viewTimetable.css" />
 </head>
 <body>
 <header th:replace="header"></header>
@@ -22,10 +23,10 @@
 				<td><span th:utext="${textbook1.textbookUrl}"></span>　<span th:if="${history1.status == 1}">未購入</span><span th:if="${history1.status == 2}">購入済</span> <form th:action="'/account/setHistory/' + ${history1.id}" method="post" style="display: inline;"><input type="hidden" name="timetableId" th:value="${timetable.id}"><button>切替</button></form></td>
 			</tr>
 			<tr th:if="${textbookCount > 1}" th:each="textbook:${textbooks}">
-				<td><span th:utext="${textbook.textbookUrl}"></span>　<th:block th:each="history:${histories}" th:if="${textbook.id == history.textbookId}"><span th:if="${history.status == 1}">未購入</span><span th:if="${history.status == 2}">購入済</span> <form th:action="'/account/setHistory/' + ${history.id}" method="post" style="display: inline;"><input type="hidden" name="timetableId" th:value="${timetable.id}"><button>切替</button></form></th:block></td>
+				<td><span th:utext="${textbook.textbookUrl}"></span>　<th:block th:each="history:${histories}" th:if="${textbook.id == history.textbookId}"><span th:if="${history.status == 1}">未購入</span><span th:if="${history.status == 2}">購入済</span> <form th:action="'/account/setHistory/' + ${history.id}" method="post" style="display: inline;"><input type="hidden" name="timetableId" th:value="${timetable.id}"><button class="btn">切替</button></form></th:block></td>
 			</tr>
 		</table>
-		<button onclick="location.href='/account'">戻る</button>
+		<button onclick="location.href='/account'" class="btn">戻る</button>
 	</main>
 </body>
 </html>
