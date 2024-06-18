@@ -72,18 +72,18 @@ public class AccountController {
 
 		List<User> userList = userRepository.findByPersonalNumberAndPassword(personalNumber, password);
 
-		//学籍番号未入力時のエラー
+		//個人番号未入力時のエラー
 		if (personalNumber.length() == 0) {
-			errorList.add("学籍番号は必須です");
+			errorList.add("個人番号は必須です");
 
 		}
 		//パスワード未入力時のエラー	
 		if (password.length() == 0) {
 			errorList.add("パスワードは必須です");
 
-			//正しくない学籍番号またはパスワード入力時のエラー
+			//正しくない個人番号またはパスワード入力時のエラー
 		} else if (userList.size() == 0 || userList == null) {
-			errorList.add("学籍番号もしくはパスワードが正しくありません");
+			errorList.add("個人番号もしくはパスワードが正しくありません");
 		}
 
 		//エラーメッセージの出力
@@ -564,7 +564,7 @@ public class AccountController {
 	public String resetIntroduce(Model model) {
 		//idでuserを検索
 		User user = userRepository.findById(account.getId()).get();
-		//検索したユーザーの学籍番号を送信
+		//検索したユーザーの個人番号を送信
 		model.addAttribute("personalNumber", user.getPersonalNumber());
 		//検索したユーザーの自己紹介メッセージを送信
 		model.addAttribute("introduce", user.getIntroduce());
