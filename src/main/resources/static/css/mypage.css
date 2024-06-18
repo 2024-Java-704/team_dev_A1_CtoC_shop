@@ -109,9 +109,13 @@ textarea{
 		   display: block;
    padding: 0.6em 1em; 
  text-decoration: none;
+ margin-left: 3px;
+}
+#table5 .ads{
+	color: white;
 }
 #table5 a:hover{
-	background-color: darkgrey;
+	background-color: palevioletred;
 }
 .changebtn{
 	color:#003775;
