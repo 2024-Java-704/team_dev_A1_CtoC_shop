@@ -135,17 +135,16 @@ public class TimetableController {
 	//時間割変更画面の表示
 	@GetMapping("/account/setTimetable")
 	public String setTimetable(
-			@RequestParam(name = "timetableId") Integer timetableId,
+			@RequestParam(name = "lessonId") Integer lessonId,
 			Model model) {
 
-		Timetable timetable = timetableRepository.findOneById(timetableId);
+		Timetable timetable = timetableRepository.findOneByLessonIdAndUserId(lessonId, account.getId());
 
-		Lesson lesson = lessonRepository.findOneById(timetable.getLessonId());
+		Lesson lesson = lessonRepository.findOneById(lessonId);
 
 		List<Lesson> lessons = lessonRepository.findByDayAndPeriod(lesson.getDay(), lesson.getPeriod());
 
 		model.addAttribute("timetable", timetable);
-		model.addAttribute("lesson", lesson);
 		model.addAttribute("lessons", lessons);
 
 		return "setTimetable";
