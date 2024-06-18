@@ -233,7 +233,10 @@ public class ItemController {
 		item.setDealStatus(4);
 		item.setBuyerId(account.getId());
 		itemRepository.save(item);
-
+		
+		Notice notice = new Notice(item.getSellerId(), "出品した商品が購入されました");
+		noticeRepository.save(notice);
+		
 		return "redirect:/deal/{id}";
 	}
 
