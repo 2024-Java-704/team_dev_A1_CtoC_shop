@@ -28,7 +28,7 @@
 			<td th:each="title:${titles}" th:if="${title.id == request.textbookId}" th:text = "${title.title}" class = "tr2"></td>
 			<td >
 			<form th:action = "@{/bbs/{id}/delete(id=${request.id})}" method = "post" th:if="${request.userId == @account.id}">
-				<button class = "delete">削除</button>
+				<button class = "delete"><image src="/img/trash.png" alt="ゴミ箱画像"></button>
 			</form> 
 			</td>
 		</tr>

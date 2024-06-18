@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>授業登録</title>
+	<link rel="stylesheet" type="text/css" href="/css/admin.css" />
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<main>
+		<h1>授業登録</h1>
+		<span th:utext="${msg}" style="color: red;"></span>
+		<form action="/admin/addLesson" method="post">
+			<table border="1">
+				<tr>
+					<td>授業名</td>
+					<td><input type="text" name="name" th:value="${name}"></td>
+				</tr>
+				<tr>
+					<td>曜日</td>
+					<td><select name="day">
+							<option value="1" selected>月曜日</option>
+							<option value="2">火曜日</option>
+							<option value="3">水曜日</option>
+							<option value="4">木曜日</option>
+							<option value="5">金曜日</option>
+							<option value="6">土曜日</option>
+						</select></td>
+				</tr>
+				<tr>
+					<td>時限</td>
+					<td><select name="period">
+							<option value="1" selected>1時限目</option>
+							<option value="2">2時限目</option>
+							<option value="3">3時限目</option>
+							<option value="4">4時限目</option>
+							<option value="5">5時限目</option>
+							<option value="6">6時限目</option>
+						</select></td>
+				</tr>
+				<tr id="textbooksContainer">
+					<td>使用教科書</td>
+					<td><select name="textbooks">
+							<option value="0">なし</option>
+							<option th:each="textbook:${textbooks}" th:value="${textbook.id}">
+								[[${textbook.title}]]([[${textbook.author}]])</option>
+						</select></td>
+				</tr>
+			</table>
+			<button class="itemStatus" type="button" id="addButton">教科書追加</button>
+			<button class="itemStatus" type="button" id="removeButton">教科書取消</button><br>
+			<button class="itemStatus">登録</button>
+		</form>
+		<footer th:replace="footer"></footer>
+	</main>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function () {
+			var addButton = document.getElementById('addButton');
+			var removeButton = document.getElementById('removeButton');
+			var textbooksContainer = document.getElementById('textbooksContainer');
+
+			addButton.addEventListener('click', function () {
+				var clone = textbooksContainer.cloneNode(true);
+				textbooksContainer.parentNode.appendChild(clone);
+			});
+
+			removeButton.addEventListener('click', function () {
+				var containers = document.querySelectorAll('#textbooksContainer');
+				if (containers.length > 1) {
+					containers[containers.length - 1].parentNode.removeChild(containers[containers.length - 1]);
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

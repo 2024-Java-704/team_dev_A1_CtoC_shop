@@ -36,12 +36,20 @@ a:visited {
 header {
 	margin-top: 0;
 }
-
+@keyframes hurueru {
+    0% {transform: translate(0px, 0px) rotateZ(0deg)}
+    25% {transform: translate(2px, 2px) rotateZ(1deg)}
+    50% {transform: translate(0px, 2px) rotateZ(0deg)}
+    75% {transform: translate(2px, 0px) rotateZ(-1deg)}
+    100% {transform: translate(0px, 0px) rotateZ(0deg)}
+}
 .alate {
   -webkit-text-stroke-width: 0.3px;
   -webkit-text-stroke-color:white;
+  display: inline-block;
+  animation: hurueru 1s infinite;
+  
 }
-
 header h1 {
 	font-size: 40px;
 	margin: 0;
@@ -64,6 +72,14 @@ header h1 {
 	font-weight:bold;
 	text-align: right;
 	margin: 0;
+	
+}
+#logout{
+	text-decoration: none;
+}
+#logout:hover{
+	text-decoration: none;
+	color:lightcyan;
 }
 
 .sitetitle{
@@ -74,6 +90,19 @@ header h1 {
 .menu {
 	margin-right: 5px;
 	margin-left: 5px;
+	text-decoration: none;
+}
+.menu:hover{
+	color: lightcyan;
+}
+#bell:hover{
+	filter: brightness(200%) saturate(50%);
+}
+#redbell{
+	text-decoration: none;
+}
+#redbell:hover{
+	filter: brightness(200%) saturate(50%);
 }
 
 /* モーダルウィンドウのスタイル */
@@ -198,6 +227,15 @@ header h1 {
 	font-weight: bold;
 }
 
+.alartcount{
+	display: inline-block;
+	-webkit-text-stroke:1px white;
+	animation: hurueru .1s  infinite;
+}
+.alartcount:hover{
+	animation:none;
+}
+
 
 /* フッター */
 footer {
@@ -211,4 +249,11 @@ footer {
 	width: 100%;
 	font-size:15pt;
 	font-weight:bold;
+}
+
+.claimjump{
+	text-decoration: none;
+}
+.claimjump:hover{
+	color: lightcyan;
 }

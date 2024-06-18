@@ -107,8 +107,6 @@ public class ItemController {
 			@RequestParam(name = "sort", defaultValue = "1") Integer sort,
 			Model model) {
 		List<Item> itemList = null;
-		//List<Textbook> bookList =null;
-		//List<ItemImage> itemImages = new ArrayList<>();
 		List<Textbook> textbooks = new ArrayList<>();
 		if (sort == 1) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id, 3);
@@ -159,8 +157,6 @@ public class ItemController {
 		model.addAttribute("textbook", textbook);
 		model.addAttribute("sort", sort);
 		model.addAttribute("itemList", itemList);
-		//model.addAttribute("itemImage", itemImages);
-		//model.addAttribute("textbook", textbooks);
 		return "textbook";
 	}
 
@@ -175,7 +171,7 @@ public class ItemController {
 		item.setTextprice(textbook.getPrice());
 
 		User user = userRepository.findById(item.getSellerId()).get();
-		Student student = studentRepository.findOneByStudentNumber(user.getStudentNumber());
+		Student student = studentRepository.findOneByPersonalNumber(user.getPersonalNumber());
 
 		itemImages = itemImageRepository.findByItemId(id);
 		model.addAttribute("textbook", textbook);
@@ -216,7 +212,7 @@ public class ItemController {
 				}
 			}
 
-		model.addAttribute("student", studentRepository.findOneByStudentNumber(user.getStudentNumber()));
+		model.addAttribute("student", studentRepository.findOneByPersonalNumber(user.getPersonalNumber()));
 		model.addAttribute("user", user);
 		model.addAttribute("textbooks", textbooks);
 		if (sellItemList.size() > 0)
@@ -237,7 +233,10 @@ public class ItemController {
 		item.setDealStatus(4);
 		item.setBuyerId(account.getId());
 		itemRepository.save(item);
-
+		
+		Notice notice = new Notice(item.getSellerId(), "出品した商品が購入されました");
+		noticeRepository.save(notice);
+		
 		return "redirect:/deal/{id}";
 	}
 
@@ -251,7 +250,7 @@ public class ItemController {
 		item.setTextprice(textbook.getPrice());
 		User userSeller = userRepository.findById(item.getSellerId()).get();
 		User userBuyer = userRepository.findById(item.getBuyerId()).get();
-		Student student = studentRepository.findOneByStudentNumber(userBuyer.getStudentNumber());
+		Student student = studentRepository.findOneByPersonalNumber(userBuyer.getPersonalNumber());
 		itemImage.addAll(itemImageRepository.findByItemId(id));
 		Integer accountId = account.getId();
 
@@ -325,7 +324,9 @@ public class ItemController {
 			ItemImage itemImage = new ItemImage(item.getId(), image.getOriginalFilename());
 			itemImageRepository.save(itemImage);
 			Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
-
+			
+			System.out.println(image.getContentType());
+			
 			if (Files.exists(dst)) {
 				System.out.println("同名ファイルがあります！");
 			}

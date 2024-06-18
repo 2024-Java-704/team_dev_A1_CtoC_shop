@@ -68,4 +68,16 @@ public class CheckLoginAspect {
 
 		return jp.proceed();
 	}
+	
+	//会員アカウントが不正の場合はitemsに返す
+		@Around("execution(* com.example.demo.controller.TimetableController.*(..))")
+		public Object checkUser(ProceedingJoinPoint jp) throws Throwable {
+			System.out.print(account.getId() + " : ");
+			if (account.getId() == null || account.getUserStatus() != 2) {
+				System.err.println("時間割画面に不正なアクセスです!");
+				return "redirect:/home";
+			}
+
+			return jp.proceed();
+		}
 }

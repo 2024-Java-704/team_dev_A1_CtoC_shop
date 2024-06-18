@@ -90,8 +90,26 @@ textarea{
 	width: 80%;
 	height: 200px;
 }
-img{
+.textimg{
 	 object-fit: cover;
   height: 200px;
   width: 155px;
+}
+#table5{
+ width: 1000px;
+}
+#table5 button{
+	width: 100%;
+}
+#table5 th{
+	width: auto;;
+}
+
+#table5 td a{
+		   display: block;
+   padding: 0.6em 1em; 
+ text-decoration: none;
+}
+#table5 a:hover{
+	background-color: darkgrey;
 }

@@ -23,10 +23,10 @@
 				<p th:if="${sellItem.dealStatus == 3}">出品中</p>
 				<p th:if="!${sellItem.dealStatus == 3}">SOLD OUT</p>
 				<img th:each="image:${imageList}" th:if="${image.itemId == sellItem.id}"
-					th:src="'/img/' + ${image.imagePath}" th:alt="'/img/'+${image.imagePath}" />
+					th:src="'/img/' + ${image.imagePath}" th:alt="'/img/'+${image.imagePath}" class="img" />
 				 <th:block th:each="textbook:${textbooks}"
 					th:if="${textbook.id == sellItem.textbookId && sellItem.dealStatus == 3}">
-					<p><a th:href="'/item/' + ${sellItem.id}" th:text="${textbook.title}"></a></p>
+					<p><a th:href="'/item/' + ${sellItem.id}" th:text="${textbook.title}" class="iteminfo"></a></p>
 					
 					<!--価格表示-->
 					<th:block th:if="${sellItem.itemStatus == 1}">

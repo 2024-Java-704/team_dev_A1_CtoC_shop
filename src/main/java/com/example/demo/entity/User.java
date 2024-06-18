@@ -14,8 +14,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "student_number")
-	private String studentNumber;
+	@Column(name = "personal_number")
+	private String personalNumber;
 
 	private String password;
 
@@ -28,8 +28,8 @@ public class User {
 
 	}
 
-	public User(String studentNumber, String password, Integer userStatus, String introduce) {
-		this.studentNumber = studentNumber;
+	public User(String personalNumber, String password, Integer userStatus, String introduce) {
+		this.personalNumber = personalNumber;
 		this.password = password;
 		this.userStatus = userStatus;
 		this.introduce = introduce;
@@ -39,8 +39,8 @@ public class User {
 		return id;
 	}
 
-	public String getStudentNumber() {
-		return studentNumber;
+	public String getPersonalNumber() {
+		return personalNumber;
 	}
 
 	public String getPassword() {

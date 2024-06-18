@@ -44,6 +44,7 @@ table tr{
 	width: 150px;
 	cursor: pointer;
 	background-color: #C0C0C0;
+	border-radius: 4px;/*角の丸み*/
 	display: block;
 	 margin: 0 auto;
 }

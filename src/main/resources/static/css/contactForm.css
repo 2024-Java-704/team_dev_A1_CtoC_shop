@@ -13,6 +13,7 @@ button {
 	width: 150px;
 	cursor: pointer;
 	background-color: #C0C0C0;
+	border-radius: 4px;/*角の丸み*/
 }
 
 /* 送信ボタン（マウスオーバー時）*/

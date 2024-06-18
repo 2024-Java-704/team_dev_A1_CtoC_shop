@@ -21,9 +21,9 @@ public class Textbook {
 	private Integer price;
 
 	private String publisher;
-	
+
 	@Transient
-	private String textimg; 
+	private String textimg;
 
 	public Textbook() {
 	}
@@ -61,6 +61,10 @@ public class Textbook {
 
 	public void setTextimg(String textimg) {
 		this.textimg = textimg;
+	}
+
+	public String getTextbookUrl() {
+		return "<a href='/home?keyword=" + title + "'>" + title + "</a>";
 	}
 
 }
