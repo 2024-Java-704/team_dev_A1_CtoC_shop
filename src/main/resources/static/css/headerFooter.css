@@ -94,6 +94,12 @@ header h1 {
 #bell:hover{
 	filter: brightness(200%) saturate(50%);
 }
+#redbell{
+	text-decoration: none;
+}
+#redbell:hover{
+	filter: brightness(200%) saturate(50%);
+}
 
 /* モーダルウィンドウのスタイル */
 .modal {
