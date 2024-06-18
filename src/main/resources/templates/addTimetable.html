@@ -19,7 +19,8 @@
 								<option th:each="lesson:${lessons}" th:value="${lesson.id}">[[${lesson.name}]]</option>
 							</select></td>
 					</tr>
-					<button>登録</button>
+				</table>
+				<button>登録</button>
 			</form>
 		</th:block>
 		<th:block th:if="${lessonCount == 0}">
