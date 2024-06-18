@@ -1,6 +1,6 @@
 <footer th:if="!${@account.userStatus == 1}">
-	<a href="/claim">お問い合わせ</a>
+	<a href="/claim" class="claimjump">お問い合わせ</a>
 </footer>
 <footer th:if="${@account.userStatus == 1}" class="admin">
-	<a href="/claim">お問い合わせ</a>
+	<a href="/claim" class="claimjump">お問い合わせ</a>
 </footer>

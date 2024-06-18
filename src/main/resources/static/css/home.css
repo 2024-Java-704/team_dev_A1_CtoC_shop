@@ -16,6 +16,9 @@
   height: 200px;
   width: 155px;
 }
+.num:hover{
+	filter: brightness(200%) saturate(50%);
+}
 
 main{
 	min-height: 90vh;
