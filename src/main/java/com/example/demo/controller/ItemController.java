@@ -74,12 +74,16 @@ public class ItemController {
 		List<ItemImage> itemImages = new ArrayList<>();
 		List<Textbook> textbooks = new ArrayList<>();
 
+		//キーワード検索に何も入っていないとき
 		if (keyword.length() == 0 || keyword.equals(null)) {
+			//教科書の一覧を取得
 			bookList = textbookRepository.findAll();
 		} else {
+			//キーワードを含む教科書の一覧を取得
 			bookList = textbookRepository.findByTitleContainingOrderByIdAsc(keyword);
 		}
 
+		//教科書を一つずつ処理
 		for (Textbook book : bookList) {
 			items = itemRepository.findByTextbookIdAndDealStatusOrderByTextbookIdDesc(book.getId(), 3);
 			if (items.size() > 0) {
@@ -87,6 +91,7 @@ public class ItemController {
 				itemList.add(item);
 			}
 		}
+		//itemを一つずつ処理
 		for (Item item : itemList) {
 			Textbook textbook = textbookRepository.findById(item.getTextbookId()).get();
 			List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
