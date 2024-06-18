@@ -36,12 +36,19 @@ a:visited {
 header {
 	margin-top: 0;
 }
-
+@keyframes hurueru {
+    0% {transform: translate(0px, 0px) rotateZ(0deg)}
+    25% {transform: translate(2px, 2px) rotateZ(1deg)}
+    50% {transform: translate(0px, 2px) rotateZ(0deg)}
+    75% {transform: translate(2px, 0px) rotateZ(-1deg)}
+    100% {transform: translate(0px, 0px) rotateZ(0deg)}
+}
 .alate {
   -webkit-text-stroke-width: 0.3px;
   -webkit-text-stroke-color:white;
+  display: inline-block;
+  animation: hurueru 1s infinite;
 }
-
 header h1 {
 	font-size: 40px;
 	margin: 0;
@@ -208,6 +215,15 @@ header h1 {
 	background-color: aquamarine;
 	color: black;
 	font-weight: bold;
+}
+
+.alartcount{
+	display: inline-block;
+	-webkit-text-stroke:1px white;
+	animation: hurueru .1s  infinite;
+}
+.alartcount:hover{
+	animation:none;
 }
 
 
