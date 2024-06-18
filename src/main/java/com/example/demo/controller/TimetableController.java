@@ -20,8 +20,10 @@ import com.example.demo.model.Account;
 import com.example.demo.repository.HistoryRepository;
 import com.example.demo.repository.LessonRepository;
 import com.example.demo.repository.LessonTextbookRepository;
+import com.example.demo.repository.TeacherRepository;
 import com.example.demo.repository.TextbookRepository;
 import com.example.demo.repository.TimetableRepository;
+import com.example.demo.repository.UserRepository;
 
 @Controller
 public class TimetableController {
@@ -44,6 +46,12 @@ public class TimetableController {
 	@Autowired
 	TimetableRepository timetableRepository;
 
+	@Autowired
+	TeacherRepository teacherRepository;
+
+	@Autowired
+	UserRepository userRepository;
+
 	//時間割追加画面の表示
 	@GetMapping("/account/addTimetable")
 	public String addTimatabel(
@@ -56,11 +64,9 @@ public class TimetableController {
 		if (lessons.size() > 0) {
 			model.addAttribute("lessons", lessons);
 			model.addAttribute("lessonCount", lessons.size());
-		}
-		else
+		} else
 			model.addAttribute("lessonCount", 0);
-		
-		
+
 		return "addTimetable";
 	}
 
@@ -100,16 +106,28 @@ public class TimetableController {
 
 		List<History> histories = new ArrayList<History>();
 
-		for (LessonTextbook lessonTextbook : lessonTextbooks) {
-			textbooks.add(textbookRepository.findOneById(lessonTextbook.getTextbookId()));
-			histories.add(
-					historyRepository.findOneByTextbookIdAndUserId(lessonTextbook.getTextbookId(), account.getId()));
+		Integer textbookCount = lessonTextbooks.size();
+		if (textbookCount > 0) {
+			for (LessonTextbook lessonTextbook : lessonTextbooks) {
+				textbooks.add(textbookRepository.findOneById(lessonTextbook.getTextbookId()));
+				histories.add(
+						historyRepository.findOneByTextbookIdAndUserId(lessonTextbook.getTextbookId(),
+								account.getId()));
+			}
+			model.addAttribute("textbook1", textbooks.get(0));
+			model.addAttribute("history1", histories.get(0));
+			if (textbookCount > 1) {
+				textbooks.remove(0);
+				histories.remove(0);
+				model.addAttribute("textbooks", textbooks);
+				model.addAttribute("histories", histories);
+			}
 		}
 
+		model.addAttribute("teacher", userRepository.findOneById(lesson.getTeacherId()).getPersonalNumber());
 		model.addAttribute("timetable", timetable);
 		model.addAttribute("lesson", lesson);
-		model.addAttribute("textbooks", textbooks);
-		model.addAttribute("histories", histories);
+		model.addAttribute("textbookCount", textbookCount);
 
 		return "viewTimetable";
 	}
@@ -302,7 +320,7 @@ public class TimetableController {
 
 		historyRepository.save(history);
 
-		return "redirect:/account/viewTimatabel?lessonId=" + timetable.getLessonId();
+		return "redirect:/account/viewTimetable?lessonId=" + timetable.getLessonId();
 	}
 
 }

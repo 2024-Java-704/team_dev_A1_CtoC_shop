@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>時間割変更</title>
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<main>
+		<h1>時間割変更</h1>
+		<form action="/account/setTimetable" method="post">
+			<input type="hidden" name="timetableId" th:value="${timetable.id}">
+			<table border="1">
+				<tr>
+					<th>授業名</th>
+					<td><select name="lessonId">
+							<option th:each="lesson:${lessons}" th:value="${lesson.id}">[[${lesson.name}]]</option>
+						</select></td>
+				</tr>
+			</table>
+			<button>登録</button>
+		</form>
+		<footer th:replace="footer"></footer>
+	</main>
+</body>
+
+</html>
