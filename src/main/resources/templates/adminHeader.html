@@ -16,7 +16,7 @@
 				style="text-decoration:none;"><span style="text-decoration: underline;">問い合わせ確認</span><span
 					style="color: red;" class="alate" th:if="${@account.claimCount > 0}" th:text="${@account.requestCount}"></span></a><a href="/admin" class="menu"
 				style="text-decoration:none;"><span style="text-decoration: underline;">管理者画面</span><span
-					style="color: red;" class="alate" th:if="${@account.requestCount}" th:text="${@account.requestCount}"></span></a>
+					style="color: red;" class="alate" th:if="${@account.requestCount >0}" th:text="${@account.requestCount}"></span></a>
 		</div>
 
 		<!-- モーダルウィンドウ -->
