@@ -49,26 +49,26 @@
 						</select></td>
 				</tr>
 			</table>
-			<button class="itemStatus" type="button">教科書追加</button>
-			<button class="itemStatus" type="button">教科書取消</button><br>
+			<button class="itemStatus" type="button" id="addButton">教科書追加</button>
+			<button class="itemStatus" type="button" id="removeButton">教科書取消</button><br>
 			<button class="itemStatus">登録</button>
 		</form>
 		<footer th:replace="footer"></footer>
 	</main>
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function () {
-			var addButton = document.querySelector('button.itemStatus:nth-of-type(1)');
-			var removeButton = document.querySelector('button.itemStatus:nth-of-type(2)');
+			var addButton = document.getElementById('addButton');
+			var removeButton = document.getElementById('removeButton');
 			var textbooksContainer = document.getElementById('textbooksContainer');
 
 			addButton.addEventListener('click', function () {
-				var clone = textbooksContainer.cloneNode(true); // true は深いコピーを意味する
+				var clone = textbooksContainer.cloneNode(true);
 				textbooksContainer.parentNode.appendChild(clone);
 			});
 
 			removeButton.addEventListener('click', function () {
 				var containers = document.querySelectorAll('#textbooksContainer');
-				if (containers.length > 1) { // 最低1つは残す
+				if (containers.length > 1) {
 					containers[containers.length - 1].parentNode.removeChild(containers[containers.length - 1]);
 				}
 			});
