@@ -65,7 +65,7 @@
 		<a th:href="@{/user/{id}(id=${item.sellerId})}"
 			style="font-size: 1.2em; padding-left: 40%;">[[${student.name}]]</a>
 		<form th:action="@{/buy/{id}(id=${item.id})}" th:if="${@account.id != item.sellerId}" method="post">
-			<button style="position: relative; left: 60%; bottom: 30px;">購入する</button>
+			<button style="position: relative; left: 60%; bottom: 30px;" id="btn">購入する</button>
 		</form>
 		<footer th:replace="footer"></footer>
 	</main>
