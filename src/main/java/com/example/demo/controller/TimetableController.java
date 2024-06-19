@@ -124,7 +124,7 @@ public class TimetableController {
 			}
 		}
 
-		model.addAttribute("teacher", userRepository.findOneById(lesson.getTeacherId()).getPersonalNumber());
+		model.addAttribute("teacher", teacherRepository.findOneByPersonalNumber(userRepository.findOneById(lesson.getTeacherId()).getPersonalNumber()).getName());
 		model.addAttribute("timetable", timetable);
 		model.addAttribute("lesson", lesson);
 		model.addAttribute("textbookCount", textbookCount);
