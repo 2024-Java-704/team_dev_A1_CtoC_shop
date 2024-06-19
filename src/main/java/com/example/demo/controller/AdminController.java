@@ -211,6 +211,7 @@ public class AdminController {
 			@RequestParam(name = "publisher", defaultValue = "") String publisher,
 			Model model) {
 
+		//エラーチェック
 		if (title.equals("") || author.equals("") || price < 1 || publisher.equals("")) {
 			String msg = "";
 
