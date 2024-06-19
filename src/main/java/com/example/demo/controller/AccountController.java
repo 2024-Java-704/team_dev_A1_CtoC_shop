@@ -128,6 +128,7 @@ public class AccountController {
 			//一つの結果をリストに入れていく
 			imgList.add(img1);
 		}
+		//上記と同じ処理
 		for (Item sellItem : sellList) {
 			ItemImage img2 = new ItemImage();
 			getimg2 = itemImageRepository.findByItemId(sellItem.getId());
