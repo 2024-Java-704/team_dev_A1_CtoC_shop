@@ -14,14 +14,16 @@ table {
 
 .box {
 	float:left;
-	width: fit-content
+	width: 30%;
+	margin: 0 auto;;
 }
 
 .container {
 	display:flex;
 	overflow: hidden;
-	width: fit-content;
+	width: 90%;
 	margin: 0 auto;
+	flex-wrap: wrap;
 }
 
 main{

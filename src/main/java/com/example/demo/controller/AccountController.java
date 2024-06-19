@@ -47,7 +47,7 @@ public class AccountController {
 
 	@Autowired
 	LessonRepository lessonRepository;
-	
+
 	@Autowired
 	ReviewRepository reviewRepository;
 
@@ -437,12 +437,14 @@ public class AccountController {
 				break;
 			}
 		}
-		
+
 		List<Review> reviewList = new ArrayList<Review>();
 		List<Item> selledItems = itemRepository.findBySellerIdAndDealStatus(account.getId(), 5);
-		if(selledItems.size() > 0)
-			for(Item item : selledItems) {
-				reviewList.add(reviewRepository.findOneByItemId(item.getId()));
+		if (selledItems.size() > 0)
+			for (Item item : selledItems) {
+				Review review = reviewRepository.findOneByItemId(item.getId());
+				if (review != null)
+					reviewList.add(review);
 			}
 
 		model.addAttribute("textbookList", textbookList);
