@@ -72,6 +72,9 @@ header h1 {
 	text-align: right;
 	margin: 0;
 }
+#logout{
+	text-decoration: none;
+}
 #logout:hover{
 	text-decoration: none;
 	color:lightcyan;
@@ -88,7 +91,7 @@ header h1 {
 	text-decoration: none;
 }
 .menu:hover{
-	text-decoration:underline;
+	text-decoration:none;
 	color: lightcyan;
 }
 #bell:hover{
@@ -247,6 +250,9 @@ footer {
 	font-weight:bold;
 }
 
+.claimjump{
+	text-decoration: none;
+}
 .claimjump:hover{
 	color: lightcyan;
 }
