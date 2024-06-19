@@ -6,7 +6,9 @@ body {
 }
 
 .timeTable {
-	margin: 0 auto;
+	margin-right: auto;	
+	margin-left: auto;
+	
 }
 #tabletitle{
 	background-color: #003775;
@@ -28,6 +30,7 @@ body {
   border-radius: 6px;
   transition: .3s;
   cursor: pointer;
+  margin-top: 18px;
 }
 .btn:hover{
 	background-color: #003775;
