@@ -238,10 +238,10 @@ public class ItemController {
 		item.setDealStatus(4);
 		item.setBuyerId(account.getId());
 		itemRepository.save(item);
-		
+
 		Notice notice = new Notice(item.getSellerId(), "出品した商品が購入されました");
 		noticeRepository.save(notice);
-		
+
 		return "redirect:/deal/{id}";
 	}
 
@@ -329,9 +329,9 @@ public class ItemController {
 			ItemImage itemImage = new ItemImage(item.getId(), image.getOriginalFilename());
 			itemImageRepository.save(itemImage);
 			Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
-			
+
 			System.out.println(image.getContentType());
-			
+
 			if (Files.exists(dst)) {
 				System.out.println("同名ファイルがあります！");
 			}
