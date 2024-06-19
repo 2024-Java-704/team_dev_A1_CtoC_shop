@@ -513,7 +513,7 @@
 						<th colspan="3" class="tabletitle" id="tabletitle2">販売履歴</th>
 					</tr>
 
-					<!--					buyListで繰り返し-->
+					<!--buyListで繰り返し-->
 					<buylistloop th:each="sellItem:${sellList}">
 						<tr class="itemlist">
 							<textloop th:each="text:${textbookList}">
@@ -527,11 +527,15 @@
 										th:alt="'/img/'+${img2.imagePath}" />
 								</td>
 							</imageloop>
+							<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 1}">出品申請中</td>
+							<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 2}">不許可</td>
+							<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 3}">出品中</td>
 							<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 4}">
 								<form th:action="@{/deal/{id}(id=${sellItem.id})}" method="get">
 									<button class="btn">取引画面へ</button>
 								</form>
 							</td>
+							<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 5}">取引完了</td>
 						</tr>
 					</buylistloop>
 
