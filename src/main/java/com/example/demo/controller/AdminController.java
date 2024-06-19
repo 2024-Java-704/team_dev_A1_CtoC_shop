@@ -124,16 +124,20 @@ public class AdminController {
 
 			List<Request> requests = requestRepository.findByTextbookId(item.getTextbookId());
 			for (Request request : requests) {
-				if (request.getItemStatus() == 5 || request.getItemStatus() == item.getItemStatus()) {
-					noticeRepository.save(new Notice(request.getUserId(),
-							"「" + textbookRepository.findOneById(item.getTextbookId()).getTitle() + "」が出品されました!"));
+				if (item.getSellerId() != request.getUserId()) {
+					if (request.getItemStatus() == 5 || request.getItemStatus() == item.getItemStatus()) {
+						noticeRepository.save(new Notice(request.getUserId(),
+								"募集していた「" + textbookRepository.findOneById(item.getTextbookId()).getTitle() + "」が出品されました!"));
+					}
 				}
 			}
 
 			List<History> histories = historyRepository.findByTextbookIdAndStatus(item.getTextbookId(), 1);
 			for (History history : histories) {
-				noticeRepository.save(new Notice(history.getUserId(),
-						"「" + textbookRepository.findOneById(item.getTextbookId()).getTitle() + "」が出品されました!"));
+				if (item.getSellerId() != history.getUserId()) {
+					noticeRepository.save(new Notice(history.getUserId(),
+							"未購入の「" + textbookRepository.findOneById(item.getTextbookId()).getTitle() + "」が出品されました!"));
+				}
 			}
 		}
 
