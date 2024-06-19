@@ -3,6 +3,7 @@
 /* 全体 */
 body {
 	margin: 0;
+	background-color: azure;
 }
 
 /* ヘッダーフッター */
@@ -255,4 +256,8 @@ footer {
 }
 .claimjump:hover{
 	color: lightcyan;
+}
+
+table {
+	background-color: white;
 }
