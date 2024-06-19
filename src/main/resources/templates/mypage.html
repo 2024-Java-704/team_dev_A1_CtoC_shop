@@ -71,7 +71,7 @@
 				<td th:if="${class21 == null}"><a class="ads" href="/account/addTimetable?day=2&period=1">授業登録</a></td>
 				<!--水曜1限目-->
 				<td th:if="${class31 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class31.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class31.id})}"
 						th:text="${class31.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -82,7 +82,7 @@
 				<td th:if="${class31 == null}"><a class="ads" href="/account/addTimetable?day=3&period=1">授業登録</a></td>
 				<!--木曜1限目-->
 				<td th:if="${class41 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class41.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class41.id})}"
 						th:text="${class41.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -93,7 +93,7 @@
 				<td th:if="${class41 == null}"><a class="ads" href="/account/addTimetable?day=4&period=1">授業登録</a></td>
 				<!--金曜1限目-->
 				<td th:if="${class51 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class51.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class51.id})}"
 						th:text="${class51.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -104,7 +104,7 @@
 				<td th:if="${class51 == null}"><a class="ads" href="/account/addTimetable?day=5&period=1">授業登録</a></td>
 				<!--土曜1限目-->
 				<td th:if="${class61 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class61.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class61.id})}"
 						th:text="${class61.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -141,7 +141,7 @@
 				<td th:if="${class22 == null}"><a class="ads" href="/account/addTimetable?day=2&period=2">授業登録</a></td>
 				<!--水曜2限目-->
 				<td th:if="${class32 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class32.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class32.id})}"
 						th:text="${class32.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -152,7 +152,7 @@
 				<td th:if="${class32 == null}"><a class="ads" href="/account/addTimetable?day=3&period=2">授業登録</a></td>
 				<!--木曜2限目-->
 				<td th:if="${class42 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class42.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class42.id})}"
 						th:text="${class42.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -163,7 +163,7 @@
 				<td th:if="${class42 == null}"><a class="ads" href="/account/addTimetable?day=4&period=2">授業登録</a></td>
 				<!--金曜2限目-->
 				<td th:if="${class52 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class52.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class52.id})}"
 						th:text="${class52.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -174,7 +174,7 @@
 				<td th:if="${class52 == null}"><a class="ads" href="/account/addTimetable?day=5&period=2">授業登録</a></td>
 				<!--土曜2限目-->
 				<td th:if="${class62 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class62.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class62.id})}"
 						th:text="${class62.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -211,7 +211,7 @@
 				<td th:if="${class23 == null}"><a class="ads" href="/account/addTimetable?day=2&period=3">授業登録</a></td>
 				<!--水曜3限目-->
 				<td th:if="${class33 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class33.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class33.id})}"
 						th:text="${class33.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -222,7 +222,7 @@
 				<td th:if="${class33 == null}"><a class="ads" href="/account/addTimetable?day=3&period=3">授業登録</a></td>
 				<!--木曜3限目-->
 				<td th:if="${class43 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class43.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class43.id})}"
 						th:text="${class43.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -233,7 +233,7 @@
 				<td th:if="${class43 == null}"><a class="ads" href="/account/addTimetable?day=4&period=3">授業登録</a></td>
 				<!--金曜3限目-->
 				<td th:if="${class53 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class53.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class53.id})}"
 						th:text="${class53.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -244,7 +244,7 @@
 				<td th:if="${class53 == null}"><a class="ads" href="/account/addTimetable?day=5&period=3">授業登録</a></td>
 				<!--土曜3限目-->
 				<td th:if="${class63 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class63.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class63.id})}"
 						th:text="${class63.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -281,7 +281,7 @@
 				<td th:if="${class24 == null}"><a class="ads" href="/account/addTimetable?day=2&period=4">授業登録</a></td>
 				<!--水曜4限目-->
 				<td th:if="${class34 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class34.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class34.id})}"
 						th:text="${class34.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -292,7 +292,7 @@
 				<td th:if="${class34 == null}"><a class="ads" href="/account/addTimetable?day=3&period=4">授業登録</a></td>
 				<!--木曜4限目-->
 				<td th:if="${class44 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class44.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class44.id})}"
 						th:text="${class44.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -303,7 +303,7 @@
 				<td th:if="${class44 == null}"><a class="ads" href="/account/addTimetable?day=4&period=4">授業登録</a></td>
 				<!--金曜4限目-->
 				<td th:if="${class54 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class54.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class54.id})}"
 						th:text="${class54.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -314,7 +314,7 @@
 				<td th:if="${class54 == null}"><a class="ads" href="/account/addTimetable?day=5&period=4">授業登録</a></td>
 				<!--土曜4限目-->
 				<td th:if="${class64 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class64.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class64.id})}"
 						th:text="${class64.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -351,7 +351,7 @@
 				<td th:if="${class25 == null}"><a class="ads" href="/account/addTimetable?day=2&period=5">授業登録</a></td>
 				<!--水曜5限目-->
 				<td th:if="${class35 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class35.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class35.id})}"
 						th:text="${class35.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -362,7 +362,7 @@
 				<td th:if="${class35 == null}"><a class="ads" href="/account/addTimetable?day=3&period=5">授業登録</a></td>
 				<!--木曜5限目-->
 				<td th:if="${class45 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class45.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class45.id})}"
 						th:text="${class45.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -373,7 +373,7 @@
 				<td th:if="${class45 == null}"><a class="ads" href="/account/addTimetable?day=4&period=5">授業登録</a></td>
 				<!--金曜5限目-->
 				<td th:if="${class55 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class55.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class55.id})}"
 						th:text="${class55.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -384,7 +384,7 @@
 				<td th:if="${class55 == null}"><a class="ads" href="/account/addTimetable?day=5&period=5">授業登録</a></td>
 				<!--土曜5限目-->
 				<td th:if="${class65 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class65.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class65.id})}"
 						th:text="${class65.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -421,7 +421,7 @@
 				<td th:if="${class26 == null}"><a class="ads" href="/account/addTimetable?day=2&period=6">授業登録</a></td>
 				<!--水曜6限目-->
 				<td th:if="${class36 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class36.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class36.id})}"
 						th:text="${class36.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -432,7 +432,7 @@
 				<td th:if="${class36 == null}"><a class="ads" href="/account/addTimetable?day=3&period=6">授業登録</a></td>
 				<!--木曜6限目-->
 				<td th:if="${class46 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class46.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class46.id})}"
 						th:text="${class46.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -443,7 +443,7 @@
 				<td th:if="${class46 == null}"><a class="ads" href="/account/addTimetable?day=4&period=6">授業登録</a></td>
 				<!--金曜6限目-->
 				<td th:if="${class56 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class56.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class56.id})}"
 						th:text="${class56.name}">
 					</a>
 					<form action="/account/setTimetable" method="get">
@@ -454,7 +454,7 @@
 				<td th:if="${class56 == null}"><a class="ads" href="/account/addTimetable?day=5&period=6">授業登録</a></td>
 				<!--土曜6限目-->
 				<td th:if="${class66 != null}">
-					<a class="tts" th:href="@{/account/viewTimetable?lessonId=={id}(id=${class66.id})}"
+					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class66.id})}"
 						th:text="${class66.name}">
 						</a>
 						<form action="/account/setTimetable" method="get">
