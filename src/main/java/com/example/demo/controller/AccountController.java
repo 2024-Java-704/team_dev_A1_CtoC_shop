@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.Item;
 import com.example.demo.entity.ItemImage;
 import com.example.demo.entity.Lesson;
+import com.example.demo.entity.Review;
 import com.example.demo.entity.Textbook;
 import com.example.demo.entity.Timetable;
 import com.example.demo.entity.User;
@@ -20,6 +21,7 @@ import com.example.demo.model.Account;
 import com.example.demo.repository.ItemImageRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.LessonRepository;
+import com.example.demo.repository.ReviewRepository;
 import com.example.demo.repository.TextbookRepository;
 import com.example.demo.repository.TimetableRepository;
 import com.example.demo.repository.UserRepository;
@@ -45,6 +47,9 @@ public class AccountController {
 
 	@Autowired
 	LessonRepository lessonRepository;
+	
+	@Autowired
+	ReviewRepository reviewRepository;
 
 	@Autowired
 	HttpSession session;
@@ -432,6 +437,13 @@ public class AccountController {
 				break;
 			}
 		}
+		
+		List<Review> reviewList = new ArrayList<Review>();
+		List<Item> selledItems = itemRepository.findBySellerIdAndDealStatus(account.getId(), 5);
+		if(selledItems.size() > 0)
+			for(Item item : selledItems) {
+				reviewList.add(reviewRepository.findOneByItemId(item.getId()));
+			}
 
 		model.addAttribute("textbookList", textbookList);
 		model.addAttribute("imgList", imgList);
@@ -440,6 +452,8 @@ public class AccountController {
 		model.addAttribute("sellList", sellList);
 		model.addAttribute("countsellList", countsellList);
 		model.addAttribute("countbuyList", countbuyList);
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("reviewCount", reviewList.size());
 
 		//36の時間割
 		model.addAttribute("class11", class11);
