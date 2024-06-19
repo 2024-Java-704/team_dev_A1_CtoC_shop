@@ -138,324 +138,300 @@ public class AccountController {
 		Integer countbuyList = buyList.size();
 		Integer countsellList = sellList.size();
 
-		//		//要素を引っ張り出してリスト化するだけですむようにします
-		//		List<String>textname=new ArrayList<>();
-		//		List<String>imgpath=new ArrayList<>();
-		//		//buyListの数だけ繰り返す拡張for文
-		//		for(Item buy:buyList) {
-		//			//すべてのtextbookからIdが一致するものを検索し、結果のタイトルをストリングのリストに入れる
-		//			for(Textbook text:textbookList) {
-		//				if(text.getId()==buy.getTextbookId()) {
-		//					textname.add(text.getTitle());
-		//				}
-		//			}
-		//			//すべてのItemImageからIdが一致するものを検索し、結果のimgpathをストリングのリストに入れる
-		//			for(ItemImage img:imgList) {
-		//				if(img.getItemId()==buy.getId()) {
-		//					imgpath.add(img.getImagePath());
-		//				}
-		//			}
-		//		}
-		//		model.addAttribute("textnameList",textname);
-		//		model.addAttribute("imgpathList",imgpath);
-		
-		
-
 		//時間割テーブルからログイン中のユーザに関する時間割 (授業)を参照
 		List<Timetable> timetableList = timetableRepository.findByUserId(account.getId());
-		
+
 		//36の時間割初期化
-		Lesson class11=null;
-		Lesson class12=null;
-		Lesson class13=null;
-		Lesson class14=null;
-		Lesson class15=null;
-		Lesson class16=null;
-		Lesson class21=null;
-		Lesson class22=null;
-		Lesson class23=null;
-		Lesson class24=null;
-		Lesson class25=null;
-		Lesson class26=null;
-		Lesson class31=null;
-		Lesson class32=null;
-		Lesson class33=null;
-		Lesson class34=null;
-		Lesson class35=null;
-		Lesson class36=null;
-		Lesson class41=null;
-		Lesson class42=null;
-		Lesson class43=null;
-		Lesson class44=null;
-		Lesson class45=null;
-		Lesson class46=null;
-		Lesson class51=null;
-		Lesson class52=null;
-		Lesson class53=null;
-		Lesson class54=null;
-		Lesson class55=null;
-		Lesson class56=null;
-		Lesson class61=null;
-		Lesson class62=null;
-		Lesson class63=null;
-		Lesson class64=null;
-		Lesson class65=null;
-		Lesson class66=null;
+		Lesson class11 = null;
+		Lesson class12 = null;
+		Lesson class13 = null;
+		Lesson class14 = null;
+		Lesson class15 = null;
+		Lesson class16 = null;
+		Lesson class21 = null;
+		Lesson class22 = null;
+		Lesson class23 = null;
+		Lesson class24 = null;
+		Lesson class25 = null;
+		Lesson class26 = null;
+		Lesson class31 = null;
+		Lesson class32 = null;
+		Lesson class33 = null;
+		Lesson class34 = null;
+		Lesson class35 = null;
+		Lesson class36 = null;
+		Lesson class41 = null;
+		Lesson class42 = null;
+		Lesson class43 = null;
+		Lesson class44 = null;
+		Lesson class45 = null;
+		Lesson class46 = null;
+		Lesson class51 = null;
+		Lesson class52 = null;
+		Lesson class53 = null;
+		Lesson class54 = null;
+		Lesson class55 = null;
+		Lesson class56 = null;
+		Lesson class61 = null;
+		Lesson class62 = null;
+		Lesson class63 = null;
+		Lesson class64 = null;
+		Lesson class65 = null;
+		Lesson class66 = null;
 		//月曜1限目
-		for(Timetable timetable:timetableList) {
-		class11 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),1, 1);
-		if(class11 != null) {
-			break;
+		for (Timetable timetable : timetableList) {
+			class11 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 1, 1);
+			if (class11 != null) {
+				break;
+			}
 		}
-				}
-		
-		
+
 		//月曜2限目
-		for(Timetable timetable:timetableList) {
-		class12 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),1, 2);
-		if(class12 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class12 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 1, 2);
+			if (class12 != null) {
+				break;
+			}
 		}
 		//月曜3限目
-		for(Timetable timetable:timetableList) {
-		class13 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),1, 3);
-		if(class13 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class13 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 1, 3);
+			if (class13 != null) {
+				break;
+			}
 		}
 		//月曜4限目
-		for(Timetable timetable:timetableList) {
-		class14 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),1, 4);
-		if(class14 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class14 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 1, 4);
+			if (class14 != null) {
+				break;
+			}
 		}
 		//月曜5限目
-		for(Timetable timetable:timetableList) {
-		class15 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),1, 5);
-		if(class15 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class15 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 1, 5);
+			if (class15 != null) {
+				break;
+			}
 		}
 		//月曜6限目
-		for(Timetable timetable:timetableList) {
-		class16 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),1, 6);
-		if(class16 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class16 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 1, 6);
+			if (class16 != null) {
+				break;
+			}
 		}
 		//火曜1限目
-		for(Timetable timetable:timetableList) {
-		class21 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),2, 1);
-		if(class21 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class21 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 2, 1);
+			if (class21 != null) {
+				break;
+			}
 		}
 		//火曜2限目
-		for(Timetable timetable:timetableList) {
-		class22 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),2, 2);
-		if(class22 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class22 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 2, 2);
+			if (class22 != null) {
+				break;
+			}
 		}
 		//火曜3限目
-		for(Timetable timetable:timetableList) {
-		class23 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),2, 3);
-		if(class23 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class23 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 2, 3);
+			if (class23 != null) {
+				break;
+			}
 		}
 		//火曜4限目
-		for(Timetable timetable:timetableList) {
-		class24 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),2, 4);
-		if(class24 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class24 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 2, 4);
+			if (class24 != null) {
+				break;
+			}
 		}
 		//火曜5限目
-		for(Timetable timetable:timetableList) {
-		class25 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),2, 5);
-		if(class25 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class25 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 2, 5);
+			if (class25 != null) {
+				break;
+			}
 		}
 		//火曜6限目
-		for(Timetable timetable:timetableList) {
-		class26 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),2, 6);
-		if(class26 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class26 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 2, 6);
+			if (class26 != null) {
+				break;
+			}
 		}
 		//水曜1限目
-		for(Timetable timetable:timetableList) {
-		class31 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),3, 1);
-		if(class31 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class31 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 3, 1);
+			if (class31 != null) {
+				break;
+			}
 		}
 		//水曜2限目
-		for(Timetable timetable:timetableList) {
-		class32 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),3, 2);
-		if(class32 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class32 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 3, 2);
+			if (class32 != null) {
+				break;
+			}
 		}
 		//水曜3限目
-		for(Timetable timetable:timetableList) {
-		class33 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),3, 3);
-		if(class33 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class33 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 3, 3);
+			if (class33 != null) {
+				break;
+			}
 		}
 		//水曜4限目
-		for(Timetable timetable:timetableList) {
-		class34 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),3, 4);
-		if(class34 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class34 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 3, 4);
+			if (class34 != null) {
+				break;
+			}
 		}
 		//水曜5限目
-		for(Timetable timetable:timetableList) {
-		class35 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),3, 5);
-		if(class35 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class35 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 3, 5);
+			if (class35 != null) {
+				break;
+			}
 		}
 		//水曜6限目
-		for(Timetable timetable:timetableList) {
-		class36 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),3, 6);
-		if(class36 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class36 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 3, 6);
+			if (class36 != null) {
+				break;
+			}
 		}
 		//木曜1限目
-		for(Timetable timetable:timetableList) {
-		class41 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),4, 1);
-		if(class41 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class41 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 4, 1);
+			if (class41 != null) {
+				break;
+			}
 		}
 		//木曜2限目
-		for(Timetable timetable:timetableList) {
-		class42 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),4, 2);
-		if(class42 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class42 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 4, 2);
+			if (class42 != null) {
+				break;
+			}
 		}
 		//木曜3限目
-		for(Timetable timetable:timetableList) {
-		class43 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),4, 3);
-		if(class43 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class43 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 4, 3);
+			if (class43 != null) {
+				break;
+			}
 		}
 		//木曜4限目
-		for(Timetable timetable:timetableList) {
-		class44 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),4, 4);
-		if(class44 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class44 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 4, 4);
+			if (class44 != null) {
+				break;
+			}
 		}
 		//木曜5限目
-		for(Timetable timetable:timetableList) {
-		class45 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),4, 5);
-		if(class45 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class45 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 4, 5);
+			if (class45 != null) {
+				break;
+			}
 		}
 		//木曜6限目
-		for(Timetable timetable:timetableList) {
-		class46 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),4, 6);
-		if(class46 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class46 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 4, 6);
+			if (class46 != null) {
+				break;
+			}
 		}
 		//金曜1限目
-		for(Timetable timetable:timetableList) {
-		class51 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),5, 1);
-		if(class51 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class51 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 5, 1);
+			if (class51 != null) {
+				break;
+			}
 		}
 		//金曜2限目
-		for(Timetable timetable:timetableList) {
-		class52 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),5, 2);
-		if(class52 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class52 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 5, 2);
+			if (class52 != null) {
+				break;
+			}
 		}
 		//金曜3限目
-		for(Timetable timetable:timetableList) {
-		class53 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),5, 3);
-		if(class53 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class53 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 5, 3);
+			if (class53 != null) {
+				break;
+			}
 		}
 		//金曜4限目
-		for(Timetable timetable:timetableList) {
-		class54 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),5, 4);
-		if(class54 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class54 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 5, 4);
+			if (class54 != null) {
+				break;
+			}
 		}
 		//金曜5限目
-		for(Timetable timetable:timetableList) {
-		class55 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),5, 5);
-		if(class55 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class55 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 5, 5);
+			if (class55 != null) {
+				break;
+			}
 		}
 		//金曜6限目
-		for(Timetable timetable:timetableList) {
-		class56 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),5, 6);
-		if(class56 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class56 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 5, 6);
+			if (class56 != null) {
+				break;
+			}
 		}
 		//土曜1限目
-		for(Timetable timetable:timetableList) {
-		class61 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),6, 1);
-		if(class61 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class61 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 6, 1);
+			if (class61 != null) {
+				break;
+			}
 		}
 		//土曜2限目
-		for(Timetable timetable:timetableList) {
-		class62 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),6, 2);
-		if(class62 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class62 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 6, 2);
+			if (class62 != null) {
+				break;
+			}
 		}
 		//土曜3限目
-		for(Timetable timetable:timetableList) {
-		class63 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),6, 3);
-		if(class63 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class63 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 6, 3);
+			if (class63 != null) {
+				break;
+			}
 		}
 		//土曜4限目
-		for(Timetable timetable:timetableList) {
-		class64 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),6, 4);
-		if(class64 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class64 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 6, 4);
+			if (class64 != null) {
+				break;
+			}
 		}
 		//土曜5限目
-		for(Timetable timetable:timetableList) {
-		class65 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),6, 5);
-		if(class65 != null) {
-			break;
-		}
+		for (Timetable timetable : timetableList) {
+			class65 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 6, 5);
+			if (class65 != null) {
+				break;
+			}
 		}
 		//土曜6限目
-		for(Timetable timetable:timetableList) {
-		class66 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(),6, 6);
-		if(class66 != null) {
-			break;
+		for (Timetable timetable : timetableList) {
+			class66 = (Lesson) lessonRepository.findByIdAndDayAndPeriod(timetable.getLessonId(), 6, 6);
+			if (class66 != null) {
+				break;
+			}
 		}
-		}
-		
+
 		model.addAttribute("textbookList", textbookList);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("imgList2", imgList2);
@@ -501,8 +477,7 @@ public class AccountController {
 		model.addAttribute("class64", class64);
 		model.addAttribute("class65", class65);
 		model.addAttribute("class66", class66);
-		
-		
+
 		//mypage表示
 		return "mypage";
 	}
