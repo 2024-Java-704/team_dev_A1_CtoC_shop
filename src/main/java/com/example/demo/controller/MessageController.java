@@ -57,7 +57,7 @@ public class MessageController {
 		//claimsテーブルへの反映
 		claimRepository.save(claim);
 
-		return "home";
+		return "redirect:/home";
 	}
 
 	// 通知画面の表示
