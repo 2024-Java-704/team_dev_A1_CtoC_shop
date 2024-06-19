@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.History;
 import com.example.demo.entity.Lesson;
 import com.example.demo.entity.LessonTextbook;
+import com.example.demo.entity.Teacher;
 import com.example.demo.entity.Textbook;
 import com.example.demo.entity.Timetable;
+import com.example.demo.entity.User;
 import com.example.demo.model.Account;
 import com.example.demo.repository.HistoryRepository;
 import com.example.demo.repository.LessonRepository;
@@ -61,9 +63,31 @@ public class TimetableController {
 
 		List<Lesson> lessons = lessonRepository.findByDayAndPeriod(day, period);
 
+		List<User> users = new ArrayList<User>();
+
+		List<Teacher> teachers = new ArrayList<Teacher>();
+
 		if (lessons.size() > 0) {
 			model.addAttribute("lessons", lessons);
 			model.addAttribute("lessonCount", lessons.size());
+
+			for (Lesson lesson : lessons) {
+				Boolean check = true;
+				for (User user : users) {
+					if (user.getId() == lesson.getTeacherId())
+						check = false;
+				}
+				if (check) {
+					users.add(userRepository.findOneById(lesson.getTeacherId()));
+				}
+			}
+			for (User user : users) {
+				teachers.add(teacherRepository.findOneByPersonalNumber(user.getPersonalNumber()));
+			}
+
+			model.addAttribute("users", users);
+			model.addAttribute("teachers", teachers);
+
 		} else
 			model.addAttribute("lessonCount", 0);
 
@@ -124,7 +148,10 @@ public class TimetableController {
 			}
 		}
 
-		model.addAttribute("teacher", teacherRepository.findOneByPersonalNumber(userRepository.findOneById(lesson.getTeacherId()).getPersonalNumber()).getName());
+		model.addAttribute("teacher",
+				teacherRepository
+						.findOneByPersonalNumber(userRepository.findOneById(lesson.getTeacherId()).getPersonalNumber())
+						.getName());
 		model.addAttribute("timetable", timetable);
 		model.addAttribute("lesson", lesson);
 		model.addAttribute("textbookCount", textbookCount);
@@ -144,8 +171,30 @@ public class TimetableController {
 
 		List<Lesson> lessons = lessonRepository.findByDayAndPeriod(lesson.getDay(), lesson.getPeriod());
 
+		List<User> users = new ArrayList<User>();
+
+		List<Teacher> teachers = new ArrayList<Teacher>();
+
 		model.addAttribute("timetable", timetable);
 		model.addAttribute("lessons", lessons);
+		model.addAttribute("lessonCount", lessons.size());
+
+		for (Lesson l : lessons) {
+			Boolean check = true;
+			for (User user : users) {
+				if (user.getId() == l.getTeacherId())
+					check = false;
+			}
+			if (check) {
+				users.add(userRepository.findOneById(l.getTeacherId()));
+			}
+		}
+		for (User user : users) {
+			teachers.add(teacherRepository.findOneByPersonalNumber(user.getPersonalNumber()));
+		}
+
+		model.addAttribute("users", users);
+		model.addAttribute("teachers", teachers);
 
 		return "setTimetable";
 	}
