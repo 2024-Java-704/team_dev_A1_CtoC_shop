@@ -63,7 +63,7 @@
 		<!--出品者情報-->
 		<p style="font-size: 1.2em; padding-left: 40%;">出品者</p>
 		<a th:href="@{/user/{id}(id=${item.sellerId})}"
-			style="font-size: 1.2em; padding-left: 40%;">[[${student.name}]]</a>
+			style="font-size: 1.2em; padding-left: 40%;" id="rink">[[${student.name}]]</a>
 		<form th:action="@{/buy/{id}(id=${item.id})}" th:if="${@account.id != item.sellerId}" method="post">
 			<button style="position: relative; left: 60%; bottom: 30px;" id="btn">購入する</button>
 		</form>
