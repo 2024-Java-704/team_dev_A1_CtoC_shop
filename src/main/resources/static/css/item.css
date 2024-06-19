@@ -108,3 +108,11 @@ main {
 	color: white;
 	cursor: pointer;
 }
+
+#rink {
+	color: black;
+}
+
+#rink:hover{
+	color: lightcoral;
+}
