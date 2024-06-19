@@ -546,6 +546,12 @@
 				</table>
 			</th:block>
 		</tablemarge>
+		<p>レビュー一覧</p>
+		<table border="1" style="width: 60%;" th:if="${reviewCount > 0}" class="table">
+			<tr th:each="review:${reviewList}">
+				<td th:text="${review.message}"></td>
+			</tr>
+		</table>
 		<footer th:replace="footer"></footer>
 	</main>
 

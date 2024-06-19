@@ -28,4 +28,6 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
 	List<Item> findByTextbookIdAndDealStatusOrderByTextbookIdDesc(Integer textbookId, Integer dealStatus);
 
+	List<Item> findBySellerIdAndDealStatus(Integer sellerId, Integer dealStatus);
+
 }
