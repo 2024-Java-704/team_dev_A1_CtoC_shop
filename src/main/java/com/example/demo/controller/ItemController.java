@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.entity.History;
 import com.example.demo.entity.Item;
 import com.example.demo.entity.ItemImage;
 import com.example.demo.entity.Notice;
@@ -29,6 +30,7 @@ import com.example.demo.entity.Student;
 import com.example.demo.entity.Textbook;
 import com.example.demo.entity.User;
 import com.example.demo.model.Account;
+import com.example.demo.repository.HistoryRepository;
 import com.example.demo.repository.ItemImageRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.NoticeRepository;
@@ -60,6 +62,9 @@ public class ItemController {
 
 	@Autowired
 	StudentRepository studentRepository;
+	
+	@Autowired
+	HistoryRepository historyRepository;
 
 	@Autowired
 	Account account;
@@ -238,6 +243,16 @@ public class ItemController {
 		item.setDealStatus(4);
 		item.setBuyerId(account.getId());
 		itemRepository.save(item);
+		
+		History history = historyRepository.findOneByTextbookIdAndUserId(item.getTextbookId(), account.getId());
+		
+		if(history != null) {
+			history.setStatus(2);
+			historyRepository.save(history);
+		} else {
+			history = new History(item.getTextbookId(), account.getId(), 1);
+			historyRepository.save(history);
+		}
 
 		Notice notice = new Notice(item.getSellerId(), "出品した商品が購入されました");
 		noticeRepository.save(notice);
