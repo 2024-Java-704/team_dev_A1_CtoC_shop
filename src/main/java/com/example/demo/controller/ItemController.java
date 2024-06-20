@@ -1,10 +1,6 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.History;
+import com.example.demo.entity.ImageData;
 import com.example.demo.entity.Item;
 import com.example.demo.entity.ItemImage;
 import com.example.demo.entity.Notice;
@@ -31,6 +28,7 @@ import com.example.demo.entity.Textbook;
 import com.example.demo.entity.User;
 import com.example.demo.model.Account;
 import com.example.demo.repository.HistoryRepository;
+import com.example.demo.repository.ImageDataRepository;
 import com.example.demo.repository.ItemImageRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.NoticeRepository;
@@ -67,6 +65,9 @@ public class ItemController {
 	HistoryRepository historyRepository;
 
 	@Autowired
+	ImageDataRepository imageDataRepository;
+
+	@Autowired
 	Account account;
 
 	@GetMapping("/home")
@@ -77,6 +78,7 @@ public class ItemController {
 		List<Item> itemList = new ArrayList<>();
 		List<Textbook> bookList = null;
 		List<ItemImage> itemImages = new ArrayList<>();
+		List<ImageData> imageDatas = new ArrayList<>();
 		List<Textbook> textbooks = new ArrayList<>();
 
 		//キーワード検索に何も入っていないとき
@@ -102,11 +104,18 @@ public class ItemController {
 			List<ItemImage> itemImageList = itemImageRepository.findByItemId(item.getId());
 			ItemImage itemImage = itemImageList.get(0);
 			textbook.setTextimg(itemImage.getImagePath());
+			textbook.setStyle(itemImage.getStyle());
+			if (itemImage.getStyle() == 2) {
+				ImageData imageData = imageDataRepository.findOneByItemImageId(itemImage.getId());
+				imageDatas.add(imageData);
+				textbook.setImage(imageData.getImageData());
+			}
 			textbooks.add(textbook);
 		}
 
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("itemImages", itemImages);
+		model.addAttribute("imageDatas", imageDatas);
 		model.addAttribute("textbooks", textbooks);
 		return "home";
 	}
@@ -118,6 +127,7 @@ public class ItemController {
 			Model model) {
 		List<Item> itemList = null;
 		List<Textbook> textbooks = new ArrayList<>();
+		List<ImageData> imageDatas = new ArrayList<>();
 		//sortの値によって条件分岐
 		if (sort == 1) {
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByIdDesc(id, 3);
@@ -128,6 +138,12 @@ public class ItemController {
 				ItemImage itemImage = itemImageList.get(0);
 				item.setTextprice(textbook.getPrice());
 				item.setTextimg(itemImage.getImagePath());
+				item.setStyle(itemImage.getStyle());
+				if (item.getStyle() == 2) {
+					ImageData imageData = imageDataRepository.findOneByItemImageId(itemImage.getId());
+					item.setImage(imageData.getImageData());
+					imageDatas.add(imageData);
+				}
 				itemRepository.save(item);
 				textbooks.add(textbook);
 			}
@@ -140,6 +156,12 @@ public class ItemController {
 				ItemImage itemImage = itemImageList.get(0);
 				item.setTextprice(textbook.getPrice());
 				item.setTextimg(itemImage.getImagePath());
+				item.setStyle(itemImage.getStyle());
+				if (item.getStyle() == 2) {
+					ImageData imageData = imageDataRepository.findOneByItemImageId(itemImage.getId());
+					item.setImage(imageData.getImageData());
+					imageDatas.add(imageData);
+				}
 				itemRepository.save(item);
 				textbooks.add(textbook);
 			}
@@ -152,6 +174,12 @@ public class ItemController {
 				ItemImage itemImage = itemImageList.get(0);
 				item.setTextprice(textbook.getPrice());
 				item.setTextimg(itemImage.getImagePath());
+				item.setStyle(itemImage.getStyle());
+				if (item.getStyle() == 2) {
+					ImageData imageData = imageDataRepository.findOneByItemImageId(itemImage.getId());
+					item.setImage(imageData.getImageData());
+					imageDatas.add(imageData);
+				}
 				itemRepository.save(item);
 				textbooks.add(textbook);
 			}
@@ -169,6 +197,7 @@ public class ItemController {
 		case 3:
 			itemList = itemRepository.findByTextbookIdAndDealStatusOrderByItemStatusAsc(id, 3);
 		}
+		model.addAttribute("imageDatas", imageDatas);
 		model.addAttribute("textbook", textbook);
 		model.addAttribute("sort", sort);
 		model.addAttribute("itemList", itemList);
@@ -195,10 +224,18 @@ public class ItemController {
 
 		//idに対応するItemImagesのリストを取得
 		itemImages = itemImageRepository.findByItemId(id);
+		List<ImageData> imageDatas = new ArrayList<>();
+		for (ItemImage itemImage : itemImages) {
+			if (itemImage.getStyle() == 2)
+				imageDatas.add(imageDataRepository.findOneByItemImageId(itemImage.getId()));
+		}
+
 		model.addAttribute("textbook", textbook);
 		model.addAttribute("student", student);
 		model.addAttribute("item", item);
 		model.addAttribute("itemImages", itemImages);
+		model.addAttribute("imageDatas", imageDatas);
+
 		return "item";
 	}
 
@@ -228,6 +265,7 @@ public class ItemController {
 		List<ItemImage> imageList = new ArrayList<>();
 		//レビューのリストを作成する
 		List<Review> reviewList = new ArrayList<>();
+		List<ImageData> imageDatas = new ArrayList<>();
 
 		if (sellItemList.size() > 0)
 			//sellItemListの各商品について
@@ -247,6 +285,14 @@ public class ItemController {
 				}
 			}
 
+		if (imageList.size() > 0) {
+			for (ItemImage itemImage : imageList) {
+				if (itemImage.getStyle() == 2) {
+					imageDatas.add(imageDataRepository.findOneByItemImageId(itemImage.getId()));
+				}
+			}
+		}
+
 		model.addAttribute("student", studentRepository.findOneByPersonalNumber(user.getPersonalNumber()));
 		model.addAttribute("user", user);
 		model.addAttribute("textbooks", textbooks);
@@ -259,6 +305,7 @@ public class ItemController {
 		if (reviewList.size() > 0)
 			model.addAttribute("reviewList", reviewList);
 		model.addAttribute("reviewCount", reviewList.size());
+		model.addAttribute("imageDatas", imageDatas);
 		return "user";
 	}
 
@@ -320,6 +367,14 @@ public class ItemController {
 		if (errorMsg.length() > 0) {
 			model.addAttribute("errorMsg", errorMsg);
 		}
+		
+		List<ImageData> imageDatas = new ArrayList<>();
+		
+		for (ItemImage image : itemImage) {
+			if (image.getStyle() == 2) {
+				imageDatas.add(imageDataRepository.findOneByItemImageId(image.getId()));
+			}
+		}
 
 		model.addAttribute("item", item);
 		model.addAttribute("textbook", textbook);
@@ -327,7 +382,8 @@ public class ItemController {
 		model.addAttribute("userSeller", userSeller);
 		model.addAttribute("student", student);
 		model.addAttribute("itemImages", itemImage);
-
+		model.addAttribute("imageDatas", imageDatas);
+		
 		return "deal";
 	}
 
@@ -385,20 +441,27 @@ public class ItemController {
 			@RequestParam(name = "itemStatus") Integer itemStatus) throws IOException {
 		Item item = new Item(textbookId, itemStatus, account.getId());
 		itemRepository.save(item);
-
-		for (MultipartFile image : images) {
-			ItemImage itemImage = new ItemImage(item.getId(), image.getOriginalFilename());
+		
+		for(MultipartFile image : images) {
+			ItemImage itemImage = new ItemImage(item.getId(), 2);
 			itemImageRepository.save(itemImage);
-			Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
-
-			System.out.println(image.getContentType());
-
-			if (Files.exists(dst)) {
-				System.out.println("同名ファイルがあります！");
-			}
-
-			Files.copy(image.getInputStream(), dst, StandardCopyOption.REPLACE_EXISTING);
+			ImageData imageData = new ImageData(itemImage.getId(), image.getBytes());
+			imageDataRepository.save(imageData);
 		}
+
+//		for (MultipartFile image : images) {
+//			ItemImage itemImage = new ItemImage(item.getId(), image.getOriginalFilename());
+//			itemImageRepository.save(itemImage);
+//			Path dst = Paths.get("src/main/resources/static/img/", image.getOriginalFilename());
+//
+//			System.out.println(image.getContentType());
+//
+//			if (Files.exists(dst)) {
+//				System.out.println("同名ファイルがあります！");
+//			}
+//
+//			Files.copy(image.getInputStream(), dst, StandardCopyOption.REPLACE_EXISTING);
+//		}
 		return "redirect:/home";
 	}
 }

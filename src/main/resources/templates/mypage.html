@@ -456,11 +456,11 @@
 				<td th:if="${class66 != null}">
 					<a class="tts" th:href="@{/account/viewTimetable?lessonId={id}(id=${class66.id})}"
 						th:text="${class66.name}">
-						</a>
-						<form action="/account/setTimetable" method="get">
-							<input type="hidden" name="lessonId" th:value="${class66.id}">
-							<button class="changebtn">変更</button>
-						</form>
+					</a>
+					<form action="/account/setTimetable" method="get">
+						<input type="hidden" name="lessonId" th:value="${class66.id}">
+						<button class="changebtn">変更</button>
+					</form>
 				</td>
 				<td th:if="${class66 == null}"><a class="ads" href="/account/addTimetable?day=6&period=6">授業登録</a></td>
 			</tr>
@@ -484,8 +484,12 @@
 							</textloop>
 							<imageloop th:each="img:${imgList}">
 								<td th:if="${img.itemId == buyItem.id}">
-									<img class="textimg" th:src="'/img/' + ${img.imagePath}"
+									<img th:if="${img.style == 1}" class="textimg" th:src="'/img/' + ${img.imagePath}"
 										th:alt="'/img/'+${img.imagePath}" />
+									<imagemap th:if="${img.style == 2}" th:each="imageData:${imageDatas}"><img
+											th:if="${img.id == imageData.itemImageId}"
+											th:src="${'data:image/png;base64,'+ imageData.image}"
+											th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap>
 								</td>
 							</imageloop>
 							<td th:if="${buyItem.buyerId == @account.id && buyItem.dealStatus == 4}">
@@ -523,8 +527,12 @@
 							</textloop>
 							<imageloop th:each="img2:${imgList2}">
 								<td th:if="${img2.itemId == sellItem.id}">
-									<img class="textimg" th:src="'/img/' + ${img2.imagePath}"
+									<img th:if="${img2.style == 1}" class="textimg" th:src="'/img/' + ${img2.imagePath}"
 										th:alt="'/img/'+${img2.imagePath}" />
+									<imagemap th:if="${img2.style == 2}" th:each="imageData:${imageDatas}"><img
+											th:if="${img2.id == imageData.itemImageId}"
+											th:src="${'data:image/png;base64,'+ imageData.image}"
+											th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap>
 								</td>
 							</imageloop>
 							<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 1}">出品申請中</td>

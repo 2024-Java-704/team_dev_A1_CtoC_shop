@@ -22,7 +22,7 @@
 		<!--商品画像表示-->
 		<ul class="slider">
 			<th:block th:each="itemImage:${itemImages}">
-				<li><img th:src="'/img/'+${itemImage.imagePath}"></li>
+				<li><img th:if="${itemImage.style == 1}" th:src="'/img/'+${itemImage.imagePath}" th:alt="'/img/'+${itemImage.imagePath}" /><imagemap th:if="${itemImage.style == 2}" th:each="imageData:${imageDatas}"><img th:if="${itemImage.id == imageData.itemImageId}" th:src="${'data:image/png;base64,'+ imageData.image}" th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap></li>
 			</th:block>
 		</ul>
 <br>

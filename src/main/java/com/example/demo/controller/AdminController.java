@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Claim;
 import com.example.demo.entity.History;
+import com.example.demo.entity.ImageData;
 import com.example.demo.entity.Item;
 import com.example.demo.entity.ItemImage;
 import com.example.demo.entity.Lesson;
@@ -24,6 +25,7 @@ import com.example.demo.entity.User;
 import com.example.demo.model.Account;
 import com.example.demo.repository.ClaimRepository;
 import com.example.demo.repository.HistoryRepository;
+import com.example.demo.repository.ImageDataRepository;
 import com.example.demo.repository.ItemImageRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.LessonRepository;
@@ -73,6 +75,9 @@ public class AdminController {
 	@Autowired
 	HistoryRepository historyRepository;
 
+	@Autowired
+	ImageDataRepository imageDataRepository;
+
 	//管理者画面を表示
 	@GetMapping("/admin")
 	public String index(Model model) {
@@ -99,10 +104,19 @@ public class AdminController {
 			Model model) {
 		Item item = itemRepository.findOneById(id);
 		List<ItemImage> images = itemImageRepository.findByItemId(id);
+		List<ImageData> imageDatas = new ArrayList<>();
+
+		for (ItemImage image : images) {
+			if (image.getStyle() == 2) {
+				imageDatas.add(imageDataRepository.findOneByItemImageId(image.getId()));
+			}
+		}
+
 		model.addAttribute("item", item);
 		model.addAttribute("textbook", textbookRepository.findOneById(item.getTextbookId()));
 		model.addAttribute("images", images);
 		model.addAttribute("user", userRepository.findOneById(item.getSellerId()));
+		model.addAttribute("imageDatas", imageDatas);
 		return "admin/item";
 	}
 
@@ -127,7 +141,8 @@ public class AdminController {
 				if (item.getSellerId() != request.getUserId()) {
 					if (request.getItemStatus() == 5 || request.getItemStatus() == item.getItemStatus()) {
 						noticeRepository.save(new Notice(request.getUserId(),
-								"募集していた「" + textbookRepository.findOneById(item.getTextbookId()).getTitle() + "」が出品されました!"));
+								"募集していた「" + textbookRepository.findOneById(item.getTextbookId()).getTitle()
+										+ "」が出品されました!"));
 					}
 				}
 			}

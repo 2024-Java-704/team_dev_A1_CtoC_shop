@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.util.Base64;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +26,12 @@ public class Textbook {
 
 	@Transient
 	private String textimg;
+
+	@Transient
+	private Integer style;
+
+	@Transient
+	private byte[] image;
 
 	public Textbook() {
 	}
@@ -64,7 +72,26 @@ public class Textbook {
 	}
 
 	public String getTextbookUrl() {
-		return "<a href='/home?keyword=" + title + "'>" + title + "</a>";
+		if (textimg == "")
+			return "<a href='/home?keyword=" + title + "'>" + title + "</a>";
+		else
+			return null;
+	}
+
+	public void setStyle(Integer style) {
+		this.style = style;
+	}
+
+	public Integer getStyle() {
+		return style;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	public String getImage() {
+		return Base64.getEncoder().encodeToString(image);
 	}
 
 }

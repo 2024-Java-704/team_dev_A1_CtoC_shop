@@ -19,6 +19,8 @@ public class ItemImage {
 
 	@Column(name = "image_path")
 	private String imagePath;
+	
+	private Integer style;
 
 	//コンストラクタ
 	public ItemImage() {
@@ -27,6 +29,13 @@ public class ItemImage {
 	public ItemImage(Integer itemId, String imagePath) {
 		this.itemId = itemId;
 		this.imagePath = imagePath;
+		this.style = 1;
+	}
+	
+	public ItemImage(Integer itemId, Integer style) {
+		this.itemId = itemId;
+		this.imagePath = "";
+		this.style = style;
 	}
 
 	//メソッド
@@ -42,4 +51,8 @@ public class ItemImage {
 		return imagePath;
 	}
 
+	public Integer getStyle() {
+		return style;
+	}
+	
 }

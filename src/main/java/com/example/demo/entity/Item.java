@@ -1,8 +1,6 @@
 package com.example.demo.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.example.demo.repository.ItemImageRepository;
+import java.util.Base64;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,8 +40,10 @@ public class Item {
 	private String textimg;
 
 	@Transient
-	@Autowired
-	ItemImageRepository itemImageRepository;
+	private Integer style;
+
+	@Transient
+	private byte[] image;
 
 	//コンストラクタ
 	public Item() { //デフォルトコンストラクタ	
@@ -105,10 +105,20 @@ public class Item {
 		this.textimg = textimg;
 	}
 	
-	@Transient
-	public String getItemImagePath() {
-		ItemImage itemImage = itemImageRepository.findOneByItemId(id);
-		return itemImage.getImagePath();
+	public void setStyle(Integer style) {
+		this.style = style;
+	}
+
+	public Integer getStyle() {
+		return style;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	public String getImage() {
+		return Base64.getEncoder().encodeToString(image);
 	}
 
 }

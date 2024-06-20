@@ -16,7 +16,7 @@
 			<div class="boxImage">
 				<ul class="slider">
 					<th:block th:each="image:${images}">
-						<li><img th:src="'/img/'+${image.imagePath}" th:alt="'/img/'+${image.imagePath}" /></li>
+						<li><img th:if="${image.style == 1}" th:src="'/img/'+${image.imagePath}" th:alt="'/img/'+${image.imagePath}" /><imagemap th:if="${image.style == 2}" th:each="imageData:${imageDatas}"><img th:if="${image.id == imageData.itemImageId}" th:src="${'data:image/png;base64,'+ imageData.image}" th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap></li>
 					</th:block>
 				</ul>
 			</div>

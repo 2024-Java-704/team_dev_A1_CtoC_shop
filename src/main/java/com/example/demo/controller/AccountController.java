@@ -18,6 +18,7 @@ import com.example.demo.entity.Textbook;
 import com.example.demo.entity.Timetable;
 import com.example.demo.entity.User;
 import com.example.demo.model.Account;
+import com.example.demo.repository.ImageDataRepository;
 import com.example.demo.repository.ItemImageRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.LessonRepository;
@@ -50,6 +51,9 @@ public class AccountController {
 
 	@Autowired
 	ReviewRepository reviewRepository;
+	
+	@Autowired
+	ImageDataRepository imageDataRepository;
 
 	@Autowired
 	HttpSession session;
@@ -450,6 +454,7 @@ public class AccountController {
 		model.addAttribute("textbookList", textbookList);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("imgList2", imgList2);
+		model.addAttribute("imageDatas", imageDataRepository.findAll());
 		model.addAttribute("buyList", buyList);
 		model.addAttribute("sellList", sellList);
 		model.addAttribute("countsellList", countsellList);
