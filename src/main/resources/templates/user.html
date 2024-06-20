@@ -22,8 +22,9 @@
 			<div th:each="sellItem:${sellItemList}" class="box">
 				<p th:if="${sellItem.dealStatus == 3}">出品中</p>
 				<p th:if="!${sellItem.dealStatus == 3}">SOLD OUT</p>
-				<img th:each="image:${imageList}" th:if="${image.itemId == sellItem.id}"
-					th:src="'/img/' + ${image.imagePath}" th:alt="'/img/'+${image.imagePath}" class="img" />
+				<image th:each="image:${imageList}" th:if="${image.itemId == sellItem.id}">
+				<img th:if="${image.style == 1}" th:src="'/img/' + ${image.imagePath}" th:alt="'/img/'+${image.imagePath}" class="img" /><imagemap th:if="${image.style == 2}" th:each="imageData:${imageDatas}"><img th:if="${image.id == imageData.itemImageId}" th:src="${'data:image/png;base64,'+ imageData.image}" th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap>
+					</image>
 				 <th:block th:each="textbook:${textbooks}"
 					th:if="${textbook.id == sellItem.textbookId && sellItem.dealStatus == 3}">
 					<p><a th:href="'/item/' + ${sellItem.id}" th:text="${textbook.title}" class="iteminfo"></a></p>

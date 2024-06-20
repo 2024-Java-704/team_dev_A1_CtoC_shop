@@ -23,7 +23,7 @@
 			<th:block th:each="item:${itemList}">
 				<div class="col">
 					<a th:href="@{/item/{id}(id=${item.id})}">
-						<img class="num" th:src="'/img/'+${item.textimg}" th:alt="'/img/'+${item.textimg}"></img>
+						<img th:if="${item.style == 1}" class="num" th:src="'/img/'+${item.textimg}" th:alt="'/img/'+${item.textimg}"></img><img th:if="${item.style == 2}" th:src="${'data:image/png;base64,'+ item.image}" />
 					</a>
 					<th:block th:if="${item.itemStatus == 1}">
 						<p id="" th:text="${#numbers.formatDecimal(item.textprice*1.0,0,'COMMA',0,'POINT')}+'円'"></p>

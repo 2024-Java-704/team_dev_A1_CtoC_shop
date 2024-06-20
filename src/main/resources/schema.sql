@@ -4,6 +4,7 @@
  	DROP TABLE IF EXISTS items;
  	DROP TABLE IF EXISTS claims;
  	DROP TABLE IF EXISTS item_images;
+ 	DROP TABLE IF EXISTS image_data;
  	DROP TABLE IF EXISTS reviews;
  	DROP TABLE IF EXISTS notices;
  	DROP TABLE IF EXISTS requests;
@@ -53,7 +54,15 @@
  	CREATE TABLE item_images (
  	id SERIAL PRIMARY KEY,
  	item_id INTEGER,
- 	image_path TEXT
+ 	image_path TEXT,
+ 	style INTEGER
+ 	);
+ 	
+ 	-- image_data テーブルを作成するクエリ
+ 	CREATE TABLE image_data (
+ 	id SERIAL PRIMARY KEY,
+ 	item_image_id INTEGER,
+ 	image BYTEA
  	);
  	
  	-- reviews テーブルを作成するクエリ
