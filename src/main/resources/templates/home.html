@@ -19,8 +19,8 @@
 		<th:block th:each="textbook:${textbooks}">
 			<div class="col">
 				<a th:href="@{/textbook/{id}(id=${textbook.id})}">
-					<img class="num" th:src="'/img/'+${textbook.textimg}"
-						th:alt="'/img/'+${textbook.textimg}"></img>
+					<img  th:if="${textbook.style == 1}" class="num" th:src="'/img/'+${textbook.textimg}"
+						th:alt="'/img/'+${textbook.textimg}"></img><img th:if="${textbook.style == 2}" th:src="${'data:image/png;base64,'+ textbook.image}" />
 				</a>
 				<th:block th:each="textbook:${textbook}">
 					<p th:text="${textbook.title}"></p>
