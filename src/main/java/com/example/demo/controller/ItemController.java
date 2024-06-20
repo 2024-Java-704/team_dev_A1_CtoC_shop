@@ -387,6 +387,7 @@ public class ItemController {
 		return "deal";
 	}
 
+	//レビュー投稿
 	@PostMapping("/review/{id}")
 	public String review(@PathVariable("id") Integer id,
 			@RequestParam(name = "message", defaultValue = "") String message,
