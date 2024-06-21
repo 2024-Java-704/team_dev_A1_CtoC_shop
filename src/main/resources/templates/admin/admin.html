@@ -12,10 +12,11 @@
 	<main>
 		<h1>管理者画面</h1>
 		<button class="adminMenu" onclick="location.href='/admin/user'">ユーザー管理</button><br>
-		<button class="adminMenu" onclick="location.href='/admin/request'" style="text-decoration:none;">出品申請管理<span th:if="${requestCount} > 0"
-				th:text="${requestCount}" style="color: red;" class="alate">!</span></button><br>
-		<button class="adminMenu" onclick="location.href='/admin/addTextbook'">教科書の登録</button><br>
-		<button class="adminMenu" onclick="location.href='/admin/addLesson'">授業の登録</button>
+		<button class="adminMenu" onclick="location.href='/admin/request'" style="text-decoration:none;">出品申請管理<span
+				th:if="${requestCount} > 0" th:text="${requestCount}" style="color: red;"
+				class="alate">!</span></button><br>
+		<button class="adminMenu" onclick="location.href='/admin/textbook'">教科書一覧</button><br>
+		<button class="adminMenu" onclick="location.href='/admin/lesson'">授業一覧</button>
 		<footer th:replace="footer"></footer>
 	</main>
 </body>

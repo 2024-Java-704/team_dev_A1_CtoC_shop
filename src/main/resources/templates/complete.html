@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html　xmlns:th="http://www.thymeleaf.org">
-	<link rel="stylesheet" type="text/css" href="css/complete.css"/>
+<html　xmlns:th="http: //www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="css/complete.css" />
+
 <head>
-<meta charset="UTF-8">
-<title>取引完了</title>
+	<meta charset="UTF-8">
+	<title>取引完了</title>
 </head>
+
 <body>
 	<header th:replace="header"></header>
 	<main>
 		<h1 class="dealcomplete">取引が完了しました</h1>
-			<form action="/home" method="get">
-				<button type="submit">OK</button>
-			</form>
-	<footer th:replace="footer"></footer>
+		<form action="/home" method="get">
+			<button type="submit">OK</button>
+		</form>
+		<footer th:replace="footer"></footer>
 	</main>
 </body>
+
 </html>

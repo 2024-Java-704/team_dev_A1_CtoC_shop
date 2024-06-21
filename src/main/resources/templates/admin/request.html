@@ -10,21 +10,29 @@
 <body>
 	<header th:replace="header"></header>
 	<main>
-	<h1>出品申請一覧</h1>
-	<table th:if="${items}" border="1">
-		<tr>
-			<th>教科書</th>
-			<th>出品者</th>
-			<th>確認</th>
-		</tr>
-		<tr th:each="item:${items}">
-			<td th:each="textbook:${textbooks}" th:if="${item.textbookId == textbook.id}" th:text="${textbook.title}"></td>
-			<td th:each="user:${users}" th:if="${item.sellerId == user.id}" th:text="${user.personalNumber}" class="msg"></td>
-			<td><form th:action="'/admin/request/' + ${item.id}" method="get"><button class="list">確認</button></form></td>
-		</tr>
-	</table>
-	<p th:if="!${items}">出品申請はありません</p>
-	<footer th:replace="footer"></footer>
+		<h1>出品申請一覧</h1>
+		<table th:if="${items}" border="1">
+			<tr>
+				<th>教科書</th>
+				<th>学籍番号</th>
+				<th>出品者名</th>
+				<th>確認</th>
+			</tr>
+			<tr th:each="item:${items}">
+				<td th:each="textbook:${textbooks}" th:if="${item.textbookId == textbook.id}"
+					th:text="${textbook.title}"></td>
+				<td th:each="user:${users}" th:if="${item.sellerId == user.id}" th:text="${user.personalNumber}"
+					class="msg"></td>
+				<th:block th:each="user:${users}" th:if="${item.sellerId == user.id}"
+					class="msg"><td th:each="student:${students}" th:if="${student.personalNumber == user.personalNumber}" th:text="${student.name}"></td></th:block>
+				<td>
+					<form th:action="'/admin/request/' + ${item.id}" method="get"><button class="list">確認</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<p th:if="!${items}">出品申請はありません</p>
+		<footer th:replace="footer"></footer>
 	</main>
 </body>
 

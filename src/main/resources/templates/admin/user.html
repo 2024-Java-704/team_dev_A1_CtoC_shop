@@ -29,13 +29,30 @@
 			</tr>
 			<tr th:each="user:${users}">
 				<td th:text="${user.personalNumber}"></td>
-				<td th:each="student:${students}" th:if="${user.personalNumber == student.personalNumber}" th:text="${student.name}"></td>
-				<td><form th:action="'/admin/user/delete/' + ${user.id}" method="post"><button class="list">削除</button></form></td>
+				<td th:each="student:${students}" th:if="${user.personalNumber == student.personalNumber}"
+					th:text="${student.name}"></td>
+				<td>
+					<form th:action="'/admin/user/delete/' + ${user.id}" method="post" onSubmit="return check()"><button
+							class="list">削除</button>
+					</form>
+				</td>
 			</tr>
 		</table>
 
+		<script type="text/javascript">
+			function check() {
+				if (window.confirm('削除してよろしいですか？')) { 
+					return true;
+				}
+				else {
+					return false; 
+				}
+
+			}
+		</script>
+
 		<p th:if="!${users}">該当の会員はいません</p>
-	<footer th:replace="footer"></footer>
+		<footer th:replace="footer"></footer>
 	</main>
 </body>
 

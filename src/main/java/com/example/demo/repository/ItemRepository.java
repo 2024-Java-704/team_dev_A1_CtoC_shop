@@ -30,4 +30,12 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
 	List<Item> findBySellerIdAndDealStatus(Integer sellerId, Integer dealStatus);
 
+	List<Item> findBySellerIdAndDealStatusOrderByIdDesc(Integer sellerId, Integer dealStatus);
+	
+	List<Item> findBySellerIdAndDealStatusNotOrderByIdDesc(Integer sellerId, Integer dealStatus);
+
+	List<Item> findByBuyerIdAndDealStatusOrderByIdDesc(Integer buyerId, Integer dealStatus);
+	
+	List<Item> findByBuyerIdAndDealStatusNotOrderByIdDesc(Integer buyerId, Integer dealStatus);
+
 }

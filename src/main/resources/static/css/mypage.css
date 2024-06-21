@@ -2,6 +2,8 @@
 tablemarge{
 	align-items: flex-start;
 	display: flex;
+	max-width:95%;
+	margin : 0 auto;
 }
 #table1{
 	margin-right: 0%;

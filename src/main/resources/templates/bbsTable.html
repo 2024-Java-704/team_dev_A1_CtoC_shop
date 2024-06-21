@@ -1,43 +1,71 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>掲示板</title>
-<link rel="stylesheet" type="text/css" href="/css/bbsTable.css" >
 
-<!--画面ID:301 掲示板画面-->
+<head>
+	<meta charset="UTF-8">
+	<title>掲示板</title>
+	<link rel="stylesheet" type="text/css" href="/css/bbsTable.css">
+
+	<!--画面ID:301 掲示板画面-->
 </head>
+
 <body>
 	<header th:replace="header"></header>
-	
+
 	<main>
 
-	<h1 class ="title">掲示板</h1>
-	<table>
-		<tr>
-			<th>商品状態</th>
-			<th>タイトル</th>
-			<th class = "complete">完了</th>
-		</tr>
-		<tr th:each = "request:${requests}">
-			<td th:if = "${request.itemStatus}==1">新品</td>
-			<td th:if = "${request.itemStatus}==2">中古</td>
-			<td th:if = "${request.itemStatus}==3">書き込みあり</td>
-			<td th:if = "${request.itemStatus}==4">破損あり</td>
-			<td th:if = "${request.itemStatus}==5">どちらでもよい</td>
-			<td th:each="title:${titles}" th:if="${title.id == request.textbookId}" th:text = "${title.title}" class = "tr2"></td>
-			<td >
-			<form th:action = "@{/bbs/{id}/delete(id=${request.id})}" method = "post" th:if="${request.userId == @account.id}">
-				<button class = "delete"><image src="/img/trash.png" alt="ゴミ箱画像"></button>
-			</form> 
-			</td>
-		</tr>
-	</table>
-	<form action ="/bbs/addRequest" method = "get"><br>
-	<button class = "req">新規募集</button>
-	</form>
-	<footer th:replace="footer"></footer>
+		<h1 class="title">教科書募集掲示板</h1>
+		<table>
+			<tr>
+				<th>商品状態</th>
+				<th>タイトル</th>
+				<th class="complete">完了</th>
+			</tr>
+
+			<th:block th:each="request:${requests}">
+				<tr th:if="${request.userId == @account.id}">
+					<td th:if="${request.itemStatus}==1">新品</td>
+					<td th:if="${request.itemStatus}==2">中古</td>
+					<td th:if="${request.itemStatus}==3">書き込みあり</td>
+					<td th:if="${request.itemStatus}==4">破損あり</td>
+					<td th:if="${request.itemStatus}==5">どちらでもよい</td>
+					<td th:each="title:${titles}" th:if="${title.id == request.textbookId}" th:text="${title.title}"
+						class="tr2"></td>
+					<td>
+						<form th:action="@{/bbs/{id}/delete(id=${request.id})}" method="post"
+							th:if="${request.userId == @account.id}">
+							<button class="delete">
+								<image src="/img/trash.png" alt="ゴミ箱画像">
+							</button>
+						</form>
+					</td>
+				</tr>
+			</th:block>
+		</table>
+		<br>
+		<table>
+			<tr>
+				<th>商品状態</th>
+				<th>タイトル</th>
+			</tr>
+			<th:block th:each="request:${requests}">
+				<tr th:if="!${request.userId == @account.id}">
+					<td th:if="${request.itemStatus}==1">新品</td>
+					<td th:if="${request.itemStatus}==2">中古</td>
+					<td th:if="${request.itemStatus}==3">書き込みあり</td>
+					<td th:if="${request.itemStatus}==4">破損あり</td>
+					<td th:if="${request.itemStatus}==5">どちらでもよい</td>
+					<td th:each="title:${titles}" th:if="${title.id == request.textbookId}" th:text="${title.title}"
+						class="tr2"></td>
+				</tr>
+			</th:block>
+		</table>
+		<form action="/bbs/addRequest" method="get"><br>
+			<button class="req">新規募集</button>
+		</form>
+		<footer th:replace="footer"></footer>
 	</main>
 
 </body>
+
 </html>

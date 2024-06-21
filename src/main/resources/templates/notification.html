@@ -5,25 +5,26 @@
 	<meta charset="UTF-8">
 	<title>通知</title>
 	<link rel="stylesheet" type="text/css" href="/css/notice.css">
-<!--	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">-->
+	<!--	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">-->
 </head>
 
 <body>
 	<header th:replace="header"></header>
 	<main>
-	<div id="noticeTable">
-		<h1>通知</h1>
+		<div id="noticeTable">
+			<h1>通知</h1>
 
-		<table border="1">
-			<tr>
-				<th>内容</th>
-			</tr>
-			<tr th:each="notice:${notices}">
-				<td th:text="${notice.message}"></td>
-			</tr>
-		</table>
-	</div>
-	<footer th:replace="footer"></footer>
+			<table border="1">
+				<tr>
+					<th>内容</th>
+				</tr>
+				<tr th:each="notice:${notices}">
+					<td th:if="${notice.noticeStatus == 1}" th:text="${notice.message}" style="color: red;"></td>
+					<td th:if="${notice.noticeStatus == 2}" th:text="${notice.message}"></td>
+				</tr>
+			</table>
+		</div>
+		<footer th:replace="footer"></footer>
 	</main>
 </body>
 

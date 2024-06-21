@@ -15,7 +15,13 @@
 		<!--商品画像表示-->
 		<ul class="slider">
 			<th:block th:each="itemImage:${itemImages}">
-				<li><img th:if="${itemImage.style == 1}" th:src="'/img/'+${itemImage.imagePath}" th:alt="'/img/'+${itemImage.imagePath}" /><imagemap th:if="${itemImage.style == 2}" th:each="imageData:${imageDatas}"><img th:if="${itemImage.id == imageData.itemImageId}" th:src="${'data:image/png;base64,'+ imageData.image}" th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap></li>
+				<li><img th:if="${itemImage.style == 1}" th:src="'/img/'+${itemImage.imagePath}"
+						th:alt="'/img/'+${itemImage.imagePath}" />
+					<imagemap th:if="${itemImage.style == 2}" th:each="imageData:${imageDatas}"><img
+							th:if="${itemImage.id == imageData.itemImageId}"
+							th:src="${'data:image/png;base64,'+ imageData.image}"
+							th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap>
+				</li>
 			</th:block>
 		</ul>
 
@@ -62,9 +68,9 @@
 
 		<!--出品者情報-->
 		<p style="font-size: 1.2em; padding-left: 40%;">出品者</p>
-		<a th:href="@{/user/{id}(id=${item.sellerId})}"
-			style="font-size: 1.2em; padding-left: 40%;" id="rink">[[${student.name}]]</a>
-		<form th:action="@{/buy/{id}(id=${item.id})}" th:if="${@account.id != item.sellerId}" method="post">
+		<a th:href="@{/user/{id}(id=${item.sellerId})}" style="font-size: 1.2em; padding-left: 40%;"
+			id="rink">[[${student.name}]]</a>
+		<form th:action="@{/buy/{id}(id=${item.id})}" th:if="${@account.id != item.sellerId && item.dealStatus == 3}" method="post">
 			<button style="position: relative; left: 60%; bottom: 30px;" id="btn">購入する</button>
 		</form>
 		<footer th:replace="footer"></footer>

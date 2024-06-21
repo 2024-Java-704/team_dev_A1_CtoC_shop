@@ -10,17 +10,17 @@
 <body>
 	<header th:replace="header"></header>
 	<main>
-	<div id="contact">
-		<h1>お問い合わせフォーム</h1>
-		<p th:if="${errorList}">
-		<div th:each="error:${errorList}" th:text="${error}" style="color:red;"></div>
-		</p>
-		<form action="/claim" method="post">
-			<textarea name="message" cols="30" rows="4" id="textArea"></textarea> <br>
-			<button>送信</button>
-		</form>
-	</div>
-	<footer th:replace="footer"></footer>
+		<div id="contact">
+			<h1>お問い合わせフォーム</h1>
+			<p th:if="${errorList}">
+			<div th:each="error:${errorList}" th:text="${error}" style="color:red;"></div>
+			</p>
+			<form action="/claim" method="post">
+				<textarea name="message" cols="30" rows="4" id="textArea"></textarea> <br>
+				<button>送信</button>
+			</form>
+		</div>
+		<footer th:replace="footer"></footer>
 	</main>
 </body>
 

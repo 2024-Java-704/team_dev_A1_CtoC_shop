@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	
+
 <head>
-<meta charset="UTF-8">
-<title>アカウント情報更新</title>
-<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">
-<link rel="stylesheet" type="text/css" href="/css/mypage.css">
+	<meta charset="UTF-8">
+	<title>アカウント情報更新</title>
+	<link rel="stylesheet" type="text/css" href="/css/headerFooter.css">
+	<link rel="stylesheet" type="text/css" href="/css/mypage.css">
 </head>
+
 <body>
 	<header th:replace="header"></header>
 	<main>
-	<h2>自己紹介メッセージ更新</h2>
-	<form action="/account/setIntroduce" method="post">
-	<table border="1" id="table">
-		<tr>
-			<th class="tabletitle">学籍番号</th>
-			<td th:text="${personalNumber}"></td>
-		</tr>
-		<tr>
-			<th class="tabletitle">自己紹介<br>メッセージ</th>
-			<td>
-				<textarea name="introduce" th:text="${introduce}"></textarea>
-			</td>
-		</tr>
-	</table>
-	<br>
-	<br>
-	<button class="btn">更新</button>
-	</form>
-	<footer th:replace="footer"></footer>
+		<h2>自己紹介メッセージ更新</h2>
+		<form action="/account/setIntroduce" method="post">
+			<table border="1" id="table">
+				<tr>
+					<th class="tabletitle">学籍番号</th>
+					<td th:text="${personalNumber}"></td>
+				</tr>
+				<tr>
+					<th class="tabletitle">自己紹介<br>メッセージ</th>
+					<td>
+						<textarea name="introduce" th:text="${introduce}"></textarea>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<br>
+			<button class="btn">更新</button>
+		</form>
+		<footer th:replace="footer"></footer>
 	</main>
 </body>
+
 </html>

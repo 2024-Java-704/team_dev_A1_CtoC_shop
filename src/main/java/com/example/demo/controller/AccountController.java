@@ -23,6 +23,7 @@ import com.example.demo.repository.ItemImageRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.LessonRepository;
 import com.example.demo.repository.ReviewRepository;
+import com.example.demo.repository.StudentRepository;
 import com.example.demo.repository.TextbookRepository;
 import com.example.demo.repository.TimetableRepository;
 import com.example.demo.repository.UserRepository;
@@ -51,9 +52,12 @@ public class AccountController {
 
 	@Autowired
 	ReviewRepository reviewRepository;
-	
+
 	@Autowired
 	ImageDataRepository imageDataRepository;
+
+	@Autowired
+	StudentRepository studentRepository;
 
 	@Autowired
 	HttpSession session;
@@ -116,8 +120,12 @@ public class AccountController {
 		User user = userRepository.findById(account.getId()).get();
 		model.addAttribute("user", user);
 		//注文を降順にリスト化する
-		List<Item> sellList = itemRepository.findBySellerIdOrderByIdDesc(account.getId());
-		List<Item> buyList = itemRepository.findByBuyerIdOrderByIdDesc(account.getId());
+		List<Item> sellList = new ArrayList<>();
+		sellList.addAll(itemRepository.findBySellerIdAndDealStatusOrderByIdDesc(account.getId(), 4));
+		sellList.addAll(itemRepository.findBySellerIdAndDealStatusNotOrderByIdDesc(account.getId(), 4));
+		List<Item> buyList = new ArrayList<>();
+		buyList.addAll(itemRepository.findByBuyerIdAndDealStatusOrderByIdDesc(account.getId(), 4));
+		buyList.addAll(itemRepository.findByBuyerIdAndDealStatusNotOrderByIdDesc(account.getId(), 4));
 		//imgpathを格納するStringの箱を作る
 		List<Textbook> textbookList = new ArrayList<>();
 		List<ItemImage> imgList = new ArrayList<>();
@@ -461,6 +469,7 @@ public class AccountController {
 		model.addAttribute("countbuyList", countbuyList);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("reviewCount", reviewList.size());
+		model.addAttribute("student", studentRepository.findOneByPersonalNumber(user.getPersonalNumber()));
 
 		//36の時間割
 		model.addAttribute("class11", class11);

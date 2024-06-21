@@ -16,18 +16,29 @@
 			<div class="boxImage">
 				<ul class="slider">
 					<th:block th:each="image:${images}">
-						<li><img th:if="${image.style == 1}" th:src="'/img/'+${image.imagePath}" th:alt="'/img/'+${image.imagePath}" /><imagemap th:if="${image.style == 2}" th:each="imageData:${imageDatas}"><img th:if="${image.id == imageData.itemImageId}" th:src="${'data:image/png;base64,'+ imageData.image}" th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap></li>
+						<li><img th:if="${image.style == 1}" th:src="'/img/'+${image.imagePath}"
+								th:alt="'/img/'+${image.imagePath}" />
+							<imagemap th:if="${image.style == 2}" th:each="imageData:${imageDatas}"><img
+									th:if="${image.id == imageData.itemImageId}"
+									th:src="${'data:image/png;base64,'+ imageData.image}"
+									th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap>
+						</li>
 					</th:block>
 				</ul>
 			</div>
-			
+
 			<div class="boxText">
 				<h1>出品申請詳細画面</h1>
 				<span class="title" th:text="${textbook.title}"></span>
 				<table border="1">
 					<tr>
-						<td>出品者</td>
+						<td>学籍番号</td>
 						<td th:text="${user.personalNumber}"></td>
+					</tr>
+					<tr>
+						<td>出品者名</td>
+							<td th:each="student:${students}" th:if="${student.personalNumber == user.personalNumber}"
+								th:text="${student.name}"></td>
 					</tr>
 					<tr>
 						<td>状態</td>
@@ -48,7 +59,7 @@
 				</form>
 			</div>
 		</div>
-	<footer th:replace="footer"></footer>
+		<footer th:replace="footer"></footer>
 	</main>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

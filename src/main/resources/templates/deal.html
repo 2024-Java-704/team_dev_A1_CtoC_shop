@@ -11,90 +11,96 @@
 
 <body>
 	<header th:replace="header"></header>
-	
+
 	<main>
 
-	<!--出品者用取引画面-->
-	<th:block th:if="${accountId == item.sellerId}">
-		<h1 style="text-align: center;">商品が購入されました</h1>
-		<h3 style="text-align: center;">料金が支払われたことを確認し、商品を発送してください</h3>
-		<p style="font-size: 24px; text-align: center;">購入された商品</p>
-		<!--商品画像表示-->
-		<ul class="slider">
-			<th:block th:each="itemImage:${itemImages}">
-				<li><img th:if="${itemImage.style == 1}" th:src="'/img/'+${itemImage.imagePath}" th:alt="'/img/'+${itemImage.imagePath}" /><imagemap th:if="${itemImage.style == 2}" th:each="imageData:${imageDatas}"><img th:if="${itemImage.id == imageData.itemImageId}" th:src="${'data:image/png;base64,'+ imageData.image}" th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap></li>
+		<!--出品者用取引画面-->
+		<th:block th:if="${accountId == item.sellerId}">
+			<h1 style="text-align: center;">商品が購入されました</h1>
+			<h3 style="text-align: center;">料金が支払われたことを確認し、商品を発送してください</h3>
+			<p style="font-size: 24px; text-align: center;">購入された商品</p>
+			<!--商品画像表示-->
+			<ul class="slider">
+				<th:block th:each="itemImage:${itemImages}">
+					<li><img th:if="${itemImage.style == 1}" th:src="'/img/'+${itemImage.imagePath}"
+							th:alt="'/img/'+${itemImage.imagePath}" />
+						<imagemap th:if="${itemImage.style == 2}" th:each="imageData:${imageDatas}"><img
+								th:if="${itemImage.id == imageData.itemImageId}"
+								th:src="${'data:image/png;base64,'+ imageData.image}"
+								th:alt="${'data:image/png;base64,'+ imageData.image}"></imagemap>
+					</li>
+				</th:block>
+			</ul>
+			<br>
+			<!--商品(教科書名表示)-->
+			<h3 th:text="${textbook.title}" style="text-align: center;"></h3>
+
+			<!--価格表示-->
+			<th:block th:if="${item.itemStatus == 1}">
+				<p id="" th:text="${#numbers.formatDecimal(item.textprice*1.0,0,'COMMA',0,'POINT')}+'円'"
+					style="text-align: center; font-size: 1.2em;"></p>
 			</th:block>
-		</ul>
-<br>
-		<!--商品(教科書名表示)-->
-		<h3 th:text="${textbook.title}" style="text-align: center;"></h3>
 
-		<!--価格表示-->
-		<th:block th:if="${item.itemStatus == 1}">
-			<p id="" th:text="${#numbers.formatDecimal(item.textprice*1.0,0,'COMMA',0,'POINT')}+'円'"
-				style="text-align: center; font-size: 1.2em;"></p>
-		</th:block>
-
-		<th:block th:if="${item.itemStatus == 2}">
-			<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
-				style="text-align: center; font-size: 1.2em;"></p>
-		</th:block>
-
-		<th:block th:if="${item.itemStatus == 3}">
-			<p th:text="${#numbers.formatDecimal(item.textprice*0.6,0,'COMMA',0,'POINT')}+'円'"
-				style="text-align: center; font-size: 1.2em;"></p>
-		</th:block>
-
-		<th:block th:if="${item.itemStatus == 4}">
-			<p th:text="${#numbers.formatDecimal(item.textprice*0.5,0,'COMMA',0,'POINT')}+'円'"
-				style="text-align: center; font-size: 1.2em;"></p>
-		</th:block>
-		<br>
-		<!--商品状態表示-->
-		<th:block th:if="${item.itemStatus == 1}">
-			<p style="text-align: center; font-size: 1.2em;">商品状態: 新品</p>
-		</th:block>
-
-		<th:block th:if="${item.itemStatus == 2}">
-			<p style="text-align: center; font-size: 1.2em;">商品状態: 中古</p>
-		</th:block>
-
-		<th:block th:if="${item.itemStatus == 3}">
-			<p style="text-align: center; font-size: 1.2em;">商品状態: 書き込みあり</p>
-		</th:block>
-
-		<th:block th:if="${item.itemStatus == 4}">
-			<p style="text-align: center; font-size: 1.2em;">商品状態: 破損あり</p>
-		</th:block>
-		<br>
-		<p style="font-size: 24px; text-align: center;">購入者</p>
-		<p style="font-size: 24px; text-align: center;">[[${student.name}]]</p>
-		<p style="font-size: 24px; text-align: center;">学籍番号</p>
-		<p style="font-size: 24px; text-align: center;">[[${student.personalNumber}]]</p>
-
-
-	</th:block>
-
-	<!--購入者用レビュー入力画面-->
-	<th:block th:if="${accountId == item.buyerId}">
-		<h1 style="text-align: center;">ご購入ありがとうございます</h1>
-		<h3 style="text-align: center;">支払いをして商品を受け取り、評価をしてください</h3>
-		<div id="contact">
-			<h5>レビュー</h5>
-			<th:block th:if="${errorMsg}">
-				<p style="text-align: center; color: red;">[[${errorMsg}]]</p>
+			<th:block th:if="${item.itemStatus == 2}">
+				<p th:text="${#numbers.formatDecimal(item.textprice*0.8,0,'COMMA',0,'POINT')}+'円'"
+					style="text-align: center; font-size: 1.2em;"></p>
 			</th:block>
-			<form th:action="@{/review/{id}(id=${item.id})}" method="post">
-				<textarea name="message" cols="30" rows="4" id="textArea"></textarea> <br>
-				<button>送信</button>
-			</form>
-		</div>
 
-	</th:block>
+			<th:block th:if="${item.itemStatus == 3}">
+				<p th:text="${#numbers.formatDecimal(item.textprice*0.6,0,'COMMA',0,'POINT')}+'円'"
+					style="text-align: center; font-size: 1.2em;"></p>
+			</th:block>
+
+			<th:block th:if="${item.itemStatus == 4}">
+				<p th:text="${#numbers.formatDecimal(item.textprice*0.5,0,'COMMA',0,'POINT')}+'円'"
+					style="text-align: center; font-size: 1.2em;"></p>
+			</th:block>
+			<br>
+			<!--商品状態表示-->
+			<th:block th:if="${item.itemStatus == 1}">
+				<p style="text-align: center; font-size: 1.2em;">商品状態: 新品</p>
+			</th:block>
+
+			<th:block th:if="${item.itemStatus == 2}">
+				<p style="text-align: center; font-size: 1.2em;">商品状態: 中古</p>
+			</th:block>
+
+			<th:block th:if="${item.itemStatus == 3}">
+				<p style="text-align: center; font-size: 1.2em;">商品状態: 書き込みあり</p>
+			</th:block>
+
+			<th:block th:if="${item.itemStatus == 4}">
+				<p style="text-align: center; font-size: 1.2em;">商品状態: 破損あり</p>
+			</th:block>
+			<br>
+			<p style="font-size: 24px; text-align: center;">購入者</p>
+			<p style="font-size: 24px; text-align: center;">[[${student.name}]]</p>
+			<p style="font-size: 24px; text-align: center;">学籍番号</p>
+			<p style="font-size: 24px; text-align: center;">[[${student.personalNumber}]]</p>
 
 
-	<footer th:replace="footer"></footer>
-	
+		</th:block>
+
+		<!--購入者用レビュー入力画面-->
+		<th:block th:if="${accountId == item.buyerId}">
+			<h1 style="text-align: center;">ご購入ありがとうございます</h1>
+			<h3 style="text-align: center;">支払いをして商品を受け取り、評価をしてください</h3>
+			<div id="contact">
+				<h5>レビュー</h5>
+				<th:block th:if="${errorMsg}">
+					<p style="text-align: center; color: red;">[[${errorMsg}]]</p>
+				</th:block>
+				<form th:action="@{/review/{id}(id=${item.id})}" method="post">
+					<textarea name="message" cols="30" rows="4" id="textArea"></textarea> <br>
+					<button>送信</button>
+				</form>
+			</div>
+
+		</th:block>
+
+
+		<footer th:replace="footer"></footer>
+
 	</main>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"

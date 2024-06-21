@@ -10,24 +10,24 @@
 <body>
 	<header th:replace="header"></header>
 	<main>
-	<h1>お問い合わせ確認</h1>
-	<table border="1">
-		<tr>
-			<th>No</th>
-			<th>問い合わせ内容</th>
-		</tr>
-		<tr th:each="claim:${claims}">
-			<th:block th:if="${claim.claimStatus == 1}">
-				<td th:text="${claim.id}" style="color: red;"></td>
-				<td class="msg" th:text="${claim.message}" style="color: red;"></td>
-			</th:block>
-			<th:block th:if="${claim.claimStatus == 2}">
-				<td th:text="${claim.id}"></td>
-				<td class="msg" th:text="${claim.message}"></td>
-			</th:block>
-		</tr>
-	</table>
-	<footer th:replace="footer"></footer>
+		<h1>お問い合わせ確認</h1>
+		<table border="1">
+			<tr>
+				<th>No</th>
+				<th>問い合わせ内容</th>
+			</tr>
+			<tr th:each="claim:${claims}">
+				<th:block th:if="${claim.claimStatus == 1}">
+					<td th:text="${claim.id}" style="color: red;"></td>
+					<td class="msg" th:text="${claim.message}" style="color: red;"></td>
+				</th:block>
+				<th:block th:if="${claim.claimStatus == 2}">
+					<td th:text="${claim.id}"></td>
+					<td class="msg" th:text="${claim.message}"></td>
+				</th:block>
+			</tr>
+		</table>
+		<footer th:replace="footer"></footer>
 	</main>
 </body>
 

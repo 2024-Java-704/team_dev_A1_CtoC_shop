@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>教科書一覧</title>
+	<link rel="stylesheet" type="text/css" href="/css/admin.css" />
+</head>
+
+<body>
+<header th:replace="header"></header>
+	<main>
+		<h1>教科書一覧</h1>
+		<table border="1" style="max-width: 95%;">
+			<tr>
+				<th>タイトル</th>
+				<th>著者</th>
+				<th>出版社</th>
+				<th>基本価格</th>
+			</tr>
+			<tr th:each="textbook:${textbooks}">
+				<td th:text="${textbook.title}"></td>
+				<td th:text="${textbook.author}"></td>
+				<td th:text="${textbook.publisher}"></td>
+				<td th:text="${textbook.price}"></td>
+			</tr>
+		</table>
+		<button class="adminMenu" onclick="location.href='/admin/addTextbook'">教科書の登録</button>
+		<footer th:replace="footer"></footer>
+	</main>
+</body>
+
+</html>

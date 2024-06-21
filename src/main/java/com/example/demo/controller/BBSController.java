@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,9 @@ public class BBSController {
 		List<Textbook> textbookList = textbookRepository.findAll();
 		model.addAttribute("titles", textbookList);
 		//募集されている教科書の一覧を取得
-		List<Request> requestList = requestRepository.findAll();
+		List<Request> requestList = new ArrayList<>();
+		requestList.addAll(requestRepository.findByUserId(account.getId()));
+		requestList.addAll(requestRepository.findByUserIdNot(account.getId()));
 		model.addAttribute("requests", requestList);
 		
 		return "bbsTable";

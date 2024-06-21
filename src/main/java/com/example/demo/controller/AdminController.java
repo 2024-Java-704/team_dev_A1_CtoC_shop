@@ -33,6 +33,7 @@ import com.example.demo.repository.LessonTextbookRepository;
 import com.example.demo.repository.NoticeRepository;
 import com.example.demo.repository.RequestRepository;
 import com.example.demo.repository.StudentRepository;
+import com.example.demo.repository.TeacherRepository;
 import com.example.demo.repository.TextbookRepository;
 import com.example.demo.repository.UserRepository;
 
@@ -78,6 +79,9 @@ public class AdminController {
 	@Autowired
 	ImageDataRepository imageDataRepository;
 
+	@Autowired
+	TeacherRepository teacherRepository;
+
 	//管理者画面を表示
 	@GetMapping("/admin")
 	public String index(Model model) {
@@ -94,6 +98,8 @@ public class AdminController {
 		}
 		model.addAttribute("textbooks", textbookRepository.findAll());
 		model.addAttribute("users", userRepository.findAll());
+
+		model.addAttribute("students", studentRepository.findAll());
 		return "admin/request";
 	}
 
@@ -117,6 +123,7 @@ public class AdminController {
 		model.addAttribute("images", images);
 		model.addAttribute("user", userRepository.findOneById(item.getSellerId()));
 		model.addAttribute("imageDatas", imageDatas);
+		model.addAttribute("students", studentRepository.findAll());
 		return "admin/item";
 	}
 
@@ -215,6 +222,12 @@ public class AdminController {
 		return "admin/claim";
 	}
 
+	@GetMapping("/admin/textbook")
+	public String textbook(Model model) {
+		model.addAttribute("textbooks", textbookRepository.findAll());
+		return "admin/textbook";
+	}
+
 	//新規教科書追加画面を表示
 	@GetMapping("/admin/addTextbook")
 	public String addTextbook() {
@@ -226,12 +239,17 @@ public class AdminController {
 	public String sendTextbook(
 			@RequestParam(name = "title", defaultValue = "") String title,
 			@RequestParam(name = "author", defaultValue = "") String author,
-			@RequestParam(name = "price", defaultValue = "") Integer price,
+			@RequestParam(name = "price", defaultValue = "") String priceString,
 			@RequestParam(name = "publisher", defaultValue = "") String publisher,
 			Model model) {
 
+		Integer price = 0;
+		if (!priceString.equals(""))
+			price = Integer.parseInt(priceString);
+
 		//エラーチェック
-		if (title.equals("") || author.equals("") || price < 1 || publisher.equals("")) {
+		if (title.equals("") || author.equals("") || price < 1
+				|| publisher.equals("")) {
 			String msg = "";
 
 			if (title.equals(""))
@@ -246,7 +264,8 @@ public class AdminController {
 			model.addAttribute("msg", msg);
 			model.addAttribute("title", title);
 			model.addAttribute("author", author);
-			model.addAttribute("price", price);
+			if (price != 0)
+				model.addAttribute("price", price);
 			model.addAttribute("publisher", publisher);
 			return "admin/addTextbook";
 		}
@@ -254,7 +273,16 @@ public class AdminController {
 		Textbook textbook = new Textbook(title, author, price, publisher);
 		textbookRepository.save(textbook);
 
-		return "redirect:/admin/addTextbook";
+		return "redirect:/admin/textbook";
+	}
+
+	@GetMapping("/admin/lesson")
+	public String lesson(Model model) {
+		model.addAttribute("lessons", lessonRepository.findByOrderByDayAscPeriodAsc());
+		model.addAttribute("teachers", teacherRepository.findAll());
+		model.addAttribute("users", userRepository.findByUserStatus(1));
+
+		return "admin/lesson";
 	}
 
 	//新規授業追加画面を表示
@@ -314,7 +342,7 @@ public class AdminController {
 			}
 		}
 
-		return "redirect:/admin";
+		return "redirect:/lesson";
 	}
 
 }

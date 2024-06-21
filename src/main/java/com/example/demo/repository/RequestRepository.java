@@ -10,4 +10,8 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 
 	List<Request> findByTextbookId(Integer textbookId); //該当の教科書IDの募集リストを取得
 
+	List<Request> findByUserId(Integer userid);
+
+	List<Request> findByUserIdNot(Integer id);
+
 }

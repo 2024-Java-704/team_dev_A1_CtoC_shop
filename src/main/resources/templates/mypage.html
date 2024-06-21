@@ -20,6 +20,10 @@
 				<td th:text="${user.personalNumber}" colspan="2"></td>
 			</tr>
 			<tr>
+				<th class="tabletitle">名前</th>
+				<td th:text="${student.name}" colspan="2"></td>
+			</tr>
+			<tr>
 				<th class="tabletitle">パスワード</th>
 				<td>●●●●●●●●</td>
 				<td>
@@ -469,7 +473,7 @@
 		<tablemarge>
 			<!--	注文履歴を書くテーブル-->
 			<th:block th:if="${countbuyList > 0}">
-				<table class="table" border="1" id="table1">
+				<table class="table" border="3" id="table1">
 					<tr>
 						<th colspan="3" class="tabletitle" id="tabletitle1">注文履歴</th>
 					</tr>
@@ -497,6 +501,7 @@
 									<button class="btn">レビュー画面へ</button>
 								</form>
 							</td>
+							<td th:if="!${buyItem.buyerId == @account.id && buyItem.dealStatus == 4}">レビュー完了</td>
 						</tr>
 					</buylistloop>
 				</table>
@@ -512,7 +517,7 @@
 			</th:block>
 
 			<th:block th:if="${countsellList>0}">
-				<table class="table" border="1" id="table2">
+				<table class="table" border="3" id="table2">
 					<tr>
 						<th colspan="3" class="tabletitle" id="tabletitle2">販売履歴</th>
 					</tr>
@@ -543,7 +548,7 @@
 									<button class="btn">取引画面へ</button>
 								</form>
 							</td>
-							<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 5}">取引完了</td>
+							<td th:if="${sellItem.sellerId == @account.id && sellItem.dealStatus == 5}">受渡完了</td>
 						</tr>
 					</buylistloop>
 

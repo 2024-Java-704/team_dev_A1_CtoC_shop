@@ -13,4 +13,6 @@ public interface LessonRepository extends JpaRepository<Lesson, Integer> {
 	List<Lesson> findByDayAndPeriod(Integer day, Integer Period);
 
 	Lesson findByIdAndDayAndPeriod(Integer lessonId, Integer day, Integer Period);
+
+	List<Lesson> findByOrderByDayAscPeriodAsc();
 }

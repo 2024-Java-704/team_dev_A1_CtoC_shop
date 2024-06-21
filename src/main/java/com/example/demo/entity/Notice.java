@@ -29,6 +29,12 @@ public class Notice {
 		this.noticeStatus = 1;
 	}
 
+	public Notice(Integer userId, String message, Integer noticeStatus) {
+		this.userId = userId;
+		this.message = message;
+		this.noticeStatus = noticeStatus;
+	}
+
 	public Integer getId() {
 		return id;
 	}

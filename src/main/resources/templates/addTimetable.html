@@ -17,7 +17,11 @@
 					<tr>
 						<th id="tabletitle">授業名</th>
 						<td><select name="lessonId" id="option">
-								<option th:each="lesson:${lessons}" th:value="${lesson.id}">[[${lesson.name}]](<th:block th:each="user:${users}" th:if="${user.id == lesson.teacherId}"><span th:each="teacher:${teachers}" th:if="${teacher.personalNumber == user.personalNumber}" th:text="${teacher.name}"></span></th:block>)</option>
+								<option th:each="lesson:${lessons}" th:value="${lesson.id}">[[${lesson.name}]](<th:block
+										th:each="user:${users}" th:if="${user.id == lesson.teacherId}"><span
+											th:each="teacher:${teachers}"
+											th:if="${teacher.personalNumber == user.personalNumber}"
+											th:text="${teacher.name}"></span></th:block>)</option>
 							</select></td>
 					</tr>
 				</table>

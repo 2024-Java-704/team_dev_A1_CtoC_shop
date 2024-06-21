@@ -65,15 +65,17 @@ public class MessageController {
 	public String Notice(Model model) {
 		//ログインしているユーザーの情報を取得
 		List<Notice> noticeList = noticeRepository.findByUserId(account.getId());
+		List<Notice> notices = new ArrayList<>();
 		//通知を一つずつ処理
 		for (Notice notice : noticeList) {
+			notices.add(new Notice(notice.getId(), notice.getMessage(), notice.getNoticeStatus()));
 			//通知を既読状態にする
 			notice.setNoticeStatus(2);
 			//noticesテーブルへの反映
 			noticeRepository.save(notice);
 		}
 		
-		model.addAttribute("notices", noticeList);
+		model.addAttribute("notices", notices);
 
 		return "notification";
 	}
